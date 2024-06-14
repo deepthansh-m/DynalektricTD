@@ -575,7 +575,7 @@ public class Calculations {
     }
 
     public void turn_length_hv() {
-        outputData.TURN_LENGTH_HV = outputData.MEAN_LG_LV / 1000;
+        outputData.TURN_LENGTH_HV = outputData.MEAN_LG_HV / 1000;
     }
 
     public void wire_length_lv() {
@@ -785,8 +785,8 @@ public class Calculations {
     public void core_sa() {
         double answer = ((2 * inputData.CORE_W) + outputData.CORE_D) * outputData.YOKE_L;
         answer += (inputData.CORE_W * outputData.CORE_D * 4);
-       answer = answer * 0.01;
-       outputData.CORE_SA = answer;
+        answer = answer * 0.01;
+        outputData.CORE_SA = answer;
     }
     public void wdg_sa() {
         outputData.WDG_SA = outputData.MEAN_LG_HV * outputData.WDG_LG_IMP_CALCU_HV * 0.01 * 3;
@@ -852,7 +852,7 @@ public class Calculations {
         outputData.H_ACTIVE = (double)Math.round((5 + 2 * inputData.CORE_W + outputData.LIMB_H) / 5.0) * 5.0;
     }
     public void l_mechanical() {
-       double answer = Math.round((outputData.L_ACTIVE +  (2*250) ) / 5);
+        double answer = Math.round((outputData.L_ACTIVE +  (2*250) ) / 5);
         outputData.L_MECHANICAL = answer * 5;
     }
     public  void b_mechanical() {
