@@ -409,15 +409,15 @@ public class Calculations {
     }
 
     public void limb_length_LV() {
-        outputData.LIMB_LENGTH_LV = outputData.WIND_LENGTH_LV * inputData.END_CLEARANCES_LV;
+        outputData.LIMB_LENGTH_LV = outputData.WIND_LENGTH_LV + inputData.END_CLEARANCES_LV;
     }
 
     public void limb_length_HV() {
-        outputData.LIMB_LENGTH_HV = outputData.WIND_LENGTH_HV * inputData.END_CLEARANCES_HV;
+        outputData.LIMB_LENGTH_HV = outputData.WIND_LENGTH_HV + inputData.END_CLEARANCES_HV;
     }
 
     public void wind_radial_depth_lv() {
-        double answer = outputData.WIRE_INSULATED_LV1 * inputData.NO_IN_PARALLEL_RA_LV2 * inputData.LAYER_LV;
+        double answer = outputData.WIRE_INSULATED_LV2 * inputData.NO_IN_PARALLEL_RA_LV1 * inputData.LAYER_LV;
         answer = answer + inputData.OIL_DUCTS_RADIAL_LV1 * inputData.OIL_DUCTS_RADIAL_LV2;
         answer = answer + (inputData.INSULATION_BETWEEN_LAYERS_LV * (inputData.LAYER_LV - 1) * 1.05);
         answer = answer / 5.0;
@@ -426,7 +426,7 @@ public class Calculations {
     }
 
     public void wind_radial_depth_hv() {
-        double answer = outputData.WIRE_INSULATED_HV1 * inputData.NO_IN_PARALLEL_RA_HV2 * inputData.LAYER_HV;
+        double answer = outputData.WIRE_INSULATED_HV2 * inputData.NO_IN_PARALLEL_RA_HV1 * inputData.LAYER_HV;
         answer = answer + inputData.OIL_DUCTS_RADIAL_HV1 * inputData.OIL_DUCTS_RADIAL_HV2;
         answer = answer + (inputData.INSULATION_BETWEEN_LAYERS_HV * (inputData.LAYER_HV - 1) * 1.05);
         answer = answer / 5.0;
@@ -571,11 +571,11 @@ public class Calculations {
     }
 
     public void turn_length_lv() {
-        outputData.TURN_LENGTH_LV = outputData.MEAN_LG_LV / 1000;
+        outputData.TURN_LENGTH_LV = outputData.MEAN_LG_HV / 1000;
     }
 
     public void turn_length_hv() {
-        outputData.TURN_LENGTH_HV = outputData.MEAN_LG_HV / 1000;
+        outputData.TURN_LENGTH_HV = outputData.MEAN_LG_LV / 1000;
     }
 
     public void wire_length_lv() {

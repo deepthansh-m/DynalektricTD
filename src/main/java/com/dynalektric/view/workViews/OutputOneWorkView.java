@@ -40,7 +40,12 @@ public class OutputOneWorkView extends AbstractWorkView{
             return false;
         }
     };
-    private final JTable coreWeightTable = new JTable(1 , 5);
+    private final JTable coreWeightTable = new JTable(1 , 5){
+        @Override
+        public boolean isCellEditable(int row , int col){
+            return false;
+        }
+    };;
     private final JLabel cDistLabel = new JLabel("C Dist : ");
     private final JLabel yokeL = new JLabel("Yoke L : ");
     private final JLabel leads = new JLabel("Leads : ");

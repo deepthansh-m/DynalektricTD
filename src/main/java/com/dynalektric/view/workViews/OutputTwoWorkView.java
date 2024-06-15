@@ -23,10 +23,30 @@ public class OutputTwoWorkView extends AbstractWorkView{
 
     private final JPanel mainPanel = new JPanel();
     private final JPanel contentPanel = new JPanel();
-    private final JTable tankDimensionTable = new JTable(7  , 2);
-    private final JTable impedanceVoltageTable = new JTable(8 , 2);
-    private final JTable lossesTable = new JTable(9 , 2);
-    private final JTable billTable = new JTable(11, 2);
+    private final JTable tankDimensionTable = new JTable(7  , 2){
+        @Override
+        public boolean isCellEditable(int row , int col){
+            return false;
+        }
+    };;
+    private final JTable impedanceVoltageTable = new JTable(8 , 2){
+        @Override
+        public boolean isCellEditable(int row , int col){
+            return false;
+        }
+    };;
+    private final JTable lossesTable = new JTable(9 , 2){
+        @Override
+        public boolean isCellEditable(int row , int col){
+            return false;
+        }
+    };;
+    private final JTable billTable = new JTable(11, 2){
+        @Override
+        public boolean isCellEditable(int row , int col){
+            return false;
+        }
+    };;
     private final JPanel dimensionPanel = new JPanel();
     private final JPanel impedancePanel = new JPanel();
     private final JPanel lossesPanel = new JPanel();
