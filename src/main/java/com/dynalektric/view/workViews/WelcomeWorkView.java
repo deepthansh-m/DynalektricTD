@@ -73,9 +73,9 @@ public class WelcomeWorkView extends AbstractWorkView implements ChildFrameListe
         welcomeWorkViewMainPanel.setLayout(new GridLayout(0, 2));
 
         leftPanel.setLayout(new BoxLayout(leftPanel , BoxLayout.Y_AXIS));
-        leftPanel.setBackground(new Color(63, 102, 252));
+        leftPanel.setBackground(StyleConstants.BACKGROUND);
         rightPanel.setLayout(new BoxLayout(rightPanel , BoxLayout.Y_AXIS));
-        rightPanel.setBackground(new Color(63, 102, 252));
+        rightPanel.setBackground(StyleConstants.BACKGROUND);
         JLabel heading = new JLabel(DisplayConstant.APP_TITLE);
         JButton newProjectButton = new JButton(DisplayConstant.NEW_PROJECT);
         JButton openProjectButton = new JButton(DisplayConstant.OPEN_PROJECT);
@@ -123,7 +123,7 @@ public class WelcomeWorkView extends AbstractWorkView implements ChildFrameListe
 
     private JPanel createCardForProject(String project){
         JPanel cardContent = new JPanel(new FlowLayout(FlowLayout.LEADING));
-        cardContent.setBackground(new Color(63, 102, 252));
+        cardContent.setBackground(StyleConstants.BACKGROUND);
         JButton openProjectButton = new JButton(project);
         openProjectButton.setFont(StyleConstants.NEW_PROJECT);
         openProjectButton.setBackground(StyleConstants.BACKGROUND_SECONDARY);
@@ -151,7 +151,7 @@ public class WelcomeWorkView extends AbstractWorkView implements ChildFrameListe
         JPanel resultPanel = new JPanel();
         BoxLayout layout = new BoxLayout(resultPanel,BoxLayout.Y_AXIS);
         resultPanel.setLayout(layout);
-        resultPanel.setBackground(new Color(63, 102, 252));
+        resultPanel.setBackground(StyleConstants.BACKGROUND);
 
         JLabel recentProjects = new JLabel(DisplayConstant.RECENT_PROJECTS);
         recentProjects.setFont(StyleConstants.RECENT_PROJECTS);
@@ -168,7 +168,7 @@ public class WelcomeWorkView extends AbstractWorkView implements ChildFrameListe
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10 , 10 , 10 , 10));
         leftPanel.add(Box.createVerticalStrut(15));
         leftPanel.add(scrollPane);
-        scrollPane.setBackground(new Color(63, 102, 252));
+        scrollPane.setBackground(StyleConstants.BACKGROUND);
     }
     private void initializeLogoPanel(){
         logoPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -176,7 +176,7 @@ public class WelcomeWorkView extends AbstractWorkView implements ChildFrameListe
         logoPanel.setPreferredSize(new Dimension(
                 (int)View.SCREEN_DIMENSION.getWidth(),
                 (int)(View.SCREEN_DIMENSION.getHeight()*0.1)));
-        logoPanel.setBackground(new Color(63, 102, 252));
+        logoPanel.setBackground(StyleConstants.BACKGROUND);
         this.add(logoPanel,BorderLayout.NORTH);
         try{
             BufferedImage nhceLogoImage = ImageIO.read(this.getClass().getResource("NHCE.jpg"));
