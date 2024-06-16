@@ -280,7 +280,12 @@ public class InputWorkView extends AbstractWorkView{
         JScrollPane defaultScrollPane = new JScrollPane(rightPanel);
         inputWorkViewPanel.add(leftPanel);
         inputWorkViewPanel.add(defaultScrollPane);
-
+        inputLeftPanel.setBackground(new Color(63, 102, 252));
+        dropDownLeftPanel.setBackground(new Color(63, 102, 252));
+        dropDownRightPanel.setBackground(new Color(63, 102, 252));
+        inputRightPanel .setBackground(new Color(63, 102, 252));
+        defaultLeftPanel.setBackground(new Color(63, 102, 252));
+        defaultRightPanel.setBackground(new Color(63, 102, 252));
         mainPanel.add(inputWorkViewPanel);
         if(Model.getSingleton().getLoadedProject() != null)
             this.refreshInputValues();
@@ -289,7 +294,7 @@ public class InputWorkView extends AbstractWorkView{
     private void initializeLogoPanel(){
 
         logoPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
-
+        logoPanel.setBackground(new Color(63, 102, 252));
         logoPanel.setPreferredSize(new Dimension(
                 (int) View.SCREEN_DIMENSION.getWidth(),
                 (int)(View.SCREEN_DIMENSION.getHeight()*0.1)));
@@ -344,6 +349,7 @@ public class InputWorkView extends AbstractWorkView{
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
         JButton calculateBtn = new JButton("Calculate");
         JButton nextBtn = new JButton("Next");
+        navigationPanel.setBackground(new Color(63, 102, 252));
         calculateBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -378,59 +384,109 @@ public class InputWorkView extends AbstractWorkView{
     private void refreshInputValues(){
         InputData inputData = model.getLoadedProjectInput();
         this.kvaIn.setValueEntered(String.valueOf(inputData.KVA));
+        this.kvaIn.setBackground(new Color(63, 102, 252));
         this.kIn.setValueEntered(String.valueOf(inputData.K));
+        this.kIn.setBackground(new Color(63, 102, 252));
         this.LVIn.setValueEntered(String.valueOf(inputData.LINEVOLTSLV));
+        this.LVIn.setBackground(new Color(63, 102, 252));
         this.HVIn.setValueEntered(String.valueOf(inputData.LINEVOLTSHV));
+        this.HVIn.setBackground(new Color(63, 102, 252));
         this.insulationLvIn.setValueEntered(String.valueOf(inputData.INSULATION_LV));
+        this.insulationLvIn.setBackground(new Color(63, 102, 252));
         this.insulationHvIn.setValueEntered(String.valueOf(inputData.INSULATION_HV));
+        this.insulationHvIn.setBackground(new Color(63, 102, 252));
         this.layersLvIn.setValueEntered(String.valueOf(inputData.LAYER_LV));
+        this.layersLvIn.setBackground(new Color(63, 102, 252));
         this.layersHvIn.setValueEntered(String.valueOf(inputData.LAYER_HV));
+        this.layersHvIn.setBackground(new Color(63, 102, 252));
         this.insulationBetweenLayersLvIn.setValueEntered(String.valueOf(inputData.INSULATION_BETWEEN_LAYERS_LV));
+        this.insulationBetweenLayersLvIn.setBackground(new Color(63, 102, 252));
         this.insulationBetweenLayersHvIn.setValueEntered(String.valueOf(inputData.INSULATION_BETWEEN_LAYERS_HV));
+        this.insulationBetweenLayersHvIn.setBackground(new Color(63, 102, 252));
         this.oilDuctsAxialIn.setValueEntered(String.valueOf(inputData.OIL_DUCTS_AXIAL_LV));
+        this.oilDuctsAxialIn.setBackground(new Color(63, 102, 252));
         this.transpositionLvIn.setValueEntered(String.valueOf(inputData.TRANSPOSITION_LV));
+        this.transpositionLvIn.setBackground(new Color(63, 102, 252));
         this.transpositionHvIn.setValueEntered(String.valueOf(inputData.TRANSPOSITION_HV));
+        this.transpositionHvIn.setBackground(new Color(63, 102, 252));
         this.compGapIn.setValueEntered(String.valueOf(inputData.COMP_GAP_LV));
+        this.compGapIn.setBackground(new Color(63, 102, 252));
         this.endClearanceLvIn.setValueEntered(String.valueOf(inputData.END_CLEARANCES_LV));
+        this.endClearanceLvIn.setBackground(new Color(63, 102, 252));
         this.endClearanceHvIn.setValueEntered(String.valueOf(inputData.END_CLEARANCES_HV));
+        this.endClearanceHvIn.setBackground(new Color(63, 102, 252));
         this.limbPlateIn.setValueEntered(String.valueOf(inputData.LIMB_PLATE_W));
+        this.limbPlateIn.setBackground(new Color(63, 102, 252));
         this.wireBareLv1In.setValueEntered(String.valueOf(inputData.WIREBARELV1));
+        this.wireBareLv1In.setBackground(new Color(63, 102, 252));
         this.wireBareLv2In.setValueEntered(String.valueOf(inputData.WIREBARELV2));
+        this.wireBareLv2In.setBackground(new Color(63, 102, 252));
         this.wireBareHv1In.setValueEntered(String.valueOf(inputData.WIREBAREHV1));
+        this.wireBareHv1In.setBackground(new Color(63, 102, 252));
         this.wireBareHv2In.setValueEntered(String.valueOf(inputData.WIREBAREHV2));
+        this.wireBareHv2In.setBackground(new Color(63, 102, 252));
         this.noInParallel_R_A_Lv1In.setValueEntered(String.valueOf(inputData.NO_IN_PARALLEL_RA_LV1));
+        this.noInParallel_R_A_Lv1In.setBackground(new Color(63, 102, 252));
         this.noInParallel_R_A_Lv2In.setValueEntered(String.valueOf(inputData.NO_IN_PARALLEL_RA_LV2));
+        this.noInParallel_R_A_Lv2In.setBackground(new Color(63, 102, 252));
         this.noInParallel_R_A_Hv1In.setValueEntered(String.valueOf(inputData.NO_IN_PARALLEL_RA_HV1));
+        this.noInParallel_R_A_Hv1In.setBackground(new Color(63, 102, 252));
         this.noInParallel_R_A_Hv2In.setValueEntered(String.valueOf(inputData.NO_IN_PARALLEL_RA_HV2));
+        this.noInParallel_R_A_Hv2In.setBackground(new Color(63, 102, 252));
 
         //
         this.gapBobbinIn.setValueEntered(String.valueOf(inputData.GAP_W));
+        this.gapBobbinIn.setBackground(new Color(63, 102, 252));
         this.deltaIn.setValueEntered(String.valueOf(inputData.DELTA_W));
+        this.deltaIn.setBackground(new Color(63, 102, 252));
         this.amIn.setValueEntered(String.valueOf(inputData.AM_W));
+        this.amIn.setBackground(new Color(63, 102, 252));
         this.leadsIn.setValueEntered("6");
+        this.leadsIn.setBackground(new Color(63, 102, 252));
         this.stackingFactorIn.setValueEntered(String.valueOf(inputData.STACKING_FACTOR));
+        this.stackingFactorIn.setBackground(new Color(63, 102, 252));
         this.fluxDensityIn.setValueEntered(String.valueOf(inputData.FLUX_DENSITY));
+        this.fluxDensityIn.setBackground(new Color(63, 102, 252));
         //this.specLossIn.setValueEntered(inputData.);
+        //this.specLossIn..setBackground(new Color(63, 102, 252));
         this.coreWIn.setValueEntered(String.valueOf(inputData.CORE_W));
+        this.coreWIn.setBackground(new Color(63, 102, 252));
         this.ambienceAirTempIn.setValueEntered("50");
+        this.ambienceAirTempIn.setBackground(new Color(63, 102, 252));
         this.ekPercentageGaurIn.setValueEntered("5");
+        this.ekPercentageGaurIn.setBackground(new Color(63, 102, 252));
         //this.ambienceAirTempIn.setValueEntered(inputData.AMB);
 
         this.typesOfMaterialIn.setValueSelected(inputData.CONDUCTOR);
+        this.typesOfMaterialIn.setBackground(new Color(63, 102, 252));
         this.coreBldgIn.setValueSelected(String.valueOf(inputData.CORE_BLDG_FACTOR));
+        this.coreBldgIn.setBackground(new Color(63, 102, 252));
         this.connectionIn.setValueSelected(inputData.CONNECTION);
+        this.connectionIn.setBackground(new Color(63, 102, 252));
         this.coolingIn.setValueSelected(inputData.COOLING);
+        this.coolingIn.setBackground(new Color(63, 102, 252));
         this.frequencyIn.setValueSelected(String.valueOf(inputData.FREQUENCY));
+        this.frequencyIn.setBackground(new Color(63, 102, 252));
         this.windingTemperatureIn.setValueSelected(String.valueOf(inputData.WIND_TEMP));
+        this.windingTemperatureIn.setBackground(new Color(63, 102, 252));
         this.steelGradeIn.setValueSelected(inputData.STEEL_GRADE);
+        this.steelGradeIn.setBackground(new Color(63, 102, 252));
         this.typesOfWindingLvIn.setValueSelected(inputData.WINDINGTYPELV);
+        this.typesOfWindingLvIn.setBackground(new Color(63, 102, 252));
         this.typesOfWindingHvIn.setValueSelected(inputData.WINDINGTYPEHV);
+        this.typesOfWindingHvIn.setBackground(new Color(63, 102, 252));
         this.typesOfConnectionLvIn.setValueSelected(inputData.CONNECTIONTYPELV);
+        this.typesOfConnectionLvIn.setBackground(new Color(63, 102, 252));
         this.typesOfConnectionHvIn.setValueSelected(inputData.CONNECTIONTYPEHV);
+        this.typesOfConnectionHvIn.setBackground(new Color(63, 102, 252));
         this.oilDuctsLv1In.setValueSelected(String.valueOf(inputData.OIL_DUCTS_RADIAL_LV1));
+        this.oilDuctsLv1In.setBackground(new Color(63, 102, 252));
         this.oilDuctsLv2In.setValueSelected(String.valueOf(inputData.OIL_DUCTS_RADIAL_LV2));
+        this.oilDuctsLv2In.setBackground(new Color(63, 102, 252));
         this.oilDuctsHv1In.setValueSelected(String.valueOf(inputData.OIL_DUCTS_RADIAL_HV1));
+        this.oilDuctsHv1In.setBackground(new Color(63, 102, 252));
         this.oilDuctsHv2In.setValueSelected(String.valueOf(inputData.OIL_DUCTS_RADIAL_HV2));
+        this.oilDuctsHv2In.setBackground(new Color(63, 102, 252));
     }
 
     public void storeEnteredValuesInModel(){

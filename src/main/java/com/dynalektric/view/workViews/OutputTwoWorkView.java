@@ -77,12 +77,16 @@ public class OutputTwoWorkView extends AbstractWorkView{
         this.contentPanel.setLayout(new GridLayout(0 , 3));
         BoxLayout dimensionLayout = new BoxLayout(this.dimensionPanel , BoxLayout.Y_AXIS);
         this.dimensionPanel.setLayout(dimensionLayout);
+        this.dimensionPanel.setBackground(new Color(63, 102, 252));
         BoxLayout impedanceLayout = new BoxLayout(this.impedancePanel , BoxLayout.Y_AXIS);
         this.impedancePanel.setLayout(impedanceLayout);
+        this.impedancePanel.setBackground(new Color(63, 102, 252));
         BoxLayout lossesLayout = new BoxLayout(this.lossesPanel , BoxLayout.Y_AXIS);
         this.lossesPanel.setLayout(lossesLayout);
+        this.lossesPanel.setBackground(new Color(63, 102, 252));
         BoxLayout billLayout = new BoxLayout(this.billPanel, BoxLayout.Y_AXIS);
         this.billPanel.setLayout(billLayout);
+        this.billPanel.setBackground(new Color(63, 102, 252));
         JLabel dimensionLabel = new JLabel("Tank Dimensions");
         dimensionLabel.setFont(StyleConstants.HEADING_SUB1);
         this.dimensionPanel.add(dimensionLabel);
@@ -232,6 +236,7 @@ public class OutputTwoWorkView extends AbstractWorkView{
 
     private JPanel initializeNavigationPanel(){
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        navigationPanel.setBackground(new Color(63, 102, 252));
         JButton previousBtn = new JButton("Previous");
         navigationPanel.add(previousBtn);
         previousBtn.addMouseListener(new MouseAdapter() {

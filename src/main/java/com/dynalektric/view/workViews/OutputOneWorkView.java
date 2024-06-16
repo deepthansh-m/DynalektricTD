@@ -128,7 +128,7 @@ public class OutputOneWorkView extends AbstractWorkView{
         this.LV_HVPanel.add(this.wireDetailTable);
         this.LV_HVPanel.add(Box.createVerticalStrut(40));
         this.LV_HVPanel.add(this.coreWeightTable);
-        this.LV_HVPanel.setBackground(new Color(230 , 230 , 230));
+        this.LV_HVPanel.setBackground(new Color(63, 102, 252));
         this.LV_HVPanel.setBorder(BorderFactory.createEmptyBorder(20, 20 , 20 ,20));
     }
     private void initializeCoreDetailsPanel(){
@@ -142,7 +142,7 @@ public class OutputOneWorkView extends AbstractWorkView{
         this.coreDetailsPanel.add(coreDetailsHeading);
         this.coreDetailsPanel.add(Box.createVerticalStrut(10));
         this.coreDetailsPanel.add(coreWdgTable);
-        this.coreDetailsPanel.setBackground(new Color(230 , 230 , 230));
+        this.coreDetailsPanel.setBackground(new Color(63, 102, 252));
         this.coreDetailsPanel.setBorder(BorderFactory.createEmptyBorder(20, 20 , 20 ,20));
 
         this.cDistLabel.setAlignmentX(LEFT_ALIGNMENT);
@@ -152,6 +152,7 @@ public class OutputOneWorkView extends AbstractWorkView{
     }
     private JPanel initializeNavigationPanel(){
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        navigationPanel.setBackground(new Color(63, 102, 252));
         JButton previousBtn = new JButton("Previous");
         JButton nextBtn = new JButton("Next");
         navigationPanel.add(previousBtn);
