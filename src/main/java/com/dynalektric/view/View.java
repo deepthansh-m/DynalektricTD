@@ -3,11 +3,7 @@ package com.dynalektric.view;
 import com.dynalektric.control.Control;
 import com.dynalektric.control.WelcomeWorkViewController;
 import com.dynalektric.model.Model;
-import com.dynalektric.view.workViews.AbstractWorkView;
-import com.dynalektric.view.workViews.InputWorkView;
-import com.dynalektric.view.workViews.OutputOneWorkView;
-import com.dynalektric.view.workViews.WelcomeWorkView;
-import com.dynalektric.view.workViews.OutputTwoWorkView;
+import com.dynalektric.view.workViews.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -85,14 +81,17 @@ public class View{
         InputWorkView inputView = new InputWorkView(model);
         OutputOneWorkView outputOneWorkView = new OutputOneWorkView(model);
         OutputTwoWorkView outputTwoWorkView = new OutputTwoWorkView(model);
+        PrintWorkView printWorkView = new PrintWorkView(model);
         view.loadedViews.put(outputOneWorkView.getViewName() , outputOneWorkView);
         view.loadedViews.put(welcomeView.getViewName() ,welcomeView);
         view.loadedViews.put(inputView.getViewName(),inputView);
         view.loadedViews.put(outputTwoWorkView.getViewName(),outputTwoWorkView);
+        view.loadedViews.put(printWorkView.getViewName(), printWorkView);
         mainPanel.loadWorkView(welcomeView);
         mainPanel.loadWorkView(inputView);
         mainPanel.loadWorkView(outputOneWorkView);
         mainPanel.loadWorkView(outputTwoWorkView);
+        mainPanel.loadWorkView(printWorkView);
     }
 
     private void initializeUI(){

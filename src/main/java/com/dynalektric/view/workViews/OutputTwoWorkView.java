@@ -6,14 +6,19 @@ import com.dynalektric.control.Control;
 import com.dynalektric.model.Model;
 import com.dynalektric.model.repositories.project.InputData;
 import com.dynalektric.model.repositories.project.OutputData;
+import com.dynalektric.print.PrintManager;
 import com.dynalektric.view.View;
 import com.dynalektric.view.ViewMessage;
 import com.dynalektric.view.components.MenuBar;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import static com.dynalektric.view.workViews.PrintWorkView.*;
 
 public class OutputTwoWorkView extends AbstractWorkView{
 
@@ -245,6 +250,14 @@ public class OutputTwoWorkView extends AbstractWorkView{
                 View.getSingleton().setView(OutputOneWorkView.VIEW_NAME);
             }
         });
+        JButton nextBtn = new JButton("Print");
+        nextBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                View.getSingleton().setView(PrintWorkView.VIEW_NAME);
+            }
+        });
+        navigationPanel.add(nextBtn);
         return navigationPanel;
     }
 
