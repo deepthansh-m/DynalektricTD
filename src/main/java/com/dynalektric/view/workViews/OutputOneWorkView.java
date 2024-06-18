@@ -46,6 +46,12 @@ public class OutputOneWorkView extends AbstractWorkView{
             return false;
         }
     };;
+    private final JTable standardTable = new JTable(12 , 2){
+        @Override
+        public boolean isCellEditable(int row , int col){
+            return false;
+        }
+    };;
     private final JLabel cDistLabel = new JLabel("C Dist : ");
     private final JLabel yokeL = new JLabel("Yoke L : ");
     private final JLabel leads = new JLabel("Leads : ");
@@ -149,6 +155,9 @@ public class OutputOneWorkView extends AbstractWorkView{
         this.coreDetailsPanel.add(cDistLabel);
         this.coreDetailsPanel.add(yokeL);
         this.coreDetailsPanel.add(leads);
+        this.coreDetailsPanel.add(Box.createVerticalStrut(10));
+        this.coreDetailsPanel.add(standardTable);
+
     }
     private JPanel initializeNavigationPanel(){
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
@@ -346,6 +355,32 @@ public class OutputOneWorkView extends AbstractWorkView{
         String leads_data = leads.getText();
         leads_data = leads_data.substring(0 , 7);
         leads.setText(leads_data + String.valueOf(outputData.LEADS));
+
+        standardTable.setValueAt("parameter",0,0);
+        standardTable.setValueAt("mm",0,1);
+        standardTable.setValueAt("R1",1,0);
+        standardTable.setValueAt("R2",2,0);
+        standardTable.setValueAt("R3",3,0);
+        standardTable.setValueAt("R4",4,0);
+        standardTable.setValueAt("perimeter 1",5,0);
+        standardTable.setValueAt("perimeter 2",6,0);
+        standardTable.setValueAt("perimeter 3",7,0);
+        standardTable.setValueAt("perimeter 4",8,0);
+        standardTable.setValueAt("Mean LG LV",9,0);
+        standardTable.setValueAt("Mean LG DELTA",10,0);
+        standardTable.setValueAt("Mean LG HV",11,0);
+
+        standardTable.setValueAt(outputData.R1,1,1);
+        standardTable.setValueAt(outputData.R2,2,1);
+        standardTable.setValueAt(outputData.R3,3,1);
+        standardTable.setValueAt(outputData.R4,4,1);
+        standardTable.setValueAt(outputData.PERIMETER1,5,1);
+        standardTable.setValueAt(outputData.PERIMETER2,6,1);
+        standardTable.setValueAt(outputData.PERIMETER3,7,1);
+        standardTable.setValueAt(outputData.PERIMETER4,8,1);
+        standardTable.setValueAt(outputData.MEAN_LG_LV,9,1);
+        standardTable.setValueAt(outputData.MEAN_LG_DELTA,10,1);
+        standardTable.setValueAt(outputData.MEAN_LG_HV,11,1);
 
     }
 }

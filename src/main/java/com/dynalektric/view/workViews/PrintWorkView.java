@@ -26,7 +26,8 @@ public class PrintWorkView extends AbstractWorkView {
     private final JPanel mainPanel = new JPanel();
     private final JPanel LV_HVPanel = new JPanel();
     private final JPanel coreDetailsPanel = new JPanel();
-    private final JPanel contentPanel = new JPanel();
+    private final JPanel surfacePanel = new JPanel();
+    private final JPanel vaPanel = new JPanel();
     private final JTable tankDimensionTable = new JTable(7  , 2){
         @Override
         public boolean isCellEditable(int row , int col){
@@ -51,6 +52,14 @@ public class PrintWorkView extends AbstractWorkView {
             return false;
         }
     };;
+    private final JTable surfaceTable = new JTable(5,2){
+        @Override
+        public boolean isCellEditable(int row , int col){ return false; }
+    };
+    private final JTable vaTable = new JTable(7,3){
+        @Override
+        public boolean isCellEditable(int row , int col){ return false; }
+    };
     private final JPanel dimensionPanel = new JPanel();
     private final JPanel impedancePanel = new JPanel();
     private final JPanel lossesPanel = new JPanel();
@@ -78,6 +87,12 @@ public class PrintWorkView extends AbstractWorkView {
             return false;
         }
     };
+    private final JTable standardTable = new JTable(12 , 2){
+        @Override
+        public boolean isCellEditable(int row , int col){
+            return false;
+        }
+    };;
     private final JLabel cDistLabel = new JLabel("C Dist : ");
     private final JLabel yokeL = new JLabel("Yoke L : ");
     private final JLabel leads = new JLabel("Leads : ");
@@ -111,6 +126,8 @@ public class PrintWorkView extends AbstractWorkView {
             this.initializeBillTable();
             this.initializeImpedanceTable();
             this.initializeLossesTable();
+            this.initializeSurfaceTable();
+            this.initializeVATable();
         }
     }
     @Override
@@ -181,10 +198,27 @@ public class PrintWorkView extends AbstractWorkView {
             this.initializeBillTable();
         this.dimensionPanel.add(Box.createVerticalStrut(30));
         this.dimensionPanel.add(billTable);
+        this.dimensionPanel.add(Box.createVerticalStrut(15));
+        JLabel surfaceHeading = new JLabel("Surface Area:");
+        surfaceHeading.setFont(StyleConstants.HEADING_SUB1);
+        this.dimensionPanel.add(surfaceHeading);
+        if(model.getLoadedProject() != null)
+            this.initializeSurfaceTable();
+        this.dimensionPanel.add(Box.createVerticalStrut(30));
+        this.dimensionPanel.add(surfaceTable);
+        this.impedancePanel.add(Box.createVerticalStrut(15));
+        this.impedancePanel.add(lossesPanel);
+        this.impedancePanel.add(Box.createVerticalStrut(15));
+        JLabel vaHeading = new JLabel("VA Table");
+        vaHeading.setFont(StyleConstants.HEADING_SUB1);
+        this.impedancePanel.add(vaHeading);
+        if(model.getLoadedProject() != null)
+            this.initializeVATable();
+        this.impedancePanel.add(Box.createVerticalStrut(30));
+        this.impedancePanel.add(vaTable);
         this.impedancePanel.setBorder(BorderFactory.createEmptyBorder(20 , 20 , 20 ,20));
         this.lossesPanel.setBorder(BorderFactory.createEmptyBorder(20 , 20 , 20 , 20));
         this.dimensionPanel.setBorder(BorderFactory.createEmptyBorder(20 , 20 ,20 ,20));
-        this.impedancePanel.add(lossesPanel);
         this.mainPanel.add(dimensionPanel);
         this.mainPanel.add(impedancePanel);
 
@@ -232,6 +266,8 @@ public class PrintWorkView extends AbstractWorkView {
         this.coreDetailsPanel.add(cDistLabel);
         this.coreDetailsPanel.add(yokeL);
         this.coreDetailsPanel.add(leads);
+        this.coreDetailsPanel.add(Box.createVerticalStrut(10));
+        this.coreDetailsPanel.add(standardTable);
     }
     private JPanel initializeNavigationPanel(){
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
@@ -429,6 +465,32 @@ public class PrintWorkView extends AbstractWorkView {
         leads_data = leads_data.substring(0 , 7);
         leads.setText(leads_data + String.valueOf(outputData.LEADS));
 
+        standardTable.setValueAt("parameter",0,0);
+        standardTable.setValueAt("mm",0,1);
+        standardTable.setValueAt("R1",1,0);
+        standardTable.setValueAt("R2",2,0);
+        standardTable.setValueAt("R3",3,0);
+        standardTable.setValueAt("R4",4,0);
+        standardTable.setValueAt("perimeter 1",5,0);
+        standardTable.setValueAt("perimeter 2",6,0);
+        standardTable.setValueAt("perimeter 3",7,0);
+        standardTable.setValueAt("perimeter 4",8,0);
+        standardTable.setValueAt("Mean LG LV",9,0);
+        standardTable.setValueAt("Mean LG DELTA",10,0);
+        standardTable.setValueAt("Mean LG HV",11,0);
+
+        standardTable.setValueAt(outputData.R1,1,1);
+        standardTable.setValueAt(outputData.R2,2,1);
+        standardTable.setValueAt(outputData.R3,3,1);
+        standardTable.setValueAt(outputData.R4,4,1);
+        standardTable.setValueAt(outputData.PERIMETER1,5,1);
+        standardTable.setValueAt(outputData.PERIMETER2,6,1);
+        standardTable.setValueAt(outputData.PERIMETER3,7,1);
+        standardTable.setValueAt(outputData.PERIMETER4,8,1);
+        standardTable.setValueAt(outputData.MEAN_LG_LV,9,1);
+        standardTable.setValueAt(outputData.MEAN_LG_DELTA,10,1);
+        standardTable.setValueAt(outputData.MEAN_LG_HV,11,1);
+
     }
     public void initializeBillTable() {
         OutputData outputData = Model.getSingleton().getOutputData();
@@ -533,6 +595,52 @@ public class PrintWorkView extends AbstractWorkView {
         this.tankDimensionTable.setValueAt(outputData.L_MECHANICAL, 4, 1);
         this.tankDimensionTable.setValueAt(outputData.H_MECHANICAL, 5, 1);
         this.tankDimensionTable.setValueAt(outputData.B_MECHANICAL, 6, 1);
+
+    }
+    public void initializeSurfaceTable() {
+        OutputData outputData = Model.getSingleton().getOutputData();
+
+
+        // setting parameter name
+        this.surfaceTable.setValueAt("Core s-a", 0, 0);
+        this.surfaceTable.setValueAt("Wdg s-a", 1, 0);
+        this.surfaceTable.setValueAt("Σ s-a", 2, 0);
+        this.surfaceTable.setValueAt("Σ Loss", 3, 0);
+        this.surfaceTable.setValueAt(" θ(k)", 4, 0);
+
+        // setting values
+        this.surfaceTable.setValueAt(outputData.CORE_SA, 0, 1);
+        this.surfaceTable.setValueAt(outputData.WDG_SA, 1, 1);
+        this.surfaceTable.setValueAt(outputData.SUM_SA, 2, 1);
+        this.surfaceTable.setValueAt(outputData.SUM_LOSS, 3, 1);
+        this.surfaceTable.setValueAt(outputData.THETA_K, 4, 1);
+
+    }
+
+    public void initializeVATable() {
+        OutputData outputData = Model.getSingleton().getOutputData();
+
+
+        // setting parameter name
+        this.vaTable.setValueAt("Mass Limb", 0, 0);
+        this.vaTable.setValueAt("Mass Yoke", 1, 0);
+        this.vaTable.setValueAt("Mass Corner", 2, 0);
+        this.vaTable.setValueAt("Gap VA", 3, 0);
+        this.vaTable.setValueAt("Σ VA", 4, 0);
+        this.vaTable.setValueAt("%N.L.Current", 5, 0);
+        this.vaTable.setValueAt("Extra-N.L.Loss", 6, 0);
+
+        // setting values
+        this.vaTable.setValueAt(outputData.MASS_LIMB, 0, 1);
+        this.vaTable.setValueAt(outputData.MASS_LIMB_DASH, 0, 2);
+        this.vaTable.setValueAt(outputData.MASS_YOKE, 1, 1);
+        this.vaTable.setValueAt(outputData.MASS_YOKE_DASH, 1, 2);
+        this.vaTable.setValueAt(outputData.MASS_CORNER, 2, 1);
+        this.vaTable.setValueAt(outputData.MASS_CORNER_DASH, 2, 2);
+        this.vaTable.setValueAt(outputData.GAP_VA, 3, 2);
+        this.vaTable.setValueAt(outputData.SUM_VA, 4, 2);
+        this.vaTable.setValueAt(outputData.NL_CURRENT_PERCENTAGE, 5, 2);
+        this.vaTable.setValueAt(outputData.EXTRA_NL_LOSS, 6, 2);
 
     }
 }
