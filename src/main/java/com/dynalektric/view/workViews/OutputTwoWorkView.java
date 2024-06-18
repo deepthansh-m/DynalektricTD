@@ -52,10 +52,20 @@ public class OutputTwoWorkView extends AbstractWorkView{
             return false;
         }
     };;
+    private final JTable surfaceTable = new JTable(5,2){
+        @Override
+        public boolean isCellEditable(int row , int col){ return false; }
+    };
+    private final JTable vaTable = new JTable(7,3){
+        @Override
+        public boolean isCellEditable(int row , int col){ return false; }
+    };
     private final JPanel dimensionPanel = new JPanel();
     private final JPanel impedancePanel = new JPanel();
     private final JPanel lossesPanel = new JPanel();
     private final JPanel billPanel = new JPanel();
+    private final JPanel surfacePanel = new JPanel();
+    private final JPanel vaPanel = new JPanel();
     public OutputTwoWorkView(Model model) {
         super(model);
         this.setLayout(new BorderLayout());
@@ -74,12 +84,14 @@ public class OutputTwoWorkView extends AbstractWorkView{
             this.initializeBillTable();
             this.initializeImpedanceTable();
             this.initializeLossesTable();
+            this.initializeSurfaceTable();
+            this.initializeVATable();
         }
     }
 
     private void initializeUI() {
         this.mainPanel.setLayout(new BorderLayout());
-        this.contentPanel.setLayout(new GridLayout(0 , 3));
+        this.contentPanel.setLayout(new GridLayout(1 , 3));
         BoxLayout dimensionLayout = new BoxLayout(this.dimensionPanel , BoxLayout.Y_AXIS);
         this.dimensionPanel.setLayout(dimensionLayout);
         this.dimensionPanel.setBackground(StyleConstants.BACKGROUND);
@@ -92,6 +104,12 @@ public class OutputTwoWorkView extends AbstractWorkView{
         BoxLayout billLayout = new BoxLayout(this.billPanel, BoxLayout.Y_AXIS);
         this.billPanel.setLayout(billLayout);
         this.billPanel.setBackground(StyleConstants.BACKGROUND);
+        BoxLayout surfaceLayout = new BoxLayout(this.surfacePanel, BoxLayout.Y_AXIS);
+        this.surfacePanel.setLayout(surfaceLayout);
+        this.surfacePanel.setBackground(StyleConstants.BACKGROUND);
+        BoxLayout vaLayout = new BoxLayout(this.vaPanel, BoxLayout.Y_AXIS);
+        this.vaPanel.setLayout(vaLayout);
+        this.vaPanel.setBackground(StyleConstants.BACKGROUND);
         JLabel dimensionLabel = new JLabel("Tank Dimensions");
         dimensionLabel.setFont(StyleConstants.HEADING_SUB1);
         this.dimensionPanel.add(dimensionLabel);
@@ -114,6 +132,8 @@ public class OutputTwoWorkView extends AbstractWorkView{
         this.lossesPanel.add(Box.createVerticalStrut(30));
         this.lossesPanel.add(lossesTable);
         this.dimensionPanel.add(Box.createVerticalStrut(15));
+        this.lossesPanel.add(Box.createVerticalStrut(15));
+        this.impedancePanel.add(Box.createVerticalStrut(15));
         JLabel billHeading = new JLabel("Bill of material");
         billHeading.setFont(StyleConstants.HEADING_SUB1);
         this.dimensionPanel.add(billHeading);
@@ -121,6 +141,20 @@ public class OutputTwoWorkView extends AbstractWorkView{
             this.initializeBillTable();
         this.dimensionPanel.add(Box.createVerticalStrut(30));
         this.dimensionPanel.add(billTable);
+        JLabel surfaceHeading = new JLabel("Surface Area:");
+        surfaceHeading.setFont(StyleConstants.HEADING_SUB1);
+        this.impedancePanel.add(surfaceHeading);
+        if(model.getLoadedProject() != null)
+            this.initializeSurfaceTable();
+        this.impedancePanel.add(Box.createVerticalStrut(30));
+        this.impedancePanel.add(surfaceTable);
+        JLabel vaHeading = new JLabel("VA Table");
+        vaHeading.setFont(StyleConstants.HEADING_SUB1);
+        this.lossesPanel.add(vaHeading);
+        if(model.getLoadedProject() != null)
+            this.initializeVATable();
+        this.lossesPanel.add(Box.createVerticalStrut(30));
+        this.lossesPanel.add(vaTable);
         this.impedancePanel.setBorder(BorderFactory.createEmptyBorder(20 , 20 , 20 ,20));
         this.lossesPanel.setBorder(BorderFactory.createEmptyBorder(20 , 20 , 20 , 20));
         this.dimensionPanel.setBorder(BorderFactory.createEmptyBorder(20 , 20 ,20 ,20));
@@ -236,6 +270,52 @@ public class OutputTwoWorkView extends AbstractWorkView{
         this.tankDimensionTable.setValueAt(outputData.L_MECHANICAL, 4, 1);
         this.tankDimensionTable.setValueAt(outputData.H_MECHANICAL, 5, 1);
         this.tankDimensionTable.setValueAt(outputData.B_MECHANICAL, 6, 1);
+
+    }
+    public void initializeSurfaceTable() {
+        OutputData outputData = Model.getSingleton().getOutputData();
+
+
+        // setting parameter name
+        this.surfaceTable.setValueAt("Core s-a", 0, 0);
+        this.surfaceTable.setValueAt("Wdg s-a", 1, 0);
+        this.surfaceTable.setValueAt("Σ s-a", 2, 0);
+        this.surfaceTable.setValueAt("Σ Loss", 3, 0);
+        this.surfaceTable.setValueAt(" θ(k)", 4, 0);
+
+        // setting values
+        this.surfaceTable.setValueAt(outputData.CORE_SA, 0, 1);
+        this.surfaceTable.setValueAt(outputData.WDG_SA, 1, 1);
+        this.surfaceTable.setValueAt(outputData.SUM_SA, 2, 1);
+        this.surfaceTable.setValueAt(outputData.SUM_LOSS, 3, 1);
+        this.surfaceTable.setValueAt(outputData.THETA_K, 4, 1);
+
+    }
+
+    public void initializeVATable() {
+        OutputData outputData = Model.getSingleton().getOutputData();
+
+
+        // setting parameter name
+        this.vaTable.setValueAt("Mass Limb", 0, 0);
+        this.vaTable.setValueAt("Mass Yoke", 1, 0);
+        this.vaTable.setValueAt("Mass Corner", 2, 0);
+        this.vaTable.setValueAt("Gap VA", 3, 0);
+        this.vaTable.setValueAt("Σ VA", 4, 0);
+        this.vaTable.setValueAt("%N.L.Current", 5, 0);
+        this.vaTable.setValueAt("Extra-N.L.Loss", 6, 0);
+
+        // setting values
+        this.vaTable.setValueAt(outputData.MASS_LIMB, 0, 1);
+        this.vaTable.setValueAt(outputData.MASS_LIMB_DASH, 0, 2);
+        this.vaTable.setValueAt(outputData.MASS_YOKE, 1, 1);
+        this.vaTable.setValueAt(outputData.MASS_YOKE_DASH, 1, 2);
+        this.vaTable.setValueAt(outputData.MASS_CORNER, 2, 1);
+        this.vaTable.setValueAt(outputData.MASS_CORNER_DASH, 2, 2);
+        this.vaTable.setValueAt(outputData.GAP_VA, 3, 2);
+        this.vaTable.setValueAt(outputData.SUM_VA, 4, 2);
+        this.vaTable.setValueAt(outputData.NL_CURRENT_PERCENTAGE, 5, 2);
+        this.vaTable.setValueAt(outputData.EXTRA_NL_LOSS, 6, 2);
 
     }
 
