@@ -186,8 +186,8 @@ public class OutputOneWorkView extends AbstractWorkView{
         InputData inputData = Model.getSingleton().getLoadedProjectInput();
 
         LV_HV_Table.setValueAt("Parameter" , 0 , 0);
-        LV_HV_Table.setValueAt("LV" , 0 , 1);
-        LV_HV_Table.setValueAt("HV" , 0 , 2);
+        LV_HV_Table.setValueAt("LV" , 0 , 2);
+        LV_HV_Table.setValueAt("HV" , 0 , 1);
         LV_HV_Table.setValueAt("Rated Voltage" , 1 , 0);
         LV_HV_Table.setValueAt("Rated Current" , 2 , 0);
         LV_HV_Table.setValueAt("Cross Section sqmm" , 3 , 0);
@@ -206,60 +206,60 @@ public class OutputOneWorkView extends AbstractWorkView{
         LV_HV_Table.setValueAt("S.a-m(wdg)" , 16 , 0);
 
         // setting values
-        LV_HV_Table.setValueAt(outputData.VPH_LV, 1, 1);
-        LV_HV_Table.setValueAt(outputData.VPH_HV, 1, 2);
+        LV_HV_Table.setValueAt(outputData.VPH_LV, 1, 2);
+        LV_HV_Table.setValueAt(outputData.VPH_HV, 1, 1);
 
-        LV_HV_Table.setValueAt(outputData.IPH_LV, 2, 1);
-        LV_HV_Table.setValueAt(outputData.IPH_HV, 2, 2);
+        LV_HV_Table.setValueAt(outputData.IPH_LV, 2, 2);
+        LV_HV_Table.setValueAt(outputData.IPH_HV, 2, 1);
 
-        LV_HV_Table.setValueAt(outputData.CROSS_SECTION_LV, 3, 1);
-        LV_HV_Table.setValueAt(outputData.CROSS_SECTION_HV, 3, 2);
+        LV_HV_Table.setValueAt(outputData.CROSS_SECTION_LV, 3, 2);
+        LV_HV_Table.setValueAt(outputData.CROSS_SECTION_HV, 3, 1);
 
-        LV_HV_Table.setValueAt(outputData.CURRENT_DENSITY_LV, 4, 1);
-        LV_HV_Table.setValueAt(outputData.CURRENT_DENSITY_HV, 4, 2);
+        LV_HV_Table.setValueAt(outputData.CURRENT_DENSITY_LV, 4, 2);
+        LV_HV_Table.setValueAt(outputData.CURRENT_DENSITY_HV, 4, 1);
 
-        LV_HV_Table.setValueAt(outputData.TURN_LIMB_LV, 5, 1);
-        LV_HV_Table.setValueAt(outputData.TURN_LIMB_HV, 5, 2);
+        LV_HV_Table.setValueAt(outputData.TURN_LIMB_LV, 5, 2);
+        LV_HV_Table.setValueAt(outputData.TURN_LIMB_HV, 5, 1);
 
-        LV_HV_Table.setValueAt(outputData.TURN_LAYER_LV, 6, 1);
-        LV_HV_Table.setValueAt(outputData.TURN_LAYER_HV, 6, 2);
+        LV_HV_Table.setValueAt(outputData.TURN_LAYER_LV, 6, 2);
+        LV_HV_Table.setValueAt(outputData.TURN_LAYER_HV, 6, 1);
 
-        LV_HV_Table.setValueAt(outputData.WDG_LG_IMP_CALCU_LV, 7, 1);
-        LV_HV_Table.setValueAt(outputData.WDG_LG_IMP_CALCU_HV, 7, 2);
+        LV_HV_Table.setValueAt(outputData.WDG_LG_IMP_CALCU_LV, 7, 2);
+        LV_HV_Table.setValueAt(outputData.WDG_LG_IMP_CALCU_HV, 7, 1);
 
-        LV_HV_Table.setValueAt(outputData.WIND_LENGTH_LV, 8, 1);
-        LV_HV_Table.setValueAt(outputData.WIND_LENGTH_HV, 8, 2);
+        LV_HV_Table.setValueAt(outputData.WIND_LENGTH_LV, 8, 2);
+        LV_HV_Table.setValueAt(outputData.WIND_LENGTH_HV, 8, 1);
 
-        LV_HV_Table.setValueAt(outputData.LIMB_LENGTH_LV, 9, 1);
-        LV_HV_Table.setValueAt(outputData.LIMB_LENGTH_HV, 9, 2);
+        LV_HV_Table.setValueAt(outputData.LIMB_LENGTH_LV, 9, 2);
+        LV_HV_Table.setValueAt(outputData.LIMB_LENGTH_HV, 9, 1);
 
-        LV_HV_Table.setValueAt(outputData.WIND_RADIAL_DEPTH_LV, 10, 1);
-        LV_HV_Table.setValueAt(outputData.WIND_RADIAL_DEPTH_HV, 10, 2);
+        LV_HV_Table.setValueAt(outputData.WIND_RADIAL_DEPTH_LV, 10, 2);
+        LV_HV_Table.setValueAt(outputData.WIND_RADIAL_DEPTH_HV, 10, 1);
 
-        LV_HV_Table.setValueAt(outputData.TURN_LENGTH_LV, 11, 1);
-        LV_HV_Table.setValueAt(outputData.TURN_LENGTH_HV, 11, 2);
+        LV_HV_Table.setValueAt(outputData.TURN_LENGTH_LV, 11, 2);
+        LV_HV_Table.setValueAt(outputData.TURN_LENGTH_HV, 11, 1);
 
-        LV_HV_Table.setValueAt(outputData.WIRE_LENGTH_LV, 12, 1);
-        LV_HV_Table.setValueAt(outputData.WIRE_LENGTH_HV, 12, 2);
+        LV_HV_Table.setValueAt(outputData.WIRE_LENGTH_LV, 12, 2);
+        LV_HV_Table.setValueAt(outputData.WIRE_LENGTH_HV, 12, 1);
 
-        LV_HV_Table.setValueAt(outputData.RESISTANCE_LV ,13,1);
-        LV_HV_Table.setValueAt(outputData.RESISTANCE_HV,13,2);
+        LV_HV_Table.setValueAt(outputData.RESISTANCE_LV ,13,2);
+        LV_HV_Table.setValueAt(outputData.RESISTANCE_HV,13,1);
 
-        LV_HV_Table.setValueAt(outputData.STRAY_LOSS_LV,14,1);
-        LV_HV_Table.setValueAt(outputData.STRAY_LOSS_HV,14,2);
+        LV_HV_Table.setValueAt(outputData.STRAY_LOSS_LV,14,2);
+        LV_HV_Table.setValueAt(outputData.STRAY_LOSS_HV,14,1);
 
-        LV_HV_Table.setValueAt(outputData.LOAD_LOSS_LV,15,1);
-        LV_HV_Table.setValueAt(outputData.LOAD_LOSS_HV,15,2);
+        LV_HV_Table.setValueAt(outputData.LOAD_LOSS_LV,15,2);
+        LV_HV_Table.setValueAt(outputData.LOAD_LOSS_HV,15,1);
 
-        LV_HV_Table.setValueAt(outputData.S_AM2_WDG_LV,16,1);
-        LV_HV_Table.setValueAt(outputData.S_AM2_WDG_HV,16,2);
+        LV_HV_Table.setValueAt(outputData.S_AM2_WDG_LV,16,2);
+        LV_HV_Table.setValueAt(outputData.S_AM2_WDG_HV,16,1);
 
 
         wireDetailTable.setValueAt("Parameter" , 0 ,0);
-        wireDetailTable.setValueAt("LV 1" , 0 ,1);
-        wireDetailTable.setValueAt("LV 2" , 0 ,2);
-        wireDetailTable.setValueAt("HV 1" , 0 ,3);
-        wireDetailTable.setValueAt("HV 2" , 0 ,4);
+        wireDetailTable.setValueAt("LV 1" , 0 ,3);
+        wireDetailTable.setValueAt("LV 2" , 0 ,4);
+        wireDetailTable.setValueAt("HV 1" , 0 ,1);
+        wireDetailTable.setValueAt("HV 2" , 0 ,2);
 
         // setting parameter names
         wireDetailTable.setValueAt("Wire bare" , 1 , 0);
@@ -267,19 +267,19 @@ public class OutputOneWorkView extends AbstractWorkView{
         coreWeightTable.setValueAt("Conductor in KG" , 0 , 0);
 
         // setting values
-        wireDetailTable.setValueAt(inputData.WIREBARELV1,1,1);
-        wireDetailTable.setValueAt(inputData.WIREBARELV2,1,2);
-        wireDetailTable.setValueAt(inputData.WIREBAREHV1,1,3);
-        wireDetailTable.setValueAt(inputData.WIREBAREHV2,1,4);
-        wireDetailTable.setValueAt(outputData.WIRE_INSULATED_LV1,2,1);
-        wireDetailTable.setValueAt(outputData.WIRE_INSULATED_LV2,2,2);
-        wireDetailTable.setValueAt(outputData.WIRE_INSULATED_HV1,2,3);
-        wireDetailTable.setValueAt(outputData.WIRE_INSULATED_HV2,2,4);
+        wireDetailTable.setValueAt(inputData.WIREBARELV1,1,3);
+        wireDetailTable.setValueAt(inputData.WIREBARELV2,1,4);
+        wireDetailTable.setValueAt(inputData.WIREBAREHV1,1,1);
+        wireDetailTable.setValueAt(inputData.WIREBAREHV2,1,2);
+        wireDetailTable.setValueAt(outputData.WIRE_INSULATED_LV1,2,3);
+        wireDetailTable.setValueAt(outputData.WIRE_INSULATED_LV2,2,4);
+        wireDetailTable.setValueAt(outputData.WIRE_INSULATED_HV1,2,1);
+        wireDetailTable.setValueAt(outputData.WIRE_INSULATED_HV2,2,2);
 
-        coreWeightTable.setValueAt(outputData.CONDUCTOR_LV1,0,1);
-        coreWeightTable.setValueAt(outputData.CONDUCTOR_LV2,0,2);
-        coreWeightTable.setValueAt(outputData.CONDUCTOR_HV1,0,3);
-        coreWeightTable.setValueAt(outputData.CONDUCTOR_HV2,0,4);
+        coreWeightTable.setValueAt(outputData.CONDUCTOR_LV1,0,3);
+        coreWeightTable.setValueAt(outputData.CONDUCTOR_LV2,0,4);
+        coreWeightTable.setValueAt(outputData.CONDUCTOR_HV1,0,1);
+        coreWeightTable.setValueAt(outputData.CONDUCTOR_HV2,0,2);
 
         VByTOutput.setText(String.valueOf(outputData.V_T));
     }
