@@ -175,26 +175,27 @@ public class WelcomeWorkView extends AbstractWorkView implements ChildFrameListe
        
         logoPanel.setPreferredSize(new Dimension(
                 (int)View.SCREEN_DIMENSION.getWidth(),
-                (int)(View.SCREEN_DIMENSION.getHeight()*0.1)));
+                (int)(View.SCREEN_DIMENSION.getHeight()*0.20)));
         logoPanel.setBackground(StyleConstants.BACKGROUND);
         this.add(logoPanel,BorderLayout.NORTH);
         try{
-            BufferedImage nhceLogoImage = ImageIO.read(this.getClass().getResource("NHCE.jpg"));
-            ImageIcon nhceLogoIcon = new ImageIcon(nhceLogoImage);
-            Image nhceScaledLogoImage = nhceLogoIcon.getImage().getScaledInstance((int)(this.getPreferredSize().getWidth()*0.15), -1, Image.SCALE_SMOOTH);
-            ImageIcon nhceScaledLogoIcon = new ImageIcon(nhceScaledLogoImage);
-            JLabel nhceIconLabel = new JLabel(nhceScaledLogoIcon);
 
             BufferedImage dynaLogoImage = ImageIO.read(this.getClass().getResource("DYNA.jpg"));
             ImageIcon dynaLogoIcon = new ImageIcon(dynaLogoImage);
-            Image dynaScaledLogoImage = dynaLogoIcon.getImage().getScaledInstance((int)(this.getPreferredSize().getWidth()*0.04), -1, Image.SCALE_SMOOTH);
+            Image dynaScaledLogoImage = dynaLogoIcon.getImage().getScaledInstance((int)(this.getPreferredSize().getWidth()*0.16), -1, Image.SCALE_SMOOTH);
             ImageIcon dynaScaledLogoIcon = new ImageIcon(dynaScaledLogoImage);
             JLabel dynaIconLabel = new JLabel(dynaScaledLogoIcon);
+            BufferedImage nhceLogoImage = ImageIO.read(this.getClass().getResource("NHCE.jpg"));
+            ImageIcon nhceLogoIcon = new ImageIcon(nhceLogoImage);
+            Image nhceScaledLogoImage = nhceLogoIcon.getImage().getScaledInstance((int)(this.getPreferredSize().getWidth()*0.25), -1, Image.SCALE_SMOOTH);
+            ImageIcon nhceScaledLogoIcon = new ImageIcon(nhceScaledLogoImage);
+            JLabel nhceIconLabel = new JLabel(nhceScaledLogoIcon);
+
 
             logoPanel.add(Box.createHorizontalStrut((int)(this.getPreferredSize().getWidth()*0.1)));
-            logoPanel.add(nhceIconLabel);
-            logoPanel.add(Box.createHorizontalStrut((int)(this.getPreferredSize().getWidth()*0.6)));
             logoPanel.add(dynaIconLabel);
+            logoPanel.add(Box.createHorizontalStrut((int)(this.getPreferredSize().getWidth()*0.4)));
+            logoPanel.add(nhceIconLabel);
             logoPanel.add(Box.createHorizontalStrut((int)(this.getPreferredSize().getWidth()*0.02)));
 
         }
