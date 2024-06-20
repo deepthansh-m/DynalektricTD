@@ -171,8 +171,9 @@ public class WelcomeWorkView extends AbstractWorkView implements ChildFrameListe
         scrollPane.setBackground(StyleConstants.BACKGROUND);
     }
     private void initializeLogoPanel(){
-        logoPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
-       
+        logoPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
         logoPanel.setPreferredSize(new Dimension(
                 (int)View.SCREEN_DIMENSION.getWidth(),
                 (int)(View.SCREEN_DIMENSION.getHeight()*0.20)));
@@ -191,12 +192,23 @@ public class WelcomeWorkView extends AbstractWorkView implements ChildFrameListe
             ImageIcon nhceScaledLogoIcon = new ImageIcon(nhceScaledLogoImage);
             JLabel nhceIconLabel = new JLabel(nhceScaledLogoIcon);
 
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.insets = new Insets(0, (int) (this.getPreferredSize().getWidth() * 0.1), 0, 0);
+            gbc.anchor = GridBagConstraints.WEST;
+            logoPanel.add(dynaIconLabel, gbc);
 
-            logoPanel.add(Box.createHorizontalStrut((int)(this.getPreferredSize().getWidth()*0.1)));
-            logoPanel.add(dynaIconLabel);
-            logoPanel.add(Box.createHorizontalStrut((int)(this.getPreferredSize().getWidth()*0.4)));
-            logoPanel.add(nhceIconLabel);
-            logoPanel.add(Box.createHorizontalStrut((int)(this.getPreferredSize().getWidth()*0.02)));
+            gbc.gridx = 1;
+            gbc.weightx = 1.0;
+            gbc.insets = new Insets(0, 0, 0, 0);
+            gbc.anchor = GridBagConstraints.CENTER;
+            logoPanel.add(Box.createHorizontalGlue(), gbc);
+
+            gbc.gridx = 2;
+            gbc.weightx = 0;
+            gbc.insets = new Insets(0, 0, 0, (int) (this.getPreferredSize().getWidth() * 0.02));
+            gbc.anchor = GridBagConstraints.EAST;
+            logoPanel.add(nhceIconLabel, gbc);
 
         }
         catch(IOException e){
