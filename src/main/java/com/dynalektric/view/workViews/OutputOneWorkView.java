@@ -22,7 +22,7 @@ public class OutputOneWorkView extends AbstractWorkView{
     private final JPanel mainPanel = new JPanel();
     private final JPanel LV_HVPanel = new JPanel();
     private final JPanel coreDetailsPanel = new JPanel();
-    private final JTable LV_HV_Table = new JTable(18  , 3){
+    private final JTable LV_HV_Table = new JTable(20  , 3){
         @Override
         public boolean isCellEditable(int row , int col){
             return false;
@@ -204,6 +204,9 @@ public class OutputOneWorkView extends AbstractWorkView{
         LV_HV_Table.setValueAt("Stray Loss (%)" , 14 , 0);
         LV_HV_Table.setValueAt("Load Loss (Watts)" , 15 , 0);
         LV_HV_Table.setValueAt("S.a-m(wdg)" , 16 , 0);
+        LV_HV_Table.setValueAt("W/m^2" , 17 , 0);
+        LV_HV_Table.setValueAt("wdg temp rise " , 18 , 0);
+        LV_HV_Table.setValueAt("core" , 19 , 0);
 
         // setting values
         LV_HV_Table.setValueAt(outputData.VPH_LV, 1, 2);
@@ -253,6 +256,14 @@ public class OutputOneWorkView extends AbstractWorkView{
 
         LV_HV_Table.setValueAt(outputData.S_AM2_WDG_LV,16,2);
         LV_HV_Table.setValueAt(outputData.S_AM2_WDG_HV,16,1);
+
+        LV_HV_Table.setValueAt(outputData.W_M2_LV,17,2);
+        LV_HV_Table.setValueAt(outputData.W_M2_HV,17,1);
+
+        LV_HV_Table.setValueAt(outputData.WDG_TEMP_RISE_LV,18,2);
+        LV_HV_Table.setValueAt(outputData.WDG_TEMP_RISE_HV,18,1);
+
+        LV_HV_Table.setValueAt(outputData.CORE,19,1);
 
 
         wireDetailTable.setValueAt("Parameter" , 0 ,0);
