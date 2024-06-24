@@ -69,6 +69,7 @@ public class Calculations {
         wind_radial_depth_lv();
         wind_radial_depth_hv();
         net_cross_section();
+        core_loss();
         spec_losses();
         core_d();
         total_core_w();
@@ -142,6 +143,7 @@ public class Calculations {
         sum_sa();
         sum_loss();
         theta_k();
+        update_va();
         mass_limb();
         mass_limb_dash();
         mass_yoke();
@@ -447,16 +449,484 @@ public class Calculations {
         outputData.NET_CROSS_SECTION = outputData.V_T / ((4.44 * inputData.FREQUENCY * inputData.FLUX_DENSITY) / 10000);
     }
 
+    public void core_loss(){
+        double w_kg = 0;
+        if (inputData.FLUX_DENSITY <= 0.600) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.135;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.110;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.625) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.475;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.15;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.12;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.650) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.500;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.160;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.130;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.675) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.525;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.170;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.140;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.700) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.550;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.180;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.150;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.725) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.575;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.190;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.160;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.750) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.600;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.200;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.170;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.775) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.625;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.218;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.185;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.800) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.650;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.235;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.195;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.825) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.675;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.258;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.210;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.850) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.725;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.260;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.220;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.875) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.765;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.275;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.230;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.900) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.800;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.290;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.240;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.925) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.825;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.310;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.255;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.950) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.850;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.330;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.270;
+            }
+        } else if (inputData.FLUX_DENSITY <= 0.975) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.900;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.345;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.285;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.000) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 0.95;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.360;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.300;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.025) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.000;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.380;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.310;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.050) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.050;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.400;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.320;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.075) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.100;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.420;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.335;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.100) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.150;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.440;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.350;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.125) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.200;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.460;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.370;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.150) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.250;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.480;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.390;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.175) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.300;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.495;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.405;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.200) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.350;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.510;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.420;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.225) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.425;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.535;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.440;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.250) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.500;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.560;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.460;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.275) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.550;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.580;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.475;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.300) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.600;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.600;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.490;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.325) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.675;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.625;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.505;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.350) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.750;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.65;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.52;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.375) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.825;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.675;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.540;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.400) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.900;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.700;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.560;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.425) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 1.975;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.73;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.580;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.450) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.050;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.760;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.600;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.475) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.150;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.795;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.625;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.500) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.250;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.830;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.650;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.525) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.35;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.865;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.675;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.550) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.900;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.700;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.575) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 0.950;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.730;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.6) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 1.000;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.760;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.625) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 1.060;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.790;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.650) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 1.120;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.820;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.675) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 1.185;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.860;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.7) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 1.250;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.900;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.725) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 1.325;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 0.950;
+            }
+        } else if (inputData.FLUX_DENSITY <= 1.750) {
+            if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
+                w_kg = 2.450;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
+                w_kg = 1.400;
+            }
+            else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
+                w_kg = 1.000;
+            }
+        }
+        outputData.W_KG =w_kg;
+    }
+
     public void spec_losses() {
-        if(Objects.equals(inputData.STEEL_GRADE, "CRNO-35")) {
-            outputData.SPEC_LOSSES = 2.508;
-        }
-        else if(Objects.equals(inputData.STEEL_GRADE, "M4-27")) {
-            outputData.SPEC_LOSSES = 0.924;
-        }
-        else if(Objects.equals(inputData.STEEL_GRADE, "MOH-23")) {
-            outputData.SPEC_LOSSES = 0.7392;
-        }
+        outputData.SPEC_LOSSES = 1.32 * outputData.W_KG;
     }
 
     public void core_d() {
@@ -833,12 +1303,59 @@ public class Calculations {
         double answer = 450 * Math.pow((outputData.SUM_LOSS / outputData.SUM_SA),0.826);
         outputData.THETA_K = (double)Math.round(answer);
     }
+
+    public void update_va(){
+        if (inputData.FLUX_DENSITY <= 1.25){
+            inputData.VA_CM = 0.639;
+            inputData.VA_KG = 0.65;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.30){
+            inputData.VA_CM = 0.853;
+            inputData.VA_KG = 0.7;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.35){
+            inputData.VA_CM = 1.095;
+            inputData.VA_KG = 0.76;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.40){
+            inputData.VA_CM = 1.37;
+            inputData.VA_KG = 0.82;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.45){
+            inputData.VA_CM = 1.66;
+            inputData.VA_KG = 0.9;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.50){
+            inputData.VA_CM = 1.98;
+            inputData.VA_KG = 1.03;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.55){
+            inputData.VA_CM = 2.34;
+            inputData.VA_KG = 1.2;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.60){
+            inputData.VA_CM = 2.74;
+            inputData.VA_KG = 1.45;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.65){
+            inputData.VA_CM = 3.19;
+            inputData.VA_KG = 1.85;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.70){
+            inputData.VA_CM = 3.72;
+            inputData.VA_KG = 2.5;
+        }
+        else if (inputData.FLUX_DENSITY <= 1.75) {
+            inputData.VA_CM = 4.37;
+            inputData.VA_KG = 4;
+        }
+    }
     public  void mass_limb() {
         outputData.MASS_LIMB = inputData.CORE_W * outputData.CORE_D * inputData.STACKING_FACTOR * outputData.LIMB_H * 3 * 7.65 * 0.000001;
     }
-//
+
     public void mass_limb_dash() {
-        outputData.MASS_LIMB_DASH = 0.82 * outputData.MASS_LIMB;
+        outputData.MASS_LIMB_DASH = inputData.VA_KG * outputData.MASS_LIMB;
     }
 
     public void mass_yoke() {
@@ -846,18 +1363,18 @@ public class Calculations {
     }
 
     public void mass_yoke_dash() {
-        outputData.MASS_YOKE_DASH = 0.82 * outputData.MASS_YOKE;
+        outputData.MASS_YOKE_DASH = inputData.VA_KG * outputData.MASS_YOKE;
     }
 
     public void mass_corner() {
         outputData.MASS_CORNER = Math.pow(inputData.CORE_W,2) * outputData.CORE_D * inputData.STACKING_FACTOR * 6 * 7.65 * 0.000001;
     }
     public void MASS_CORNER_DASH() {
-        outputData.MASS_CORNER_DASH = 6 * 0.82 * outputData.MASS_CORNER;
+        outputData.MASS_CORNER_DASH = 6 * inputData.VA_KG * outputData.MASS_CORNER;
     }
 
     public void gap_va() {
-        outputData.GAP_VA = 6 * 1.37 * inputData.CORE_W * outputData.CORE_D * inputData.STACKING_FACTOR * 0.01;
+        outputData.GAP_VA = 6 * inputData.VA_CM * inputData.CORE_W * outputData.CORE_D * inputData.STACKING_FACTOR * 0.01;
     }
 
     public void sum_va() {
@@ -871,7 +1388,7 @@ public class Calculations {
     public void extra_nl_loss() {
         outputData.EXTRA_NL_LOSS = Math.pow(((outputData.NL_CURRENT_PERCENTAGE / 100) * outputData.IPH_HV), 2) * outputData.RESISTANCE_HV * 3;
     }
-//
+
     public void l_active() {
         outputData.L_ACTIVE = (double)Math.round((2 * outputData.C_DIST + (outputData.TOTAL_OD_W - inputData.CORE_W)) / 5.0) * 5;
     }

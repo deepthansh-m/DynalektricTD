@@ -30,7 +30,6 @@ public class InputWorkView extends AbstractWorkView{
     private final JPanel mainPanel = new JPanel(new BorderLayout());
     private final static Logger LOGGER = LogManager.getLogger(WelcomeWorkView.class);
     public final static String VIEW_NAME = "Input Work view";
-    public InputSpinner flux__density = new InputSpinner(1.4,.25,1.75,.25,"Flux Density");
 
     String[] typesOfMaterialInputs = {"COPPER","ALUMINIUM"};
     String[] typesOfWindingInputs = {"STRIP", "FOIL"};
@@ -80,6 +79,7 @@ public class InputWorkView extends AbstractWorkView{
     InputTextFieldWithLabel leadsIn = new InputTextFieldWithLabel("Leads");
     InputTextFieldWithLabel stackingFactorIn = new InputTextFieldWithLabel("Stacking Factor");
     InputTextFieldWithLabel fluxDensityIn = new InputTextFieldWithLabel("Flux Density");
+    public InputSpinner flux__density = new InputSpinner(1.4,.60,1.75,.025,"Flux Density");
     InputTextFieldWithLabel specLossIn = new InputTextFieldWithLabel("Spec Loses");
     InputTextFieldWithLabel coreWIn = new InputTextFieldWithLabel("Core W");
     InputTextFieldWithLabel ekPercentageGaurIn = new InputTextFieldWithLabel("ek % Gaur");

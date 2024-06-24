@@ -137,5 +137,6 @@ public class OutputData {
     public double MASS = 0.0;
     public double TOTAL_MASS_W_O_ENCL = 0.0;
     public double RMC = 0.0;
+    public double W_KG = 0.0;
 
 }

@@ -17,4 +17,5 @@ public class StyleConstants {
     public final static Font HEADING_SUB2 = new Font(Font.SANS_SERIF , Font.PLAIN , 20);
     public  final static Font NEW_PROJECT = new Font(Font.SANS_SERIF ,Font.PLAIN,20 );
     public final static Color BACKGROUND = new Color(141, 175, 236);
+    public final static Color ERROR = new Color(255, 0, 0);
 }
