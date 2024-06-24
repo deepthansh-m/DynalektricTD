@@ -44,6 +44,8 @@ public class InputData {
 //    public Double CONDUCTIVITY_ALUMINIUM_115 = 26.73;
 
     public double FLUX_DENSITY = 1.4;
+    public double VA_CM = 1.37;
+    public double VA_KG = 0.82;
     public String STEEL_GRADE = "M4-27";
     public double STACKING_FACTOR = 0.95;
     public double CORE_BLDG_FACTOR = 2;

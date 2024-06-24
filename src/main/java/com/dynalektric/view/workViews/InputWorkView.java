@@ -10,11 +10,13 @@ import com.dynalektric.view.ViewMessage;
 import com.dynalektric.view.components.InputDropDown;
 import com.dynalektric.view.components.InputTextFieldWithLabel;
 import com.dynalektric.view.components.MenuBar;
+import com.dynalektric.view.components.InputSpinner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,11 +24,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
+
 public class InputWorkView extends AbstractWorkView{
     private final JPanel logoPanel = new JPanel();
     private final JPanel mainPanel = new JPanel(new BorderLayout());
     private final static Logger LOGGER = LogManager.getLogger(WelcomeWorkView.class);
     public final static String VIEW_NAME = "Input Work view";
+    public InputSpinner flux__density = new InputSpinner(1.4,.25,1.75,.25,"Flux Density");
 
     String[] typesOfMaterialInputs = {"COPPER","ALUMINIUM"};
     String[] typesOfWindingInputs = {"STRIP", "FOIL"};
@@ -191,7 +195,7 @@ public class InputWorkView extends AbstractWorkView{
         dropDownRightPanel.add(Box.createVerticalStrut(10));
 
         defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(fluxDensityIn);
+        defaultLeftPanel.add(flux__density);
         defaultLeftPanel.add(Box.createVerticalStrut(10));
         defaultLeftPanel.add(wireBareHv1In);
         defaultLeftPanel.add(Box.createVerticalStrut(10));
@@ -459,8 +463,15 @@ public class InputWorkView extends AbstractWorkView{
         this.leadsIn.setBackground(StyleConstants.BACKGROUND);
         this.stackingFactorIn.setValueEntered(String.valueOf(inputData.STACKING_FACTOR));
         this.stackingFactorIn.setBackground(StyleConstants.BACKGROUND);
-        this.fluxDensityIn.setValueEntered(String.valueOf(inputData.FLUX_DENSITY));
-        this.fluxDensityIn.setBackground(StyleConstants.BACKGROUND);
+        //this.fluxDensityIn.setValueEntered(String.valueOf(inputData.FLUX_DENSITY));
+        //this.fluxDensityIn.setBackground(StyleConstants.BACKGROUND);
+        flux__density.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                inputData.FLUX_DENSITY = flux__density.getValue();
+            }
+        });
+        this.flux__density.setBackground(StyleConstants.BACKGROUND);
         //this.specLossIn.setValueEntered(inputData.);
         //this.specLossIn..setBackground(StyleConstants.BACKGROUND);
         this.coreWIn.setValueEntered(String.valueOf(inputData.CORE_W));
@@ -527,7 +538,7 @@ public class InputWorkView extends AbstractWorkView{
         input.OIL_DUCTS_RADIAL_LV2 = Integer.parseInt(this.oilDuctsLv2In.getValueSelected());
         input.OIL_DUCTS_RADIAL_HV2 = Integer.parseInt(this.oilDuctsHv2In.getValueSelected());
 
-        input.FLUX_DENSITY = Double.parseDouble(this.fluxDensityIn.getValueEntered());
+        //input.FLUX_DENSITY = Double.parseDouble(this.fluxDensityIn.getValueEntered());
         input.CORE_W = Double.parseDouble(this.coreWIn.getValueEntered());
         input.WIREBARELV1 = Double.parseDouble(this.wireBareLv1In.getValueEntered());
         input.WIREBARELV2 = Double.parseDouble(this.wireBareLv2In.getValueEntered());
