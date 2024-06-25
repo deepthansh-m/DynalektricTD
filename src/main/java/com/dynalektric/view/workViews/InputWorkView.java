@@ -47,7 +47,8 @@ public class InputWorkView extends AbstractWorkView{
 
     //Input fields
     InputTextFieldWithLabel kvaIn = new InputTextFieldWithLabel("KVA :");
-    InputTextFieldWithLabel kIn = new InputTextFieldWithLabel("K :");
+    //InputTextFieldWithLabel kIn = new InputTextFieldWithLabel("K :");
+    public InputSpinner kIn = new InputSpinner(97,0,1999999999,1,"K :");
     InputTextFieldWithLabel LVIn = new InputTextFieldWithLabel("Low Voltage :");
     InputTextFieldWithLabel HVIn = new InputTextFieldWithLabel("High Voltage :");
 
@@ -403,7 +404,13 @@ public class InputWorkView extends AbstractWorkView{
         InputData inputData = model.getLoadedProjectInput();
         this.kvaIn.setValueEntered(String.valueOf(inputData.KVA));
         this.kvaIn.setBackground(StyleConstants.BACKGROUND);
-        this.kIn.setValueEntered(String.valueOf(inputData.K));
+        //this.kIn.setValueEntered(String.valueOf(inputData.K));
+        kIn.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                inputData.K = kIn.getValue();
+            }
+        });
         this.kIn.setBackground(StyleConstants.BACKGROUND);
         this.LVIn.setValueEntered(String.valueOf(inputData.LINEVOLTSLV));
         this.LVIn.setBackground(StyleConstants.BACKGROUND);
@@ -518,7 +525,7 @@ public class InputWorkView extends AbstractWorkView{
         System.out.println("Storing in model");
         InputData input = model.getLoadedProjectInput();
         input.KVA = Double.parseDouble(this.kvaIn.getValueEntered());
-        input.K = Double.parseDouble(this.kIn.getValueEntered());
+        //input.K = Double.parseDouble(this.kIn.getValueEntered());
         input.LINEVOLTSLV = Double.parseDouble(this.LVIn.getValueEntered());
         input.LINEVOLTSHV = Double.parseDouble(this.HVIn.getValueEntered());
         input.CONNECTION = this.connectionIn.getValueSelected();
