@@ -72,6 +72,7 @@ public class InputWorkView extends AbstractWorkView{
     InputTextFieldWithLabel transpositionHvIn = new InputTextFieldWithLabel("Transposition Hv");
     InputTextFieldWithLabel compGapIn = new InputTextFieldWithLabel("Comp-Gap");
     InputTextFieldWithLabel endClearanceLvIn = new InputTextFieldWithLabel("End Clearances Lv");
+
     InputTextFieldWithLabel endClearanceHvIn = new InputTextFieldWithLabel("End Clearances Hv");
     InputTextFieldWithLabel limbPlateIn = new InputTextFieldWithLabel("Limb Plate");
     InputTextFieldWithLabel gapBobbinIn = new InputTextFieldWithLabel("Gap/Bobbin");

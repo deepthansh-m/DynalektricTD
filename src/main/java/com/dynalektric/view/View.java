@@ -25,7 +25,7 @@ public class View{
     public final static Dimension SCREEN_DIMENSION = new Dimension(
             (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
             (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()
-        );
+    );
     Model model = Model.getSingleton();
     private View(){
 
@@ -58,8 +58,8 @@ public class View{
             view.setView(view.loadedViews.get(WelcomeWorkView.VIEW_NAME));
         }
         else{
-           new WelcomeWorkViewController().openProjectWithName(loadedProject);
-           view.setView(view.loadedViews.get(InputWorkView.VIEW_NAME));
+            new WelcomeWorkViewController().openProjectWithName(loadedProject);
+            view.setView(view.loadedViews.get(InputWorkView.VIEW_NAME));
         }
     }
 
@@ -68,8 +68,11 @@ public class View{
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    mainFrame.setVisible(true);
-                }
+                    SplashScreen.runSplash(new Runnable() { @Override
+                    public void run() {
+                        mainFrame.setVisible(true);
+                    }
+                    });}
             });
         }catch(Exception e){
             System.exit(1);
