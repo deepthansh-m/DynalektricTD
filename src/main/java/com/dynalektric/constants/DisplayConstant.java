@@ -17,4 +17,5 @@ public class DisplayConstant {
     public final static String MENU_BAR_HELP = "Help";
     public final static String MENU_ITEM_CLOSE_PROJECT = "Close Project";
     public final static String MENU_ITEM_SAVE_PROJECT = "Save Project";
+    public final static String MENU_ITEM_DRAWING = "Drawings";
 }

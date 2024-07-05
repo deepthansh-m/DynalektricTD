@@ -46,65 +46,65 @@ public class InputWorkView extends AbstractWorkView{
     String[] frequencyInputs = {"50","60"};
 
     //Input fields
-    InputTextFieldWithLabel kvaIn = new InputTextFieldWithLabel("KVA :");
-    //InputTextFieldWithLabel kIn = new InputTextFieldWithLabel("K :");
-    public InputSpinner kIn = new InputSpinner(97,0,1999999999,1,"K :");
-    InputTextFieldWithLabel LVIn = new InputTextFieldWithLabel("Low Voltage :");
-    InputTextFieldWithLabel HVIn = new InputTextFieldWithLabel("High Voltage :");
+    InputTextFieldWithLabel kvaIn = new InputTextFieldWithLabel();
+    //InputTextFieldWithLabel kIn = new InputTextFieldWithLabel("");
+    public InputSpinner kIn = new InputSpinner(97,0,1999999999,1,"K:");
+    InputTextFieldWithLabel LVIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel HVIn = new InputTextFieldWithLabel();
 
-    InputTextFieldWithLabel wireBareLv1In = new InputTextFieldWithLabel("Wire Bare LV1");
-    InputTextFieldWithLabel wireBareLv2In = new InputTextFieldWithLabel("Wire Bare LV2");
-    InputTextFieldWithLabel wireBareHv1In = new InputTextFieldWithLabel("Wire Bare HV1");
-    InputTextFieldWithLabel wireBareHv2In = new InputTextFieldWithLabel("Wire Bare HV2");
-    InputTextFieldWithLabel noInParallel_R_A_Lv1In = new InputTextFieldWithLabel("No in Parallel R-A LV1");
-    InputTextFieldWithLabel noInParallel_R_A_Lv2In = new InputTextFieldWithLabel("No in Parallel R-A LV2");
-    InputTextFieldWithLabel noInParallel_R_A_Hv1In = new InputTextFieldWithLabel("No in Parallel R-A HV1");
-    InputTextFieldWithLabel noInParallel_R_A_Hv2In = new InputTextFieldWithLabel("No in Parallel R-A HV2");
+    InputTextFieldWithLabel wireBareLv1In = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel wireBareLv2In = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel wireBareHv1In = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel wireBareHv2In = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel noInParallel_R_A_Lv1In = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel noInParallel_R_A_Lv2In = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel noInParallel_R_A_Hv1In = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel noInParallel_R_A_Hv2In = new InputTextFieldWithLabel();
     InputTextFieldWithLabel sectionIn = new InputTextFieldWithLabel("Sections");
-    InputTextFieldWithLabel layersLvIn = new InputTextFieldWithLabel("Layers Lv");
-    InputTextFieldWithLabel layersHvIn = new InputTextFieldWithLabel("Layers Hv");
-    InputTextFieldWithLabel insulationBetweenLayersLvIn = new InputTextFieldWithLabel("Insulation B/W Layers Lv");
-    InputTextFieldWithLabel insulationBetweenLayersHvIn = new InputTextFieldWithLabel("Insulation B/W Layers Hv");
+    InputTextFieldWithLabel layersLvIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel layersHvIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel insulationBetweenLayersLvIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel insulationBetweenLayersHvIn = new InputTextFieldWithLabel();
 
     InputTextFieldWithLabel sectionLengthIn = new InputTextFieldWithLabel("Section Length");
-    InputTextFieldWithLabel oilDuctsAxialIn = new InputTextFieldWithLabel("Oil Ducts - Axial");
-    InputTextFieldWithLabel transpositionLvIn = new InputTextFieldWithLabel("Transposition Lv");
-    InputTextFieldWithLabel transpositionHvIn = new InputTextFieldWithLabel("Transposition Hv");
-    InputTextFieldWithLabel compGapIn = new InputTextFieldWithLabel("Comp-Gap");
-    InputTextFieldWithLabel endClearanceLvIn = new InputTextFieldWithLabel("End Clearances Lv");
+    InputTextFieldWithLabel oilDuctsAxialIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel transpositionLvIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel transpositionHvIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel compGapIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel endClearanceLvIn = new InputTextFieldWithLabel();
 
-    InputTextFieldWithLabel endClearanceHvIn = new InputTextFieldWithLabel("End Clearances Hv");
-    InputTextFieldWithLabel limbPlateIn = new InputTextFieldWithLabel("Limb Plate");
-    InputTextFieldWithLabel gapBobbinIn = new InputTextFieldWithLabel("Gap/Bobbin");
-    InputTextFieldWithLabel deltaIn = new InputTextFieldWithLabel("δ");
-    InputTextFieldWithLabel amIn = new InputTextFieldWithLabel("am");
-    InputTextFieldWithLabel leadsIn = new InputTextFieldWithLabel("Leads");
-    InputTextFieldWithLabel stackingFactorIn = new InputTextFieldWithLabel("Stacking Factor");
-    InputTextFieldWithLabel fluxDensityIn = new InputTextFieldWithLabel("Flux Density");
-    public InputSpinner flux__density = new InputSpinner(1.4,.60,1.75,.025,"Flux Density");
+    InputTextFieldWithLabel endClearanceHvIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel limbPlateIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel gapBobbinIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel deltaIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel amIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel leadsIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel stackingFactorIn = new InputTextFieldWithLabel();
+    //InputTextFieldWithLabel fluxDensityIn = new InputTextFieldWithLabel();
+    public InputSpinner flux__density = new InputSpinner(1.4,.60,1.75,.025,"");
     InputTextFieldWithLabel specLossIn = new InputTextFieldWithLabel("Spec Loses");
-    InputTextFieldWithLabel coreWIn = new InputTextFieldWithLabel("Core W");
-    InputTextFieldWithLabel ekPercentageGaurIn = new InputTextFieldWithLabel("ek % Gaur");
-    InputTextFieldWithLabel ambienceAirTempIn = new InputTextFieldWithLabel("Ambience Air Temp");
-    InputTextFieldWithLabel insulationLvIn = new InputTextFieldWithLabel("Insulation Lv");
-    InputTextFieldWithLabel insulationHvIn = new InputTextFieldWithLabel("Insulation Hv");
+    InputTextFieldWithLabel coreWIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel ekPercentageGaurIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel ambienceAirTempIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel insulationLvIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel insulationHvIn = new InputTextFieldWithLabel();
 
 
-    InputDropDown typesOfMaterialIn = new InputDropDown(typesOfMaterialInputs , "Type Of Material" , "COPPER");
-    InputDropDown typesOfWindingLvIn = new InputDropDown(typesOfWindingInputs,"Type Of Winding Lv","STRIP");
-    InputDropDown typesOfConnectionLvIn = new InputDropDown(typesOfConnectionInputs,"Types Of Connection Lv","STAR");
-    InputDropDown typesOfWindingHvIn = new InputDropDown(typesOfWindingInputs,"Type Of Winding Hv","STRIP");
-    InputDropDown typesOfConnectionHvIn = new InputDropDown(typesOfConnectionInputs,"Types Of Connection Hv","STAR");
-    InputDropDown oilDuctsLv1In = new InputDropDown(oilDuctsLv1Inputs,"Oil Ducts Lv1","0");
-    InputDropDown oilDuctsLv2In = new InputDropDown(oilDuctsLv2Inputs,"Oil Ducts Lv2","0");
-    InputDropDown windingTemperatureIn = new InputDropDown(windingTemperatureInputs,"Winding Temperature","90");
-    InputDropDown steelGradeIn =new InputDropDown(steelGradeInputs,"Steel Grade","CRNO-35");
-    InputDropDown coreBldgIn = new InputDropDown(coreBldgInputs,"Core Bldg","1.5");
-    InputDropDown oilDuctsHv1In = new InputDropDown(oilDuctsHv1Inputs,"Oil Ducts Hv1","0");
-    InputDropDown oilDuctsHv2In = new InputDropDown(oilDuctsHv2Inputs,"Oil Ducts Hv1","0");
-    InputDropDown coolingIn = new InputDropDown(coolingInputs,"Cooling Inputs","AN-CL-F");
-    InputDropDown connectionIn = new InputDropDown(connectionInputs,"Connection","Dyn11");
-    InputDropDown frequencyIn = new InputDropDown(frequencyInputs,"Frequency","50");
+    InputDropDown typesOfMaterialIn = new InputDropDown(typesOfMaterialInputs , "" , "COPPER");
+    InputDropDown typesOfWindingLvIn = new InputDropDown(typesOfWindingInputs,"","STRIP");
+    InputDropDown typesOfConnectionLvIn = new InputDropDown(typesOfConnectionInputs,"","STAR");
+    InputDropDown typesOfWindingHvIn = new InputDropDown(typesOfWindingInputs,"","STRIP");
+    InputDropDown typesOfConnectionHvIn = new InputDropDown(typesOfConnectionInputs,"","STAR");
+    InputDropDown oilDuctsLv1In = new InputDropDown(oilDuctsLv1Inputs,"","0");
+    InputDropDown oilDuctsLv2In = new InputDropDown(oilDuctsLv2Inputs,"","0");
+    InputDropDown windingTemperatureIn = new InputDropDown(windingTemperatureInputs,"","90");
+    InputDropDown steelGradeIn =new InputDropDown(steelGradeInputs,"","CRNO-35");
+    InputDropDown coreBldgIn = new InputDropDown(coreBldgInputs,"","1.5");
+    InputDropDown oilDuctsHv1In = new InputDropDown(oilDuctsHv1Inputs,"","0");
+    InputDropDown oilDuctsHv2In = new InputDropDown(oilDuctsHv2Inputs,"","0");
+    InputDropDown coolingIn = new InputDropDown(coolingInputs,"","AN-CL-F");
+    InputDropDown connectionIn = new InputDropDown(connectionInputs,"","Dyn11");
+    InputDropDown frequencyIn = new InputDropDown(frequencyInputs,"","50");
 
     Control controller = new Control();
     public InputWorkView(Model model) {
@@ -116,13 +116,14 @@ public class InputWorkView extends AbstractWorkView{
             }
         });
     }
-    private void initializeUI(){
+
+    private void initializeUI() {
         this.setLayout(new BorderLayout());
         this.initializeLogoPanel();
-        mainPanel.add(new MenuBar(this) , BorderLayout.NORTH);
-        this.add(mainPanel,BorderLayout.CENTER);
+        mainPanel.add(new MenuBar(this), BorderLayout.NORTH);
+        this.add(mainPanel, BorderLayout.CENTER);
 
-        JPanel inputWorkViewPanel = new JPanel();
+        JPanel inputWorkViewPanel = new JPanel(new GridLayout(0, 2));
         JPanel leftPanel = new JPanel();
         JPanel rightPanel = new JPanel();
         JPanel mainLeftPanel = new JPanel();
@@ -136,134 +137,90 @@ public class InputWorkView extends AbstractWorkView{
         JPanel defaultLeftPanel = new JPanel();
         JPanel defaultRightPanel = new JPanel();
 
-        inputWorkViewPanel.setLayout(new GridLayout(0, 2));
-        leftPanel.setLayout(new BoxLayout(leftPanel , BoxLayout.Y_AXIS));
-        rightPanel.setLayout(new BoxLayout(rightPanel , BoxLayout.Y_AXIS));
-        mainLeftPanel.setLayout(new GridLayout(2,0));
-        inputPanel.setLayout(new GridLayout(0,2));
-        dropDownPanel.setLayout(new GridLayout(0,2));
-        dropDownLeftPanel.setLayout(new BoxLayout(dropDownLeftPanel,BoxLayout.Y_AXIS));
-        dropDownRightPanel.setLayout(new BoxLayout(dropDownRightPanel,BoxLayout.Y_AXIS));
-        inputLeftPanel.setLayout(new BoxLayout(inputLeftPanel,BoxLayout.Y_AXIS));
-        inputRightPanel.setLayout(new BoxLayout(inputRightPanel,BoxLayout.Y_AXIS));
-        defaultPanel.setLayout(new GridLayout(0,2));
-        defaultLeftPanel.setLayout(new BoxLayout(defaultLeftPanel,BoxLayout.Y_AXIS));
-        defaultRightPanel.setLayout(new BoxLayout(defaultRightPanel,BoxLayout.Y_AXIS));
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        mainLeftPanel.setLayout(new GridLayout(2, 0));
+        inputPanel.setLayout(new GridLayout(0, 2));
+        dropDownPanel.setLayout(new GridLayout(0, 2));
 
-        inputLeftPanel.add(Box.createVerticalStrut(15));
-        inputLeftPanel.add(kvaIn);
-        inputLeftPanel.add(Box.createVerticalStrut(15));
-        inputLeftPanel.add(kIn);
-        inputLeftPanel.add(Box.createVerticalStrut(15));
-        inputLeftPanel.add(LVIn);
-        inputLeftPanel.add(Box.createVerticalStrut(15));
-        inputLeftPanel.add(HVIn);
-        inputLeftPanel.add(Box.createVerticalStrut(15));
-        inputLeftPanel.add(typesOfMaterialIn);
-        inputLeftPanel.add(Box.createVerticalStrut(15));
-        inputLeftPanel.add(coreBldgIn);
+        // Use GridBagLayout for better alignment
+        inputLeftPanel.setLayout(new GridBagLayout());
+        inputRightPanel.setLayout(new GridBagLayout());
+        dropDownLeftPanel.setLayout(new GridBagLayout());
+        dropDownRightPanel.setLayout(new GridBagLayout());
+        defaultLeftPanel.setLayout(new GridBagLayout());
+        defaultRightPanel.setLayout(new GridBagLayout());
 
-        inputRightPanel.add(Box.createVerticalStrut(10));
-        inputRightPanel.add(connectionIn);
-        inputRightPanel.add(Box.createVerticalStrut(10));
-        inputRightPanel.add(coolingIn);
-        inputRightPanel.add(Box.createVerticalStrut(10));
-        inputRightPanel.add(frequencyIn);
-        inputRightPanel.add(Box.createVerticalStrut(10));
-        inputRightPanel.add(windingTemperatureIn);
-        inputRightPanel.add(Box.createVerticalStrut(10));
-        inputRightPanel.add(steelGradeIn);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
+        // Add k
+        leftPanel.add(kIn);
+        kIn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // Add components to inputLeftPanel
+        addComponent(inputLeftPanel, new JLabel("KVA:"), kvaIn, gbc);
+        addComponent(inputLeftPanel, new JLabel(),new JLabel(), gbc); // this is just to add a comp due to slight bugs
+        addComponent(inputLeftPanel, new JLabel("Low Voltage:"), LVIn, gbc);
+        addComponent(inputLeftPanel, new JLabel("High Voltage:"), HVIn, gbc);
+        addComponent(inputLeftPanel, new JLabel("Type of Material:"), typesOfMaterialIn, gbc);
+        addComponent(inputLeftPanel, new JLabel("Core Bldg:"), coreBldgIn, gbc);
 
-        dropDownLeftPanel.add(Box.createVerticalStrut(10));
-        dropDownLeftPanel.add(typesOfWindingLvIn);
-        dropDownLeftPanel.add(Box.createVerticalStrut(10));
-        dropDownLeftPanel.add(typesOfConnectionLvIn);
-        dropDownLeftPanel.add(Box.createVerticalStrut(10));
-        dropDownLeftPanel.add(oilDuctsLv1In);
-        dropDownLeftPanel.add(Box.createVerticalStrut(10));
-        dropDownLeftPanel.add(oilDuctsLv2In);
-        dropDownLeftPanel.add(Box.createVerticalStrut(10));
+        // Add components to inputRightPanel
+        addComponent(inputRightPanel, new JLabel("Connection:"), connectionIn, gbc);
+        addComponent(inputRightPanel, new JLabel("Cooling:"), coolingIn, gbc);
+        addComponent(inputRightPanel, new JLabel("Frequency:"), frequencyIn, gbc);
+        addComponent(inputRightPanel, new JLabel("Winding Temperature:"), windingTemperatureIn, gbc);
+        addComponent(inputRightPanel, new JLabel("Steel Grade:"), steelGradeIn, gbc);
 
-        dropDownRightPanel.add(Box.createVerticalStrut(10));
-        dropDownRightPanel.add(typesOfWindingHvIn);
-        dropDownRightPanel.add(Box.createVerticalStrut(10));
-        dropDownRightPanel.add(typesOfConnectionHvIn);
-        dropDownRightPanel.add(Box.createVerticalStrut(10));
-        dropDownRightPanel.add(oilDuctsHv1In);
-        dropDownRightPanel.add(Box.createVerticalStrut(10));
-        dropDownRightPanel.add(oilDuctsHv2In);
-        dropDownRightPanel.add(Box.createVerticalStrut(10));
+        // Add components to dropDownLeftPanel
+        addComponent(dropDownLeftPanel, new JLabel("Type of Winding HV:"), typesOfWindingHvIn, gbc);
+        addComponent(dropDownLeftPanel, new JLabel("Type of Connection HV:"), typesOfConnectionHvIn, gbc);
+        addComponent(dropDownLeftPanel, new JLabel("Oil Ducts HV1:"), oilDuctsHv1In, gbc);
+        addComponent(dropDownLeftPanel, new JLabel("Oil Ducts HV2:"), oilDuctsHv2In, gbc);
 
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(flux__density);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(wireBareHv1In);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(wireBareHv2In);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(noInParallel_R_A_Hv1In);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(noInParallel_R_A_Hv2In);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(insulationHvIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(layersHvIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(insulationBetweenLayersHvIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(transpositionHvIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(endClearanceHvIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(oilDuctsAxialIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(compGapIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(limbPlateIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(deltaIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
-        defaultLeftPanel.add(leadsIn);
-        defaultLeftPanel.add(Box.createVerticalStrut(10));
+        // Add components to dropDownRightPanel
+        addComponent(dropDownRightPanel, new JLabel("Type of Winding LV:"), typesOfWindingLvIn, gbc);
+        addComponent(dropDownRightPanel, new JLabel("Type of Connection LV:"), typesOfConnectionLvIn, gbc);
+        addComponent(dropDownRightPanel, new JLabel("Oil Ducts LV1:"), oilDuctsLv1In, gbc);
+        addComponent(dropDownRightPanel, new JLabel("Oil Ducts LV2:"), oilDuctsLv2In, gbc);
 
+        // Add components to defaultLeftPanel
+        addComponent(defaultLeftPanel, new JLabel("Flux Density :"), flux__density, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Wire Bare HV1 :"), wireBareHv1In, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Wire Bare HV2 :"), wireBareHv2In, gbc);
+        addComponent(defaultLeftPanel, new JLabel("No in Parallel R-A HV1 :"), noInParallel_R_A_Hv1In, gbc);
+        addComponent(defaultLeftPanel, new JLabel("No in Parallel R-A HV2 :"), noInParallel_R_A_Hv2In, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Insulation Hv :"), insulationHvIn, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Layers Hv :"), layersHvIn, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Insulation B/W Layers Hv :"), insulationBetweenLayersHvIn, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Transposition Hv :"), transpositionHvIn, gbc);
+        addComponent(defaultLeftPanel, new JLabel("End Clearances Hv :"), endClearanceHvIn, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Oil Ducts - Axial :"), oilDuctsAxialIn, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Comp-Gap :"), compGapIn, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Limb Plate :"), limbPlateIn, gbc);
+        addComponent(defaultLeftPanel, new JLabel("δ :"), deltaIn, gbc);
+        addComponent(defaultLeftPanel, new JLabel("Leads :"), leadsIn, gbc);
 
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(coreWIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(wireBareLv1In);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(wireBareLv2In);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(noInParallel_R_A_Lv1In);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(noInParallel_R_A_Lv2In);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(insulationLvIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(layersLvIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(insulationBetweenLayersLvIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(transpositionLvIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(endClearanceLvIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(gapBobbinIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(amIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(stackingFactorIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-//        defaultRightPanel.add(specLossIn);
-//        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(ekPercentageGaurIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-        defaultRightPanel.add(ambienceAirTempIn);
-        defaultRightPanel.add(Box.createVerticalStrut(10));
-
-
+        // Add components to defaultRightPanel
+        addComponent(defaultRightPanel, new JLabel("Core W :"), coreWIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("Wire Bare LV1 :"), wireBareLv1In, gbc);
+        addComponent(defaultRightPanel, new JLabel("Wire Bare LV2 :"), wireBareLv2In, gbc);
+        addComponent(defaultRightPanel, new JLabel("No in Parallel R-A LV1 :"), noInParallel_R_A_Lv1In, gbc);
+        addComponent(defaultRightPanel, new JLabel("No in Parallel R-A LV2 :"), noInParallel_R_A_Lv2In, gbc);
+        addComponent(defaultRightPanel, new JLabel("Insulation Lv :"), insulationLvIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("Layers Lv :"), layersLvIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("Insulation B/W Layers Lv :"), insulationBetweenLayersLvIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("Transposition Lv :"), transpositionLvIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("End Clearances Lv :"), endClearanceLvIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("Gap/Bobbin :"), gapBobbinIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("am :"), amIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("Stacking Factor :"), stackingFactorIn, gbc);
+        //addComponent(defaultRightPanel, new JLabel("Spec Loses :"), specLossIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("ek % Gaur :"), ekPercentageGaurIn, gbc);
+        addComponent(defaultRightPanel, new JLabel("Ambience Air Temp :"), ambienceAirTempIn, gbc);
 
         inputPanel.add(inputLeftPanel);
         inputPanel.add(inputRightPanel);
@@ -271,12 +228,9 @@ public class InputWorkView extends AbstractWorkView{
 
         dropDownPanel.add(dropDownLeftPanel);
         dropDownPanel.add(dropDownRightPanel);
+        dropDownPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        rightPanel.add(defaultPanel);
-        JPanel navigationPanel = initializeNavigationPanel();
-        navigationPanel.setAlignmentX(CENTER_ALIGNMENT);
-        dropDownRightPanel.add(navigationPanel);
-
+        defaultPanel.setLayout(new GridLayout(0, 2));
         defaultPanel.add(defaultLeftPanel);
         defaultPanel.add(defaultRightPanel);
 
@@ -284,19 +238,43 @@ public class InputWorkView extends AbstractWorkView{
         mainLeftPanel.add(dropDownPanel);
 
         leftPanel.add(mainLeftPanel);
+        JPanel navigationPanel = initializeNavigationPanel();
+        navigationPanel.setAlignmentX(CENTER_ALIGNMENT);
+        leftPanel.add(navigationPanel);
+
+        rightPanel.add(defaultPanel);
+
         JScrollPane defaultScrollPane = new JScrollPane(rightPanel);
         inputWorkViewPanel.add(leftPanel);
         inputWorkViewPanel.add(defaultScrollPane);
-        inputLeftPanel.setBackground(StyleConstants.BACKGROUND);
-        dropDownLeftPanel.setBackground(StyleConstants.BACKGROUND);
-        dropDownRightPanel.setBackground(StyleConstants.BACKGROUND);
-        inputRightPanel .setBackground(StyleConstants.BACKGROUND);
-        defaultLeftPanel.setBackground(StyleConstants.BACKGROUND);
-        defaultRightPanel.setBackground(StyleConstants.BACKGROUND);
+
+        setBackgrounds(StyleConstants.BACKGROUND, inputLeftPanel, dropDownLeftPanel, dropDownRightPanel,
+                inputRightPanel, defaultLeftPanel, defaultRightPanel, leftPanel);
+
         mainPanel.add(inputWorkViewPanel);
-        if(Model.getSingleton().getLoadedProject() != null)
+
+        if (Model.getSingleton().getLoadedProject() != null)
             this.refreshInputValues();
     }
+
+    private void addComponent(JPanel panel, JComponent label, JComponent field, GridBagConstraints gbc) {
+        gbc.gridx = 0;
+        gbc.weightx = 0;
+        panel.add(label, gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 1;
+        panel.add(field, gbc);
+
+        gbc.gridy++;
+    }
+
+    private void setBackgrounds(Color color, JPanel... panels) {
+        for (JPanel panel : panels) {
+            panel.setBackground(color);
+        }
+    }
+
 
     private void initializeLogoPanel(){
         logoPanel.setLayout(new GridBagLayout());
@@ -366,7 +344,7 @@ public class InputWorkView extends AbstractWorkView{
     }
 
     private JPanel initializeNavigationPanel(){
-        JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton calculateBtn = new JButton("Calculate");
         JButton nextBtn = new JButton("Next");
         navigationPanel.setBackground(StyleConstants.BACKGROUND);

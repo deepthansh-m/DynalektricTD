@@ -71,6 +71,7 @@ public class View{
                     SplashScreen.runSplash(new Runnable() { @Override
                     public void run() {
                         mainFrame.setVisible(true);
+                        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     }
                     });}
             });

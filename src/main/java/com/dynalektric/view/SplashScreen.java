@@ -1,4 +1,6 @@
 package com.dynalektric.view;
+import com.dynalektric.constants.StyleConstants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,10 +11,9 @@ public class SplashScreen {
     public static void runSplash(Runnable mainAppInit) {
         JFrame splashScreen1 = new JFrame("Splash Screen 1");
         splashScreen1.setUndecorated(true);
-        Color customColor = new Color(141, 175, 236);
 
         JPanel panel1 = new JPanel(new GridBagLayout());
-        panel1.setBackground(customColor);
+        panel1.setBackground(StyleConstants.BACKGROUND);
 
         ImageIcon splashImage1 = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/DYNAXNHCE.png");
         Image scaledImage1 = splashImage1.getImage().getScaledInstance(800, 800, Image.SCALE_SMOOTH);
@@ -30,15 +31,15 @@ public class SplashScreen {
         splashScreen1.setLocationRelativeTo(null);
         splashScreen1.setVisible(true);
 
-        Timer timer1 = new Timer(4000, new ActionListener() {
+        Timer timer1 = new Timer(3000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame splashScreen2 = new JFrame("Splash Screen 2");
                 splashScreen2.setUndecorated(true);
-                splashScreen2.getContentPane().setBackground(customColor);
+                splashScreen2.getContentPane().setBackground(StyleConstants.BACKGROUND);
 
                 JPanel panel2 = new JPanel(new GridBagLayout());
-                panel2.setBackground(customColor);
+                panel2.setBackground(StyleConstants.BACKGROUND);
 
                 JLabel splashLabel = new JLabel("Welcome!!!", SwingConstants.CENTER);
                 splashLabel.setFont(new Font("Algerian", Font.BOLD, 40));
@@ -53,7 +54,7 @@ public class SplashScreen {
                 splashScreen2.setLocationRelativeTo(null);
                 splashScreen2.setVisible(true);
 
-                Timer timer2 = new Timer(2000, new ActionListener() {
+                Timer timer2 = new Timer(1000, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         SwingUtilities.invokeLater(mainAppInit);
