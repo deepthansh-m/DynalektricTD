@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -23,9 +24,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-
-
-public class InputWorkView extends AbstractWorkView{
+public class InputWorkView extends AbstractWorkView {
     private final JPanel logoPanel = new JPanel();
     private final JPanel mainPanel = new JPanel(new BorderLayout());
     private final static Logger LOGGER = LogManager.getLogger(WelcomeWorkView.class);
@@ -45,10 +44,8 @@ public class InputWorkView extends AbstractWorkView{
     String[] coolingInputs = {"AN-CL-F","AF-CL","ONAN-CL","ONAF-CL","ONWF-CL","OFWF-CL"};
     String[] frequencyInputs = {"50","60"};
 
-    //Input fields
-    InputTextFieldWithLabel kvaIn = new InputTextFieldWithLabel();
-    //InputTextFieldWithLabel kIn = new InputTextFieldWithLabel("");
-    public InputSpinner kIn = new InputSpinner(97,0,1999999999,1,"K:");
+    InputTextFieldWithLabel kvaIn = new InputTextFieldWithLabel("KVA:");
+    public InputSpinner kIn = new InputSpinner(97,0,1999999999,1,"");
     InputTextFieldWithLabel LVIn = new InputTextFieldWithLabel();
     InputTextFieldWithLabel HVIn = new InputTextFieldWithLabel();
 
@@ -80,7 +77,6 @@ public class InputWorkView extends AbstractWorkView{
     InputTextFieldWithLabel amIn = new InputTextFieldWithLabel();
     InputTextFieldWithLabel leadsIn = new InputTextFieldWithLabel();
     InputTextFieldWithLabel stackingFactorIn = new InputTextFieldWithLabel();
-    //InputTextFieldWithLabel fluxDensityIn = new InputTextFieldWithLabel();
     public InputSpinner flux__density = new InputSpinner(1.4,.60,1.75,.025,"");
     InputTextFieldWithLabel specLossIn = new InputTextFieldWithLabel("Spec Loses");
     InputTextFieldWithLabel coreWIn = new InputTextFieldWithLabel();
@@ -88,7 +84,6 @@ public class InputWorkView extends AbstractWorkView{
     InputTextFieldWithLabel ambienceAirTempIn = new InputTextFieldWithLabel();
     InputTextFieldWithLabel insulationLvIn = new InputTextFieldWithLabel();
     InputTextFieldWithLabel insulationHvIn = new InputTextFieldWithLabel();
-
 
     InputDropDown typesOfMaterialIn = new InputDropDown(typesOfMaterialInputs , "" , "COPPER");
     InputDropDown typesOfWindingLvIn = new InputDropDown(typesOfWindingInputs,"","STRIP");
@@ -107,8 +102,15 @@ public class InputWorkView extends AbstractWorkView{
     InputDropDown frequencyIn = new InputDropDown(frequencyInputs,"","50");
 
     Control controller = new Control();
+
+    private JPanel leftPanel;
+    private JPanel rightPanel;
+    private JButton toggleButton;
+    private boolean isLeftPanelVisible = true;
+
     public InputWorkView(Model model) {
         super(model);
+        this.toggleButton = new JButton("Switch to Right Panel");
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -120,12 +122,26 @@ public class InputWorkView extends AbstractWorkView{
     private void initializeUI() {
         this.setLayout(new BorderLayout());
         this.initializeLogoPanel();
-        mainPanel.add(new MenuBar(this), BorderLayout.NORTH);
-        this.add(mainPanel, BorderLayout.CENTER);
 
-        JPanel inputWorkViewPanel = new JPanel(new GridLayout(0, 2));
-        JPanel leftPanel = new JPanel();
-        JPanel rightPanel = new JPanel();
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(new MenuBar(this), BorderLayout.NORTH);
+
+        JPanel toggleButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        toggleButton = new JButton("Default parameters");
+        toggleButton.addActionListener(e -> togglePanels());
+        toggleButtonPanel.add(toggleButton);
+        toggleButton.setFont(StyleConstants.PROJECT_NAME_FONT.deriveFont(10f));
+        toggleButton.setForeground(StyleConstants.BUTTON_GRADIENT_START);
+        toggleButton.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+        topPanel.add(toggleButtonPanel, BorderLayout.CENTER);
+
+        mainPanel.add(topPanel, BorderLayout.NORTH);
+
+        JPanel inputWorkViewPanel = new JPanel(new BorderLayout());
+        leftPanel = new JPanel(new BorderLayout());
+        rightPanel = new JPanel(new BorderLayout());
+
         JPanel mainLeftPanel = new JPanel();
         JPanel inputPanel = new JPanel();
         JPanel dropDownPanel = new JPanel();
@@ -143,7 +159,6 @@ public class InputWorkView extends AbstractWorkView{
         inputPanel.setLayout(new GridLayout(0, 2));
         dropDownPanel.setLayout(new GridLayout(0, 2));
 
-        // Use GridBagLayout for better alignment
         inputLeftPanel.setLayout(new GridBagLayout());
         inputRightPanel.setLayout(new GridBagLayout());
         dropDownLeftPanel.setLayout(new GridBagLayout());
@@ -156,38 +171,33 @@ public class InputWorkView extends AbstractWorkView{
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Add k
-        leftPanel.add(kIn);
-        kIn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Add components to inputLeftPanel
-        addComponent(inputLeftPanel, new JLabel("KVA:"), kvaIn, gbc);
+        leftPanel.add(kvaIn);
+        kvaIn.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        addComponent(inputLeftPanel, new JLabel("K:"), kIn, gbc);
         addComponent(inputLeftPanel, new JLabel(),new JLabel(), gbc); // this is just to add a comp due to slight bugs
         addComponent(inputLeftPanel, new JLabel("Low Voltage:"), LVIn, gbc);
         addComponent(inputLeftPanel, new JLabel("High Voltage:"), HVIn, gbc);
         addComponent(inputLeftPanel, new JLabel("Type of Material:"), typesOfMaterialIn, gbc);
         addComponent(inputLeftPanel, new JLabel("Core Bldg:"), coreBldgIn, gbc);
 
-        // Add components to inputRightPanel
         addComponent(inputRightPanel, new JLabel("Connection:"), connectionIn, gbc);
         addComponent(inputRightPanel, new JLabel("Cooling:"), coolingIn, gbc);
         addComponent(inputRightPanel, new JLabel("Frequency:"), frequencyIn, gbc);
         addComponent(inputRightPanel, new JLabel("Winding Temperature:"), windingTemperatureIn, gbc);
         addComponent(inputRightPanel, new JLabel("Steel Grade:"), steelGradeIn, gbc);
 
-        // Add components to dropDownLeftPanel
         addComponent(dropDownLeftPanel, new JLabel("Type of Winding HV:"), typesOfWindingHvIn, gbc);
         addComponent(dropDownLeftPanel, new JLabel("Type of Connection HV:"), typesOfConnectionHvIn, gbc);
         addComponent(dropDownLeftPanel, new JLabel("Oil Ducts HV1:"), oilDuctsHv1In, gbc);
         addComponent(dropDownLeftPanel, new JLabel("Oil Ducts HV2:"), oilDuctsHv2In, gbc);
 
-        // Add components to dropDownRightPanel
         addComponent(dropDownRightPanel, new JLabel("Type of Winding LV:"), typesOfWindingLvIn, gbc);
         addComponent(dropDownRightPanel, new JLabel("Type of Connection LV:"), typesOfConnectionLvIn, gbc);
         addComponent(dropDownRightPanel, new JLabel("Oil Ducts LV1:"), oilDuctsLv1In, gbc);
         addComponent(dropDownRightPanel, new JLabel("Oil Ducts LV2:"), oilDuctsLv2In, gbc);
 
-        // Add components to defaultLeftPanel
         addComponent(defaultLeftPanel, new JLabel("Flux Density :"), flux__density, gbc);
         addComponent(defaultLeftPanel, new JLabel("Wire Bare HV1 :"), wireBareHv1In, gbc);
         addComponent(defaultLeftPanel, new JLabel("Wire Bare HV2 :"), wireBareHv2In, gbc);
@@ -204,7 +214,6 @@ public class InputWorkView extends AbstractWorkView{
         addComponent(defaultLeftPanel, new JLabel("δ :"), deltaIn, gbc);
         addComponent(defaultLeftPanel, new JLabel("Leads :"), leadsIn, gbc);
 
-        // Add components to defaultRightPanel
         addComponent(defaultRightPanel, new JLabel("Core W :"), coreWIn, gbc);
         addComponent(defaultRightPanel, new JLabel("Wire Bare LV1 :"), wireBareLv1In, gbc);
         addComponent(defaultRightPanel, new JLabel("Wire Bare LV2 :"), wireBareLv2In, gbc);
@@ -218,7 +227,6 @@ public class InputWorkView extends AbstractWorkView{
         addComponent(defaultRightPanel, new JLabel("Gap/Bobbin :"), gapBobbinIn, gbc);
         addComponent(defaultRightPanel, new JLabel("am :"), amIn, gbc);
         addComponent(defaultRightPanel, new JLabel("Stacking Factor :"), stackingFactorIn, gbc);
-        //addComponent(defaultRightPanel, new JLabel("Spec Loses :"), specLossIn, gbc);
         addComponent(defaultRightPanel, new JLabel("ek % Gaur :"), ekPercentageGaurIn, gbc);
         addComponent(defaultRightPanel, new JLabel("Ambience Air Temp :"), ambienceAirTempIn, gbc);
 
@@ -244,14 +252,17 @@ public class InputWorkView extends AbstractWorkView{
 
         rightPanel.add(defaultPanel);
 
-        JScrollPane defaultScrollPane = new JScrollPane(rightPanel);
-        inputWorkViewPanel.add(leftPanel);
-        inputWorkViewPanel.add(defaultScrollPane);
+        JScrollPane leftScrollPane = new JScrollPane(leftPanel);
+        JScrollPane rightScrollPane = new JScrollPane(rightPanel);
+
+        inputWorkViewPanel.add(leftScrollPane, BorderLayout.CENTER);
+
+        mainPanel.add(inputWorkViewPanel, BorderLayout.CENTER);
 
         setBackgrounds(StyleConstants.BACKGROUND, inputLeftPanel, dropDownLeftPanel, dropDownRightPanel,
                 inputRightPanel, defaultLeftPanel, defaultRightPanel, leftPanel);
 
-        mainPanel.add(inputWorkViewPanel);
+        this.add(mainPanel, BorderLayout.CENTER);
 
         if (Model.getSingleton().getLoadedProject() != null)
             this.refreshInputValues();
@@ -275,8 +286,24 @@ public class InputWorkView extends AbstractWorkView{
         }
     }
 
+    private void togglePanels() {
+        JPanel inputWorkViewPanel = (JPanel) mainPanel.getComponent(1); // Now it's the second component
+        inputWorkViewPanel.removeAll();
 
-    private void initializeLogoPanel(){
+        if (isLeftPanelVisible) {
+            inputWorkViewPanel.add(new JScrollPane(rightPanel), BorderLayout.CENTER);
+            toggleButton.setText("Input Window");
+        } else {
+            inputWorkViewPanel.add(new JScrollPane(leftPanel), BorderLayout.CENTER);
+            toggleButton.setText("Default Parameters");
+        }
+
+        isLeftPanelVisible = !isLeftPanelVisible;
+        inputWorkViewPanel.revalidate();
+        inputWorkViewPanel.repaint();
+    }
+
+    private void initializeLogoPanel() {
         logoPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -319,8 +346,8 @@ public class InputWorkView extends AbstractWorkView{
         catch(IOException e){
             LOGGER.error(e.getMessage() ,e);
         }
-
     }
+
     @Override
     public void captureEventFromChildSubFrame(ViewMessage message) {
         switch (message.getMsgType()) {
@@ -343,11 +370,12 @@ public class InputWorkView extends AbstractWorkView{
         return 2;
     }
 
-    private JPanel initializeNavigationPanel(){
+    private JPanel initializeNavigationPanel() {
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton calculateBtn = new JButton("Calculate");
         JButton nextBtn = new JButton("Next");
         navigationPanel.setBackground(StyleConstants.BACKGROUND);
+
         calculateBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -357,6 +385,7 @@ public class InputWorkView extends AbstractWorkView{
             }
         });
         navigationPanel.add(calculateBtn);
+
         nextBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -364,11 +393,12 @@ public class InputWorkView extends AbstractWorkView{
             }
         });
         navigationPanel.add(nextBtn);
+
         return navigationPanel;
     }
 
     @Override
-    public void update(String msg){
+    public void update(String msg) {
         if(msg.equals("MODEL_UPDATED")){
             this.refreshInputValues();
         }
@@ -379,7 +409,7 @@ public class InputWorkView extends AbstractWorkView{
         }
     }
 
-    private void refreshInputValues(){
+    private void refreshInputValues() {
         InputData inputData = model.getLoadedProjectInput();
         this.kvaIn.setValueEntered(String.valueOf(inputData.KVA));
         this.kvaIn.setBackground(StyleConstants.BACKGROUND);
@@ -438,7 +468,6 @@ public class InputWorkView extends AbstractWorkView{
         this.noInParallel_R_A_Hv2In.setValueEntered(String.valueOf(inputData.NO_IN_PARALLEL_RA_HV2));
         this.noInParallel_R_A_Hv2In.setBackground(StyleConstants.BACKGROUND);
 
-        //
         this.gapBobbinIn.setValueEntered(String.valueOf(inputData.GAP_W));
         this.gapBobbinIn.setBackground(StyleConstants.BACKGROUND);
         this.deltaIn.setValueEntered(String.valueOf(inputData.DELTA_W));
@@ -500,7 +529,7 @@ public class InputWorkView extends AbstractWorkView{
         this.oilDuctsHv2In.setBackground(StyleConstants.BACKGROUND);
     }
 
-    public void storeEnteredValuesInModel(){
+    public void storeEnteredValuesInModel() {
         System.out.println("Storing in model");
         InputData input = model.getLoadedProjectInput();
         input.KVA = Double.parseDouble(this.kvaIn.getValueEntered());

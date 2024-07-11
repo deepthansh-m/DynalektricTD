@@ -30,7 +30,7 @@ public class InputSpinner extends JPanel {
     }
 
     private void initSpinner() {
-        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.add(label);
         this.add(spinner);
         this.setMaximumSize(new Dimension(300, 50));
