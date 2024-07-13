@@ -90,6 +90,12 @@ public class OutputOneWorkView extends AbstractWorkView{
             case ViewMessages.SAVE_PROJECT:
                 mainController.saveProject();
                 break;
+            case ViewMessages.OPEN_INPUT_VIEW:
+                mainController.openInputView();
+                break;
+            case ViewMessages.OPEN_DRAWINGS:
+                mainController.openDrawingsView();
+                break;
         }
     }
 
@@ -109,6 +115,25 @@ public class OutputOneWorkView extends AbstractWorkView{
         this.initializeCoreDetailsPanel();
         this.mainPanel.add(LV_HVPanel);
         this.mainPanel.add(coreDetailsPanel);
+        LV_HV_Table.setShowGrid(true);
+        LV_HV_Table.setGridColor(Color.BLACK);
+        LV_HV_Table.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        wireDetailTable.setShowGrid(true);
+        wireDetailTable.setGridColor(Color.BLACK);
+        wireDetailTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        coreWdgTable.setShowGrid(true);
+        coreWdgTable.setGridColor(Color.BLACK);
+        coreWdgTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        coreWeightTable.setShowGrid(true);
+        coreWeightTable.setGridColor(Color.BLACK);
+        coreWeightTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        standardTable.setShowGrid(true);
+        standardTable.setGridColor(Color.BLACK);
+        standardTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
     }
     private void initializeLV_HVPanel(){
@@ -160,7 +185,7 @@ public class OutputOneWorkView extends AbstractWorkView{
 
     }
     private JPanel initializeNavigationPanel(){
-        JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         navigationPanel.setBackground(StyleConstants.BACKGROUND);
         JButton previousBtn = new JButton("Previous");
         JButton nextBtn = new JButton("Next");

@@ -38,4 +38,8 @@ public class StyleConstants {
     public static final Color TEXT_FIELD_BORDER = new Color(206, 212, 218);
 
     public static final Color HOVER_BACKGROUND = new Color(43, 141, 243);
+
+    public static final Color NO_TAPPING_HOVER = new Color(200, 200, 200, 100);
+
+    public static final Font PRINT_FONT = new Font("Segoe UI", Font.PLAIN, 14);
 }

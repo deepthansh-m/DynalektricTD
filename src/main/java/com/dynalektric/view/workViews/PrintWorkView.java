@@ -27,9 +27,6 @@ public class PrintWorkView extends AbstractWorkView {
     private final PrintWorkView thisReference = this;
     public final static String VIEW_NAME = "PrintWorkView";
     private final JPanel mainPanel = new JPanel();
-    private final String companyInfo = "Prolific Systems & Technologies Pvt. Ltd.\n" +
-            "Plot No. A-267, MIDC, Road No. 16A, Opp. ESIS Hospital, Wagle Industrial Estate, \n Thane (West) - 400 604\n";
-
     private final JTable combinedTable;
     private final DefaultTableModel tableModel;
 
@@ -60,6 +57,12 @@ public class PrintWorkView extends AbstractWorkView {
         combinedTable.getColumnModel().getColumn(3).setPreferredWidth(40);
         combinedTable.getColumnModel().getColumn(4).setPreferredWidth(40);
 
+        combinedTable.setRowHeight(30);
+        combinedTable.setIntercellSpacing(new Dimension(10, 5));
+        combinedTable.setFont(StyleConstants.PRINT_FONT);
+
+        combinedTable.setBorder(null);
+
         SwingUtilities.invokeLater(this::initializeUI);
     }
 
@@ -89,6 +92,15 @@ public class PrintWorkView extends AbstractWorkView {
             case ViewMessages.SAVE_PROJECT:
                 mainController.saveProject();
                 break;
+            case ViewMessages.OPEN_WINDING_VIEW:
+                mainController.openWindingView();
+                break;
+            case ViewMessages.OPEN_INPUT_VIEW:
+                mainController.openInputView();
+                break;
+            case ViewMessages.OPEN_DRAWINGS:
+                mainController.openDrawingsView();
+                break;
         }
     }
 
@@ -108,7 +120,7 @@ public class PrintWorkView extends AbstractWorkView {
     }
 
     private JPanel initializeNavigationPanel() {
-        JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         navigationPanel.setBackground(StyleConstants.BACKGROUND);
         JButton previousBtn = new JButton("Cancel");
         navigationPanel.add(previousBtn);
@@ -122,12 +134,6 @@ public class PrintWorkView extends AbstractWorkView {
         printButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Image companyLogo = null;
-                try {
-                    companyLogo = ImageIO.read(getClass().getResourceAsStream("DYNA.jpg"));
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
                 PrintManager.printComponent(mainPanel);
             }
         });

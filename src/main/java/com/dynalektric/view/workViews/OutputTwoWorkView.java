@@ -165,6 +165,29 @@ public class OutputTwoWorkView extends AbstractWorkView{
         this.mainPanel.add(new MenuBar(thisReference) , BorderLayout.NORTH);
         this.mainPanel.add(initializeNavigationPanel() , BorderLayout.SOUTH);
         this.add(mainPanel , BorderLayout.CENTER);
+        tankDimensionTable.setShowGrid(true);
+        tankDimensionTable.setGridColor(Color.BLACK);
+        tankDimensionTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        impedanceVoltageTable.setShowGrid(true);
+        impedanceVoltageTable.setGridColor(Color.BLACK);
+        impedanceVoltageTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        lossesTable.setShowGrid(true);
+        lossesTable.setGridColor(Color.BLACK);
+        lossesTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        billTable.setShowGrid(true);
+        billTable.setGridColor(Color.BLACK);
+        billTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        surfaceTable.setShowGrid(true);
+        surfaceTable.setGridColor(Color.BLACK);
+        surfaceTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        vaTable.setShowGrid(true);
+        vaTable.setGridColor(Color.BLACK);
+        vaTable.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
 
     public void initializeBillTable() {
@@ -320,7 +343,7 @@ public class OutputTwoWorkView extends AbstractWorkView{
     }
 
     private JPanel initializeNavigationPanel(){
-        JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         navigationPanel.setBackground(StyleConstants.BACKGROUND);
         JButton previousBtn = new JButton("Previous");
         navigationPanel.add(previousBtn);
@@ -349,6 +372,12 @@ public class OutputTwoWorkView extends AbstractWorkView{
                 break;
             case ViewMessages.SAVE_PROJECT:
                 mainController.saveProject();
+                break;
+            case ViewMessages.OPEN_INPUT_VIEW:
+                mainController.openInputView();
+                break;
+            case ViewMessages.OPEN_DRAWINGS:
+                mainController.openDrawingsView();
                 break;
         }
     }

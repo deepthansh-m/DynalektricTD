@@ -21,6 +21,8 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -43,6 +45,12 @@ public class InputWorkView extends AbstractWorkView {
     String[] connectionInputs = {"Dyn11","Dyn5","Dd0","Yyn0","Yd1","Yd11","Dz0","Yz1","Yz11"};
     String[] coolingInputs = {"AN-CL-F","AF-CL","ONAN-CL","ONAF-CL","ONWF-CL","OFWF-CL"};
     String[] frequencyInputs = {"50","60"};
+    String[] typesOfTappingInputs = {"OCTC", "OLTC"};
+    String[] tappingOnInputs = {"HV", "LV"};
+    String[] efficiencyInputs = {"1 STAR", "2 STAR", "3 STAR"};
+    String[] coreTypeInputs = {"D Type (Float Yoke)", "S Type", "D Type StepLap", "S Type StepLap"};
+    String[] typesOfTankInputs = {"Radiator type with conservator", "Sealed type with radiator (No conservator)", "Corrugated fin type with conservator", "Sealed type with corrugated fin with gas/air cushion (no conservator)", "Completely filled with corrugated fin (No conservator)", "Elliptical tube radiator"};
+    String[] classOfInsulationInputs = {"A", "E", "B"};
 
     InputTextFieldWithLabel kvaIn = new InputTextFieldWithLabel("KVA:");
     public InputSpinner kIn = new InputSpinner(97,0,1999999999,1,"");
@@ -84,6 +92,9 @@ public class InputWorkView extends AbstractWorkView {
     InputTextFieldWithLabel ambienceAirTempIn = new InputTextFieldWithLabel();
     InputTextFieldWithLabel insulationLvIn = new InputTextFieldWithLabel();
     InputTextFieldWithLabel insulationHvIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel tappingRangeFromMinIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel tappingRangeToMaxIn = new InputTextFieldWithLabel();
+    InputTextFieldWithLabel stepValueIn = new InputTextFieldWithLabel();
 
     InputDropDown typesOfMaterialIn = new InputDropDown(typesOfMaterialInputs , "" , "COPPER");
     InputDropDown typesOfWindingLvIn = new InputDropDown(typesOfWindingInputs,"","STRIP");
@@ -100,10 +111,20 @@ public class InputWorkView extends AbstractWorkView {
     InputDropDown coolingIn = new InputDropDown(coolingInputs,"","AN-CL-F");
     InputDropDown connectionIn = new InputDropDown(connectionInputs,"","Dyn11");
     InputDropDown frequencyIn = new InputDropDown(frequencyInputs,"","50");
+    InputDropDown typesOfTappingIn = new InputDropDown(typesOfTappingInputs,"","OCTC");
+    InputDropDown tappingOnIn = new InputDropDown(tappingOnInputs,"","HV");
+    InputDropDown efficiencyIn = new InputDropDown(efficiencyInputs,"","1 STAR");
+    InputDropDown coreTypeIn = new InputDropDown(coreTypeInputs,"","D Type (Float Yoke)");
+    InputDropDown typesOfTankIn = new InputDropDown(typesOfTankInputs, "","Radiator type with conservator");
+    InputDropDown classOfInsulationIn = new InputDropDown(classOfInsulationInputs, "","A");
+
+    JCheckBox noTappingCheckbox = new JCheckBox("No Tapping");
+    JPanel tappingPanel = new JPanel(new GridBagLayout());
 
     Control controller = new Control();
 
     private JPanel leftPanel;
+    private JPanel mainPanelLeft;
     private JPanel rightPanel;
     private JButton toggleButton;
     private boolean isLeftPanelVisible = true;
@@ -141,8 +162,11 @@ public class InputWorkView extends AbstractWorkView {
         JPanel inputWorkViewPanel = new JPanel(new BorderLayout());
         leftPanel = new JPanel(new BorderLayout());
         rightPanel = new JPanel(new BorderLayout());
+        mainPanelLeft = new JPanel();
 
         JPanel mainLeftPanel = new JPanel();
+        JPanel leftRightPanel = new JPanel();
+        JPanel leftRightInputPanel = new JPanel();
         JPanel inputPanel = new JPanel();
         JPanel dropDownPanel = new JPanel();
         JPanel inputLeftPanel = new JPanel();
@@ -155,7 +179,9 @@ public class InputWorkView extends AbstractWorkView {
 
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        mainPanelLeft.setLayout(new GridLayout(0, 2));
         mainLeftPanel.setLayout(new GridLayout(2, 0));
+        leftRightPanel.setLayout(new GridLayout(2, 0));
         inputPanel.setLayout(new GridLayout(0, 2));
         dropDownPanel.setLayout(new GridLayout(0, 2));
 
@@ -165,12 +191,12 @@ public class InputWorkView extends AbstractWorkView {
         dropDownRightPanel.setLayout(new GridBagLayout());
         defaultLeftPanel.setLayout(new GridBagLayout());
         defaultRightPanel.setLayout(new GridBagLayout());
+        leftRightInputPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
-
 
         leftPanel.add(kvaIn);
         kvaIn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -230,6 +256,28 @@ public class InputWorkView extends AbstractWorkView {
         addComponent(defaultRightPanel, new JLabel("ek % Gaur :"), ekPercentageGaurIn, gbc);
         addComponent(defaultRightPanel, new JLabel("Ambience Air Temp :"), ambienceAirTempIn, gbc);
 
+        // Add tapping components to tappingPanel
+        addComponent(tappingPanel, noTappingCheckbox, gbc);
+        addComponent(tappingPanel, new JLabel("Tapping Type:"), typesOfTappingIn, gbc);
+        addComponent(tappingPanel, new JLabel("Tapping On:"), tappingOnIn, gbc);
+        addComponent(tappingPanel, new JLabel("Tapping Range From Min:"), tappingRangeFromMinIn, gbc);
+        addComponent(tappingPanel, new JLabel("to Max:"), tappingRangeToMaxIn, gbc);
+        addComponent(tappingPanel, new JLabel("Step Value:"), stepValueIn, gbc);
+
+        addComponent(leftRightInputPanel, new JLabel("Efficiency:"), efficiencyIn, gbc);
+        addComponent(leftRightInputPanel, new JLabel("Core Type:"), coreTypeIn, gbc);
+        addComponent(leftRightInputPanel, new JLabel("Type Of Tank:"), typesOfTankIn, gbc);
+        addComponent(leftRightInputPanel, new JLabel("Class Of Insulation:"), classOfInsulationIn, gbc);
+
+        // Add action listener to noTappingCheckbox
+        noTappingCheckbox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean isNoTapping = noTappingCheckbox.isSelected();
+                setTappingComponentsEnabled(!isNoTapping);
+            }
+        });
+
         inputPanel.add(inputLeftPanel);
         inputPanel.add(inputRightPanel);
         inputPanel.setSize(inputPanel.getPreferredSize().width , inputPanel.getPreferredSize().height);
@@ -252,20 +300,34 @@ public class InputWorkView extends AbstractWorkView {
 
         rightPanel.add(defaultPanel);
 
-        JScrollPane leftScrollPane = new JScrollPane(leftPanel);
+        addComponent(leftRightPanel, tappingPanel, gbc);
+        addComponent(leftRightPanel, leftRightInputPanel, gbc);
+
+        mainPanelLeft.add(leftPanel);
+        mainPanelLeft.add(leftRightPanel);
+
         JScrollPane rightScrollPane = new JScrollPane(rightPanel);
 
-        inputWorkViewPanel.add(leftScrollPane, BorderLayout.CENTER);
+        inputWorkViewPanel.add(mainPanelLeft, BorderLayout.CENTER);
 
         mainPanel.add(inputWorkViewPanel, BorderLayout.CENTER);
 
         setBackgrounds(StyleConstants.BACKGROUND, inputLeftPanel, dropDownLeftPanel, dropDownRightPanel,
-                inputRightPanel, defaultLeftPanel, defaultRightPanel, leftPanel);
+                inputRightPanel, defaultLeftPanel, defaultRightPanel, leftPanel,tappingPanel,leftRightInputPanel);
 
         this.add(mainPanel, BorderLayout.CENTER);
 
         if (Model.getSingleton().getLoadedProject() != null)
             this.refreshInputValues();
+    }
+
+    private void addComponent(JPanel panel, JComponent component, GridBagConstraints gbc) {
+        gbc.gridx = 0;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1;
+        panel.add(component, gbc);
+        gbc.gridy++;
+        gbc.gridwidth = 1;
     }
 
     private void addComponent(JPanel panel, JComponent label, JComponent field, GridBagConstraints gbc) {
@@ -294,13 +356,31 @@ public class InputWorkView extends AbstractWorkView {
             inputWorkViewPanel.add(new JScrollPane(rightPanel), BorderLayout.CENTER);
             toggleButton.setText("Input Window");
         } else {
-            inputWorkViewPanel.add(new JScrollPane(leftPanel), BorderLayout.CENTER);
+            inputWorkViewPanel.add(new JScrollPane(mainPanelLeft), BorderLayout.CENTER);
             toggleButton.setText("Default Parameters");
         }
 
         isLeftPanelVisible = !isLeftPanelVisible;
         inputWorkViewPanel.revalidate();
         inputWorkViewPanel.repaint();
+    }
+
+    private void setTappingComponentsEnabled(boolean enabled) {
+        Component[] components = tappingPanel.getComponents();
+        for (Component component : components) {
+            if (component != noTappingCheckbox) {
+                component.setEnabled(enabled);
+                if (component instanceof JComponent) {
+                    ((JComponent) component).setOpaque(!enabled);
+                    if (!enabled) {
+                        ((JComponent) component).setBackground(StyleConstants.NO_TAPPING_HOVER);
+                    } else {
+                        ((JComponent) component).setBackground(null);
+                    }
+                }
+            }
+        }
+        tappingPanel.repaint();
     }
 
     private void initializeLogoPanel() {
@@ -356,6 +436,19 @@ public class InputWorkView extends AbstractWorkView {
                 break;
             case ViewMessages.SAVE_PROJECT:
                 controller.saveProject();
+                break;
+            case ViewMessages.OPEN_INPUT_VIEW:
+                controller.openInputView();
+                break;
+            case ViewMessages.OPEN_WINDING_VIEW:
+                storeEnteredValuesInModel();
+                controller.beginCalculations();
+                controller.openWindingView();
+                break;
+            case ViewMessages.OPEN_DRAWINGS:
+                storeEnteredValuesInModel();
+                controller.beginCalculations();
+                controller.openDrawingsView();
                 break;
         }
     }
@@ -527,6 +620,24 @@ public class InputWorkView extends AbstractWorkView {
         this.oilDuctsHv1In.setBackground(StyleConstants.BACKGROUND);
         this.oilDuctsHv2In.setValueSelected(String.valueOf(inputData.OIL_DUCTS_RADIAL_HV2));
         this.oilDuctsHv2In.setBackground(StyleConstants.BACKGROUND);
+
+        this.noTappingCheckbox.setSelected(inputData.NO_TAPPING);
+        this.typesOfTappingIn.setValueSelected(inputData.TAPPING_TYPE);
+        this.tappingOnIn.setValueSelected(inputData.TAPPING_ON);
+        this.tappingRangeFromMinIn.setValueEntered(String.valueOf(inputData.TAPPING_RANGE_FROM_MIN));
+        this.tappingRangeToMaxIn.setValueEntered(String.valueOf(inputData.TAPPING_RANGE_TO_MAX));
+        this.stepValueIn.setValueEntered(String.valueOf(inputData.STEP_VALUE));
+
+        this.efficiencyIn.setValueSelected(inputData.EFFICIENCY);
+        this.efficiencyIn.setBackground(StyleConstants.BACKGROUND);
+        this.coreTypeIn.setValueSelected(inputData.CORE_TYPE);
+        this.coreTypeIn.setBackground(StyleConstants.BACKGROUND);
+        this.typesOfTankIn.setValueSelected(inputData.TYPE_OF_TANK);
+        this.typesOfTankIn.setBackground(StyleConstants.BACKGROUND);
+        this.classOfInsulationIn.setValueSelected(inputData.CLASS_OF_INSULATION);
+        this.classOfInsulationIn.setBackground(StyleConstants.BACKGROUND);
+
+        setTappingComponentsEnabled(!inputData.NO_TAPPING);
     }
 
     public void storeEnteredValuesInModel() {
@@ -580,6 +691,26 @@ public class InputWorkView extends AbstractWorkView {
         input.LIMB_PLATE_W = Integer.parseInt(this.limbPlateIn.getValueEntered());
         input.STACKING_FACTOR = Double.parseDouble(this.stackingFactorIn.getValueEntered());
         input.DELTA_W = Integer.parseInt(this.deltaIn.getValueEntered());
+        input.NO_TAPPING = this.noTappingCheckbox.isSelected();
+        if (!input.NO_TAPPING) {
+            input.TAPPING_TYPE = this.typesOfTappingIn.getValueSelected();
+            input.TAPPING_ON = this.tappingOnIn.getValueSelected();
+            input.TAPPING_RANGE_FROM_MIN = Double.parseDouble(this.tappingRangeFromMinIn.getValueEntered());
+            input.TAPPING_RANGE_TO_MAX = Double.parseDouble(this.tappingRangeToMaxIn.getValueEntered());
+            input.STEP_VALUE = Double.parseDouble(this.stepValueIn.getValueEntered());
+        }
+        else
+        {
+            input.TAPPING_TYPE = "";
+            input.TAPPING_ON = "";
+            input.TAPPING_RANGE_FROM_MIN = 0.0;
+            input.TAPPING_RANGE_TO_MAX = 0.0;
+            input.STEP_VALUE = 0.0;
+        }
+        input.EFFICIENCY = this.efficiencyIn.getValueSelected();
+        input.CORE_TYPE = this.coreTypeIn.getValueSelected();
+        input.TYPE_OF_TANK = this.typesOfTankIn.getValueSelected();
+        input.CLASS_OF_INSULATION = this.classOfInsulationIn.getValueSelected();
 
         model.setLoadedProjectInput(input);
     }

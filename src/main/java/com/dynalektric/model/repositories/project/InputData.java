@@ -62,4 +62,14 @@ public class InputData {
     public double WIND_TEMP = 90.0;
     public double CONDUCTIVITY = 28.0;
     public double BOM_CRCA_ENCL = 0.0;
+    public boolean NO_TAPPING = false;
+    public String TAPPING_TYPE = "OCTC";
+    public String TAPPING_ON = "HV";
+    public double TAPPING_RANGE_FROM_MIN = -5.0;
+    public double TAPPING_RANGE_TO_MAX = 2.5;
+    public double STEP_VALUE = 2.5;
+    public String EFFICIENCY = "1 STAR";
+    public String CORE_TYPE = "D Type (Float Yoke)";
+    public String TYPE_OF_TANK = "Radiator type with conservator";
+    public String CLASS_OF_INSULATION  = "A";
 }

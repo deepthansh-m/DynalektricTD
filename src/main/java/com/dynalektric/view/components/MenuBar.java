@@ -42,9 +42,74 @@ public class MenuBar extends JMenuBar{
         projectMenu.add(closeProject);
         projectMenu.add(saveProject);
         this.add(projectMenu);
+        MenuItem basicinfo = new MenuItem(DisplayConstant.MENU_ITEM_BASICINFO);
+        basicinfo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent event) {
+                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_INPUT_VIEW , null));
+            }
+        });
+        MenuItem winding = new MenuItem(DisplayConstant.MENU_ITEM_WINDING);
+        winding.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent event) {
+                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_WINDING_VIEW , null));
+            }
+        });
+        MenuItem core = new MenuItem(DisplayConstant.MENU_ITEM_CORE);
+        core.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent event) {
+                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_CORE_VIEW , null));
+            }
+        });
+        MenuItem insuarr = new MenuItem(DisplayConstant.MENU_ITEM_INSULATION_ARRANGEMENT);
+        insuarr.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent event) {
+                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_INSULATION_ARRANGEMENT_VIEW , null));
+            }
+        });
+        MenuItem tank = new MenuItem(DisplayConstant.MENU_ITEM_TANK);
+        tank.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent event) {
+                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_TANK_VIEW , null));
+            }
+        });
+        MenuItem short_circuit = new MenuItem(DisplayConstant.MENU_ITEM_SHORT_CIRCUIT);
+        short_circuit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent event) {
+                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_SHORT_CIRCUIT_VIEW , null));
+            }
+        });
+        MenuItem bom = new MenuItem(DisplayConstant.MENU_ITEM_B_O_M);
+        bom.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent event) {
+                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_B_O_M_VIEW , null));
+            }
+        });
+        MenuItem drawing = new MenuItem(DisplayConstant.MENU_ITEM_DRAWING);
+        drawing.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent event) {
+                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_DRAWINGS , null));
+            }
+        });
+        viewMenu.add(basicinfo);
+        viewMenu.add(winding);
+        viewMenu.add(core);
+        viewMenu.add(insuarr);
+        viewMenu.add(tank);
+        viewMenu.add(short_circuit);
+        viewMenu.add(bom);
+        viewMenu.add(drawing);
         this.add(viewMenu);
         this.add(windowMenu);
         this.add(helpMenu);
+
     }
 
     private void setStyling() {
