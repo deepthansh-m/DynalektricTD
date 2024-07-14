@@ -13,7 +13,9 @@ import com.dynalektric.view.components.MenuBar;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,7 +50,23 @@ public class PrintWorkView extends AbstractWorkView {
             public boolean isCellEditable(int row, int col) {
                 return false;
             }
+
+            @Override
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+                Component c = super.prepareRenderer(renderer, row, column);
+                if (c instanceof JComponent) {
+                    ((JComponent) c).setBorder(null);
+                }
+                return c;
+            }
         };
+
+        combinedTable.setShowGrid(false);
+
+        BorderlessTableCellRenderer borderlessRenderer = new BorderlessTableCellRenderer();
+        for (int i = 0; i < combinedTable.getColumnCount(); i++) {
+            combinedTable.getColumnModel().getColumn(i).setCellRenderer(borderlessRenderer);
+        }
 
         // Adjust column widths
         combinedTable.getColumnModel().getColumn(0).setPreferredWidth(30);
@@ -61,9 +79,16 @@ public class PrintWorkView extends AbstractWorkView {
         combinedTable.setIntercellSpacing(new Dimension(10, 5));
         combinedTable.setFont(StyleConstants.PRINT_FONT);
 
-        combinedTable.setBorder(null);
-
         SwingUtilities.invokeLater(this::initializeUI);
+    }
+    class BorderlessTableCellRenderer extends DefaultTableCellRenderer {
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                                                       boolean isSelected, boolean hasFocus,
+                                                       int row, int column) {
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            setBorder(noFocusBorder);
+            return this;
+        }
     }
 
     private void initializeUI() {

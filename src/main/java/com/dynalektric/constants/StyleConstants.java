@@ -42,4 +42,5 @@ public class StyleConstants {
     public static final Color NO_TAPPING_HOVER = new Color(200, 200, 200, 100);
 
     public static final Font PRINT_FONT = new Font("Segoe UI", Font.PLAIN, 14);
+    public static final Font PRINT_HEADER = new Font("SansSerif", Font.BOLD, 10);
 }

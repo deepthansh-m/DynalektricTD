@@ -1,11 +1,15 @@
 package com.dynalektric.print;
 
+import com.dynalektric.constants.StyleConstants;
 import com.dynalektric.model.Model;
 import com.dynalektric.view.workViews.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.print.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,10 +41,12 @@ public class PrintManager {
 
     private static class ComponentPrintable implements Printable {
         private final JComponent component;
-        private final int HEADER_HEIGHT = 100;
+        private int HEADER_HEIGHT = 100;
         private final int LOGO_SIZE = 80;
-        private final String LOGO_PATH = "/Users/deepthanshm/IdeaProjects/DynalektricTD/src/main/resources/com/dynalektric/view/workViews/DYNA.jpg";
         private List<Integer> pageBreaks;
+        String os = System.getProperty("os.name").toLowerCase();
+        boolean isWindows = os.contains("win");
+
 
         public ComponentPrintable(JComponent component) {
             this.component = component;
@@ -51,6 +57,11 @@ public class PrintManager {
         public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
             Graphics2D g2d = (Graphics2D) graphics;
             g2d.setColor(Color.BLACK);
+
+            if (isWindows) {
+                // Adjust for Windows
+                HEADER_HEIGHT = 150;  // This moves everything down by 50 pixels
+            }
 
             int availableWidth = (int) pageFormat.getImageableWidth();
             int availableHeight = (int) (pageFormat.getImageableHeight()*2.35) - HEADER_HEIGHT;
@@ -126,20 +137,32 @@ public class PrintManager {
         }
 
         private void drawHeader(Graphics2D g2d, int pageWidth, int pageX) {
-            ImageIcon logoIcon = new ImageIcon(LOGO_PATH);
-            Image logo = logoIcon.getImage();
-            g2d.drawImage(logo, pageX + 5, 20, LOGO_SIZE + 40, LOGO_SIZE - 30, null);
+            int startY = 30;
 
-            g2d.setFont(new Font("Arial", Font.BOLD, 10));
+            if (isWindows) {
+                // Adjust for Windows
+                startY = 70;  // This moves everything down by 50 pixels
+            }
+
+            try {
+                BufferedImage logo = ImageIO.read(getClass().getResourceAsStream("/com/dynalektric/view/workViews/DYNA.jpg"));
+                if (logo != null) {
+                    g2d.drawImage(logo, pageX + 5, startY, LOGO_SIZE + 40, LOGO_SIZE - 30, null);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            g2d.setFont(StyleConstants.PRINT_HEADER);
             FontMetrics fm = g2d.getFontMetrics();
 
             String[] lines = COMPANY_INFO.split("\n");
-            int y = 30;
+            int y = startY;
             int textWidth = pageWidth - LOGO_SIZE - 30;
 
             for (String line : lines) {
                 int x = pageX + LOGO_SIZE + 20 + (textWidth / 2) - (fm.stringWidth(line) / 2);
-                g2d.drawString(line, x, y);
+                g2d.drawString(line, x, y + fm.getAscent());  // Use getAscent() to align text properly
                 y += fm.getHeight();
             }
 
