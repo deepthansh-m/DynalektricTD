@@ -84,6 +84,7 @@ public class View{
         WelcomeWorkView welcomeView = new WelcomeWorkView(model);
         InputWorkView inputView = new InputWorkView(model);
         WindingWorkView windingWorkView = new WindingWorkView(model);
+        CoreWorkView coreWorkView = new CoreWorkView(model);
         OutputOneWorkView outputOneWorkView = new OutputOneWorkView(model);
         OutputTwoWorkView outputTwoWorkView = new OutputTwoWorkView(model);
         PrintWorkView printWorkView = new PrintWorkView(model);
@@ -91,11 +92,13 @@ public class View{
         view.loadedViews.put(welcomeView.getViewName() ,welcomeView);
         view.loadedViews.put(inputView.getViewName(),inputView);
         view.loadedViews.put(windingWorkView.getViewName() , windingWorkView);
+        view.loadedViews.put(coreWorkView.getViewName() , coreWorkView);
         view.loadedViews.put(outputTwoWorkView.getViewName(),outputTwoWorkView);
         view.loadedViews.put(printWorkView.getViewName(), printWorkView);
         mainPanel.loadWorkView(welcomeView);
         mainPanel.loadWorkView(inputView);
         mainPanel.loadWorkView(windingWorkView);
+        mainPanel.loadWorkView(coreWorkView);
         mainPanel.loadWorkView(outputOneWorkView);
         mainPanel.loadWorkView(outputTwoWorkView);
         mainPanel.loadWorkView(printWorkView);

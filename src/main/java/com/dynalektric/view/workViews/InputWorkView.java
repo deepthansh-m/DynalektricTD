@@ -445,6 +445,11 @@ public class InputWorkView extends AbstractWorkView {
                 controller.beginCalculations();
                 controller.openWindingView();
                 break;
+            case ViewMessages.OPEN_CORE_VIEW:
+                storeEnteredValuesInModel();
+                controller.beginCalculations();
+                controller.openCoreView();
+                break;
             case ViewMessages.OPEN_DRAWINGS:
                 storeEnteredValuesInModel();
                 controller.beginCalculations();
@@ -474,7 +479,7 @@ public class InputWorkView extends AbstractWorkView {
             public void mouseClicked(MouseEvent e) {
                 storeEnteredValuesInModel();
                 controller.beginCalculations();
-                View.getSingleton().setView(OutputOneWorkView.VIEW_NAME);
+                View.getSingleton().setView(WindingWorkView.VIEW_NAME);
             }
         });
         navigationPanel.add(calculateBtn);
@@ -482,7 +487,7 @@ public class InputWorkView extends AbstractWorkView {
         nextBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                View.getSingleton().setView(OutputOneWorkView.VIEW_NAME);
+                View.getSingleton().setView(WindingWorkView.VIEW_NAME);
             }
         });
         navigationPanel.add(nextBtn);
