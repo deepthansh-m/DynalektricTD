@@ -4,10 +4,7 @@ import com.dynalektric.model.Model;
 import com.dynalektric.model.repositories.project.Project;
 import com.dynalektric.model.repositories.project.ProjectRepo;
 import com.dynalektric.view.View;
-import com.dynalektric.view.workViews.InputWorkView;
-import com.dynalektric.view.workViews.PrintWorkView;
-import com.dynalektric.view.workViews.WelcomeWorkView;
-import com.dynalektric.view.workViews.WindingWorkView;
+import com.dynalektric.view.workViews.*;
 
 public class Control {
     Model model = Model.getSingleton();
@@ -43,6 +40,11 @@ public class Control {
     public  void openWindingView(){
         View view = View.getSingleton();
         view.setView(view.loadedViews.get(WindingWorkView.VIEW_NAME));
+    }
+
+    public  void openCoreView(){
+        View view = View.getSingleton();
+        view.setView(view.loadedViews.get(CoreWorkView.VIEW_NAME));
     }
 
     public void openDrawingsView(){

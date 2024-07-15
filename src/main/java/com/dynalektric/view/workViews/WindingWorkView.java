@@ -148,7 +148,7 @@ public class WindingWorkView extends AbstractWorkView{
             nextBtn.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    View.getSingleton().setView(OutputTwoWorkView.VIEW_NAME);
+                    View.getSingleton().setView(CoreWorkView.VIEW_NAME);
 //                System.out.println(coreWeightTable.getModel().getValueAt(0 , 1));
                 }
             });
