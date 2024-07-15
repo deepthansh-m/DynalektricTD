@@ -87,6 +87,7 @@ public class View{
         CoreWorkView coreWorkView = new CoreWorkView(model);
         DimensionsWorkView dimensionsWorkView = new DimensionsWorkView(model);
         BillOfMaterialsWorkView billOfMaterialsWorkView = new BillOfMaterialsWorkView(model);
+        DrawingWorkView drawingWorkView = new DrawingWorkView(model);
         OutputOneWorkView outputOneWorkView = new OutputOneWorkView(model);
         OutputTwoWorkView outputTwoWorkView = new OutputTwoWorkView(model);
         PrintWorkView printWorkView = new PrintWorkView(model);
@@ -97,6 +98,7 @@ public class View{
         view.loadedViews.put(coreWorkView.getViewName() , coreWorkView);
         view.loadedViews.put(dimensionsWorkView.getViewName() , dimensionsWorkView);
         view.loadedViews.put(billOfMaterialsWorkView.getViewName() , billOfMaterialsWorkView);
+        view.loadedViews.put(drawingWorkView.getViewName() , drawingWorkView);
         view.loadedViews.put(outputTwoWorkView.getViewName(),outputTwoWorkView);
         view.loadedViews.put(printWorkView.getViewName(), printWorkView);
         mainPanel.loadWorkView(welcomeView);
@@ -105,6 +107,7 @@ public class View{
         mainPanel.loadWorkView(coreWorkView);
         mainPanel.loadWorkView(dimensionsWorkView);
         mainPanel.loadWorkView(billOfMaterialsWorkView);
+        mainPanel.loadWorkView(drawingWorkView);
         mainPanel.loadWorkView(outputOneWorkView);
         mainPanel.loadWorkView(outputTwoWorkView);
         mainPanel.loadWorkView(printWorkView);

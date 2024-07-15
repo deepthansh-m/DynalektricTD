@@ -56,7 +56,7 @@ public class Control {
 
     public void openDrawingsView(){
         View view = View.getSingleton();
-        view.setView(view.loadedViews.get(PrintWorkView.VIEW_NAME));
+        view.setView(view.loadedViews.get(DrawingWorkView.VIEW_NAME));
     }
 
     public void beginCalculations(){

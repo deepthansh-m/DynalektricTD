@@ -167,7 +167,7 @@ public class BillOfMaterialsWorkView extends AbstractWorkView{
         nextBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                View.getSingleton().setView(OutputOneWorkView.VIEW_NAME);
+                View.getSingleton().setView(DrawingWorkView.VIEW_NAME);
 //                System.out.println(coreWeightTable.getModel().getValueAt(0 , 1));
             }
         });
