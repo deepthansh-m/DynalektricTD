@@ -41,7 +41,7 @@ public class SplashScreen {
                 JPanel panel2 = new JPanel(new GridBagLayout());
                 panel2.setBackground(StyleConstants.BACKGROUND);
 
-                JLabel splashLabel = new JLabel("Welcome!!!", SwingConstants.CENTER);
+                JLabel splashLabel = new JLabel("'Build Your own Transformer'", SwingConstants.CENTER);
                 splashLabel.setFont(new Font("Algerian", Font.BOLD, 40));
                 panel2.add(splashLabel);
 

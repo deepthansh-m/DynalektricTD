@@ -97,6 +97,10 @@ public class PrintWorkView extends AbstractWorkView {
         this.initializeMainPanel();
         JScrollPane scrollPane = new JScrollPane(mainPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
+
         this.add(scrollPane, BorderLayout.CENTER);
         this.add(initializeNavigationPanel(), BorderLayout.SOUTH);
     }

@@ -66,6 +66,15 @@ public class WindingWorkView extends AbstractWorkView{
                 case ViewMessages.OPEN_WINDING_VIEW:
                     mainController.openWindingView();
                     break;
+                case ViewMessages.OPEN_CORE_VIEW:
+                    mainController.openCoreView();
+                    break;
+                case ViewMessages.OPEN_DIMENSION_VIEW:
+                    mainController.openDimensionView();
+                    break;
+                case ViewMessages.OPEN_B_O_M_VIEW:
+                    mainController.openBOMView();
+                    break;
                 case ViewMessages.OPEN_DRAWINGS:
                     mainController.openDrawingsView();
                     break;
@@ -101,6 +110,8 @@ public class WindingWorkView extends AbstractWorkView{
             this.WindingPanel.add(WINDING_TABLE);
             JScrollPane scrollPane = new JScrollPane(WindingPanel);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+            scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
             this.WindingPanel.setBackground(StyleConstants.BACKGROUND);
             this.WindingPanel.setBorder(BorderFactory.createEmptyBorder(20, 325 , 20 ,325));
             WINDING_TABLE.setShowGrid(true);
@@ -182,56 +193,55 @@ public class WindingWorkView extends AbstractWorkView{
             WINDING_TABLE.setValueAt("S.a-m(wdg)" , 17 , 0);
             WINDING_TABLE.setValueAt("W/m^2" , 18 , 0);
             WINDING_TABLE.setValueAt("wdg temp rise " , 19 , 0);
-            WINDING_TABLE.setValueAt("core" , 20 , 0);
 
             // setting values
-            WINDING_TABLE.setValueAt("", 1, 3);
-            WINDING_TABLE.setValueAt("", 1, 2);
+            WINDING_TABLE.setValueAt(inputData.WINDINGTYPELV, 1, 3);
+            WINDING_TABLE.setValueAt(inputData.WINDINGTYPEHV, 1, 2);
             WINDING_TABLE.setValueAt("", 1, 1);
 
             WINDING_TABLE.setValueAt(outputData.VPH_LV, 2, 3);
             WINDING_TABLE.setValueAt(outputData.VPH_HV, 2, 2);
-            WINDING_TABLE.setValueAt("", 2, 1);
+            WINDING_TABLE.setValueAt("V", 2, 1);
 
             WINDING_TABLE.setValueAt(outputData.IPH_LV, 3, 3);
             WINDING_TABLE.setValueAt(outputData.IPH_HV, 3, 2);
-            WINDING_TABLE.setValueAt("", 3, 1);
+            WINDING_TABLE.setValueAt("A", 3, 1);
 
             WINDING_TABLE.setValueAt(outputData.CROSS_SECTION_LV, 4, 3);
             WINDING_TABLE.setValueAt(outputData.CROSS_SECTION_HV, 4, 2);
-            WINDING_TABLE.setValueAt("", 4, 1);
+            WINDING_TABLE.setValueAt("mm²", 4, 1);
 
             WINDING_TABLE.setValueAt(outputData.CURRENT_DENSITY_LV, 5, 3);
             WINDING_TABLE.setValueAt(outputData.CURRENT_DENSITY_HV, 5, 2);
-            WINDING_TABLE.setValueAt("", 5, 1);
+            WINDING_TABLE.setValueAt("A/mm²", 5, 1);
 
             WINDING_TABLE.setValueAt(outputData.TURN_LIMB_LV, 6, 3);
             WINDING_TABLE.setValueAt(outputData.TURN_LIMB_HV, 6, 2);
-            WINDING_TABLE.setValueAt("", 6, 1);
+            WINDING_TABLE.setValueAt("Nos", 6, 1);
 
             WINDING_TABLE.setValueAt(outputData.TURN_LAYER_LV, 7, 3);
             WINDING_TABLE.setValueAt(outputData.TURN_LAYER_HV, 7, 2);
-            WINDING_TABLE.setValueAt("", 7, 1);
+            WINDING_TABLE.setValueAt("Nos", 7, 1);
 
             WINDING_TABLE.setValueAt(outputData.WDG_LG_IMP_CALCU_LV, 8, 3);
             WINDING_TABLE.setValueAt(outputData.WDG_LG_IMP_CALCU_HV, 8, 2);
-            WINDING_TABLE.setValueAt("", 8, 1);
+            WINDING_TABLE.setValueAt("H", 8, 1);
 
             WINDING_TABLE.setValueAt(outputData.WIND_LENGTH_LV, 9, 3);
             WINDING_TABLE.setValueAt(outputData.WIND_LENGTH_HV, 9, 2);
-            WINDING_TABLE.setValueAt("", 9, 1);
+            WINDING_TABLE.setValueAt("mm", 9, 1);
 
             WINDING_TABLE.setValueAt(outputData.LIMB_LENGTH_LV, 10, 3);
             WINDING_TABLE.setValueAt(outputData.LIMB_LENGTH_HV, 10, 2);
-            WINDING_TABLE.setValueAt("", 10, 1);
+            WINDING_TABLE.setValueAt("mm", 10, 1);
 
             WINDING_TABLE.setValueAt(outputData.WIND_RADIAL_DEPTH_LV, 11, 3);
             WINDING_TABLE.setValueAt(outputData.WIND_RADIAL_DEPTH_HV, 11, 2);
-            WINDING_TABLE.setValueAt("", 11, 1);
+            WINDING_TABLE.setValueAt("mm", 11, 1);
 
             WINDING_TABLE.setValueAt(outputData.TURN_LENGTH_LV, 12, 3);
             WINDING_TABLE.setValueAt(outputData.TURN_LENGTH_HV, 12, 2);
-            WINDING_TABLE.setValueAt("", 12, 1);
+            WINDING_TABLE.setValueAt("M", 12, 1);
 
             WINDING_TABLE.setValueAt(outputData.WIRE_LENGTH_LV, 13, 3);
             WINDING_TABLE.setValueAt(outputData.WIRE_LENGTH_HV, 13, 2);
@@ -239,29 +249,26 @@ public class WindingWorkView extends AbstractWorkView{
 
             WINDING_TABLE.setValueAt(outputData.RESISTANCE_LV ,14,3);
             WINDING_TABLE.setValueAt(outputData.RESISTANCE_HV,14,2);
-            WINDING_TABLE.setValueAt("", 14, 1);
+            WINDING_TABLE.setValueAt("Ω", 14, 1);
 
             WINDING_TABLE.setValueAt(outputData.STRAY_LOSS_LV,15,3);
             WINDING_TABLE.setValueAt(outputData.STRAY_LOSS_HV,15,2);
-            WINDING_TABLE.setValueAt("", 15, 1);
+            WINDING_TABLE.setValueAt("%", 15, 1);
 
             WINDING_TABLE.setValueAt(outputData.LOAD_LOSS_LV,16,3);
             WINDING_TABLE.setValueAt(outputData.LOAD_LOSS_HV,16,2);
-            WINDING_TABLE.setValueAt("", 16, 1);
+            WINDING_TABLE.setValueAt("Watts", 16, 1);
 
             WINDING_TABLE.setValueAt(outputData.S_AM2_WDG_LV,17,3);
             WINDING_TABLE.setValueAt(outputData.S_AM2_WDG_HV,17,2);
-            WINDING_TABLE.setValueAt("", 17, 1);
+            WINDING_TABLE.setValueAt("Sqmm", 17, 1);
 
             WINDING_TABLE.setValueAt(outputData.W_M2_LV,18,3);
             WINDING_TABLE.setValueAt(outputData.W_M2_HV,18,2);
-            WINDING_TABLE.setValueAt("", 18, 1);
+            WINDING_TABLE.setValueAt("W/M²", 18, 1);
 
             WINDING_TABLE.setValueAt(outputData.WDG_TEMP_RISE_LV,19,3);
             WINDING_TABLE.setValueAt(outputData.WDG_TEMP_RISE_HV,19,2);
-            WINDING_TABLE.setValueAt("", 19, 1);
-
-            WINDING_TABLE.setValueAt(outputData.CORE,20,2);
-            WINDING_TABLE.setValueAt("", 20, 1);
+            WINDING_TABLE.setValueAt("°C", 19, 1);
         }
 }

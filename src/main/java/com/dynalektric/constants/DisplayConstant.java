@@ -21,7 +21,7 @@ public class DisplayConstant {
     public final static String MENU_ITEM_WINDING = "Winding";
     public final static String MENU_ITEM_CORE = "Core";
     public final static String MENU_ITEM_INSULATION_ARRANGEMENT = "Insulation Arrangement";
-    public final static String MENU_ITEM_TANK = "Tank";
+    public final static String MENU_ITEM_DIMENSION = "Dimension";
     public final static String MENU_ITEM_SHORT_CIRCUIT = "Short Circuit";
     public final static String MENU_ITEM_B_O_M = "B.O.M";
     public final static String MENU_ITEM_DRAWING = "Drawings";

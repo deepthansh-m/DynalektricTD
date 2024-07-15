@@ -64,6 +64,15 @@ public class DimensionsWorkView extends AbstractWorkView {
             case ViewMessages.OPEN_WINDING_VIEW:
                 mainController.openWindingView();
                 break;
+            case ViewMessages.OPEN_CORE_VIEW:
+                mainController.openCoreView();
+                break;
+            case ViewMessages.OPEN_DIMENSION_VIEW:
+                mainController.openDimensionView();
+                break;
+            case ViewMessages.OPEN_B_O_M_VIEW:
+                mainController.openBOMView();
+                break;
             case ViewMessages.OPEN_DRAWINGS:
                 mainController.openDrawingsView();
                 break;
@@ -156,7 +165,7 @@ public class DimensionsWorkView extends AbstractWorkView {
         nextBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                View.getSingleton().setView(OutputOneWorkView.VIEW_NAME);
+                View.getSingleton().setView(BillOfMaterialsWorkView.VIEW_NAME);
             }
         });
         navigationPanel.add(nextBtn);
