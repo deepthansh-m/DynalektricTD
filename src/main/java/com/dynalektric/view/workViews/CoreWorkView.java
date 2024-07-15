@@ -70,6 +70,15 @@ public class CoreWorkView extends AbstractWorkView {
             case ViewMessages.OPEN_WINDING_VIEW:
                 mainController.openWindingView();
                 break;
+            case ViewMessages.OPEN_CORE_VIEW:
+                mainController.openCoreView();
+                break;
+            case ViewMessages.OPEN_DIMENSION_VIEW:
+                mainController.openDimensionView();
+                break;
+            case ViewMessages.OPEN_B_O_M_VIEW:
+                mainController.openBOMView();
+                break;
             case ViewMessages.OPEN_DRAWINGS:
                 mainController.openDrawingsView();
                 break;
@@ -121,8 +130,8 @@ public class CoreWorkView extends AbstractWorkView {
         CORE_VALUE_TABLE.setShowGrid(true);
         CORE_VALUE_TABLE.setGridColor(Color.BLACK);
         CORE_VALUE_TABLE.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        CORE_VALUE_TABLE.getColumnModel().getColumn(0).setPreferredWidth(51);
-        CORE_VALUE_TABLE.getColumnModel().getColumn(1).setPreferredWidth(149);
+        CORE_VALUE_TABLE.getColumnModel().getColumn(0).setPreferredWidth(50);
+        CORE_VALUE_TABLE.getColumnModel().getColumn(1).setPreferredWidth(150);
         CORE_VALUE_TABLE.setRowHeight(30);
         CORE_VALUE_TABLE.setSelectionBackground(StyleConstants.BACKGROUND_PRIMARY);
         CORE_VALUE_TABLE.setSelectionForeground(StyleConstants.FOREGROUND_PRIMARY);
@@ -148,6 +157,7 @@ public class CoreWorkView extends AbstractWorkView {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         CORE_VALUE_TABLE.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        CORE_VALUE_TABLE.setBackground(StyleConstants.CARD_BACKGROUND);
     }
 
     private JPanel initializeNavigationPanel() {
@@ -165,7 +175,7 @@ public class CoreWorkView extends AbstractWorkView {
         nextBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                View.getSingleton().setView(OutputOneWorkView.VIEW_NAME);
+                View.getSingleton().setView(DimensionsWorkView.VIEW_NAME);
             }
         });
         navigationPanel.add(nextBtn);

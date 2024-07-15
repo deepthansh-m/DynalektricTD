@@ -12,7 +12,7 @@ public class ViewMessages{
     public final static String OPEN_WINDING_VIEW = "openWindingView";
     public final static String OPEN_CORE_VIEW = "openCoreView";
     public final static String OPEN_INSULATION_ARRANGEMENT_VIEW = "openInsulationArrangementView";
-    public final static String OPEN_TANK_VIEW = "openTankView";
+    public final static String OPEN_DIMENSION_VIEW = "openDimensionView";
     public final static String OPEN_SHORT_CIRCUIT_VIEW = "openShortCircuitView";
     public final static String OPEN_B_O_M_VIEW = "openBOMView";
     public final static String OPEN_DRAWINGS = "opendrawings";

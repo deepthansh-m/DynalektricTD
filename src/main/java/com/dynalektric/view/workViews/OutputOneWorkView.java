@@ -193,7 +193,7 @@ public class OutputOneWorkView extends AbstractWorkView{
         previousBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                View.getSingleton().setView(CoreWorkView.VIEW_NAME);
+                View.getSingleton().setView(BillOfMaterialsWorkView.VIEW_NAME);
             }
         });
         nextBtn.addMouseListener(new MouseAdapter() {

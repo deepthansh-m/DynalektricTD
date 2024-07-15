@@ -70,11 +70,11 @@ public class MenuBar extends JMenuBar{
                 parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_INSULATION_ARRANGEMENT_VIEW , null));
             }
         });
-        MenuItem tank = new MenuItem(DisplayConstant.MENU_ITEM_TANK);
+        MenuItem tank = new MenuItem(DisplayConstant.MENU_ITEM_DIMENSION);
         tank.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent event) {
-                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_TANK_VIEW , null));
+                parent.captureEventFromChildSubFrame(new ViewMessage(ViewMessages.OPEN_DIMENSION_VIEW , null));
             }
         });
         MenuItem short_circuit = new MenuItem(DisplayConstant.MENU_ITEM_SHORT_CIRCUIT);

@@ -41,10 +41,17 @@ public class Control {
         View view = View.getSingleton();
         view.setView(view.loadedViews.get(WindingWorkView.VIEW_NAME));
     }
-
     public  void openCoreView(){
         View view = View.getSingleton();
         view.setView(view.loadedViews.get(CoreWorkView.VIEW_NAME));
+    }
+    public  void openDimensionView(){
+        View view = View.getSingleton();
+        view.setView(view.loadedViews.get(DimensionsWorkView.VIEW_NAME));
+    }
+    public  void openBOMView(){
+        View view = View.getSingleton();
+        view.setView(view.loadedViews.get(BillOfMaterialsWorkView.VIEW_NAME));
     }
 
     public void openDrawingsView(){

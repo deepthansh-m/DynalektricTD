@@ -308,6 +308,9 @@ public class InputWorkView extends AbstractWorkView {
 
         JScrollPane rightScrollPane = new JScrollPane(rightPanel);
 
+        rightScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        rightScrollPane.getHorizontalScrollBar().setUnitIncrement(16);
+
         inputWorkViewPanel.add(mainPanelLeft, BorderLayout.CENTER);
 
         mainPanel.add(inputWorkViewPanel, BorderLayout.CENTER);
@@ -449,6 +452,16 @@ public class InputWorkView extends AbstractWorkView {
                 storeEnteredValuesInModel();
                 controller.beginCalculations();
                 controller.openCoreView();
+                break;
+            case ViewMessages.OPEN_DIMENSION_VIEW:
+                storeEnteredValuesInModel();
+                controller.beginCalculations();
+                controller.openDimensionView();
+                break;
+            case ViewMessages.OPEN_B_O_M_VIEW:
+                storeEnteredValuesInModel();
+                controller.beginCalculations();
+                controller.openBOMView();
                 break;
             case ViewMessages.OPEN_DRAWINGS:
                 storeEnteredValuesInModel();
@@ -627,6 +640,7 @@ public class InputWorkView extends AbstractWorkView {
         this.oilDuctsHv2In.setBackground(StyleConstants.BACKGROUND);
 
         this.noTappingCheckbox.setSelected(inputData.NO_TAPPING);
+        this.noTappingCheckbox.setBackground(StyleConstants.BACKGROUND);
         this.typesOfTappingIn.setValueSelected(inputData.TAPPING_TYPE);
         this.tappingOnIn.setValueSelected(inputData.TAPPING_ON);
         this.tappingRangeFromMinIn.setValueEntered(String.valueOf(inputData.TAPPING_RANGE_FROM_MIN));
