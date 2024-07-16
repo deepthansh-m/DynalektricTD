@@ -201,8 +201,6 @@ public class DrawingWorkView extends AbstractWorkView {
 
         mainPanel.add(tableBox, BorderLayout.EAST);
 
-        // Initialize with the data for the default image (image1)
-        updateTableModelForImage1();
     }
 
     private JPanel initializeNavigationPanel() {

@@ -103,7 +103,7 @@ public class BillOfMaterialsWorkView extends AbstractWorkView{
         this.BOMPanel.setLayout(layout);
         if(model.getLoadedProject() != null)
             setWindingPanelValues();
-        JLabel Winding_Table_Heading = new JLabel("Transformer Design Wizard [Winding]");
+        JLabel Winding_Table_Heading = new JLabel("Bill of Materials");
         Winding_Table_Heading.setFont(StyleConstants.HEADING_SUB1);
         Winding_Table_Heading.setAlignmentX(CENTER_ALIGNMENT);
         BOM_TABLE.setAlignmentX(CENTER_ALIGNMENT);
