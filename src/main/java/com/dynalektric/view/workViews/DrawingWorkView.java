@@ -4,6 +4,8 @@ import com.dynalektric.constants.StyleConstants;
 import com.dynalektric.constants.ViewMessages;
 import com.dynalektric.control.Control;
 import com.dynalektric.model.Model;
+import com.dynalektric.model.repositories.project.InputData;
+import com.dynalektric.model.repositories.project.OutputData;
 import com.dynalektric.view.View;
 import com.dynalektric.view.ViewMessage;
 import com.dynalektric.view.components.MenuBar;
@@ -29,10 +31,17 @@ public class DrawingWorkView extends AbstractWorkView {
     private BufferedImage image1;
     private BufferedImage image2;
     private BufferedImage currentImage;
+    private int i = 1;
     private JComboBox<String> imageSelector;
-    private JTable table;
-    private DefaultTableModel tableModel;
-    private JScrollPane scrollPane;
+    private JTable bomTable;
+    private JTable weightDetailsTable;
+    private JTable overallDimensionsTable;
+    private DefaultTableModel bomTableModel;
+    private DefaultTableModel weightDetailsTableModel;
+    private DefaultTableModel overallDimensionsTableModel;
+    private JScrollPane bomScrollPane;
+    private JScrollPane weightDetailsScrollPane;
+    private JScrollPane overallDimensionsScrollPane;
     private JPanel imagePanel;
     private JLabel titleLabel;
 
@@ -58,8 +67,8 @@ public class DrawingWorkView extends AbstractWorkView {
         mainPanel.setLayout(new BorderLayout());
 
         try {
-            image1 = ImageIO.read(new File("src/main/resources/com/dynalektric/view/workViews/Oil-cooled Transformer Design.jpg"));
-            image2 = ImageIO.read(new File("src/main/resources/com/dynalektric/view/workViews/Dry Type Transformer.jpg"));
+            image1 = ImageIO.read(new File("src/main/resources/com/dynalektric/view/workViews/Oil-cooled Transformer Design.png"));
+            image2 = ImageIO.read(new File("src/main/resources/com/dynalektric/view/workViews/Dry Type Transformer.png"));
             currentImage = image1; // Default to image1
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -81,10 +90,10 @@ public class DrawingWorkView extends AbstractWorkView {
                 String selectedOption = (String) imageSelector.getSelectedItem();
                 if (selectedOption.equals("Oil-cooled Transformer")) {
                     currentImage = image1;
-                    updateTableModelForImage1();
+                    i = 1;
                 } else if (selectedOption.equals("Dry Type Transformer")) {
                     currentImage = image2;
-                    updateTableModelForImage2();
+                    i = 2;
                 }
                 imagePanel.repaint();
             }
@@ -98,6 +107,11 @@ public class DrawingWorkView extends AbstractWorkView {
         imagePanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
+                if(i==1) {
+                    updateTableModelForImage1();
+                } else if (i==2) {
+                    updateTableModelForImage2();
+                }
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
 
@@ -121,22 +135,74 @@ public class DrawingWorkView extends AbstractWorkView {
         mainPanel.setBackground(StyleConstants.BACKGROUND);
         imagePanel.setBackground(StyleConstants.BACKGROUND);
 
-        String[] columnNames = {"No", "Description", "Qty", "Quantity"};
-        Object[][] initialData = new Object[15][4];
-        tableModel = new DefaultTableModel(initialData, columnNames) {
+        // BOM table
+        String[] bomColumnNames = {"No", "Description", "Qty"};
+        Object[][] bomInitialData = new Object[0][3];
+        bomTableModel = new DefaultTableModel(bomInitialData, bomColumnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        table = new JTable(tableModel);
+        bomTable = new JTable(bomTableModel);
+        bomTable.setFocusable(false);
+        bomTable.setRowSelectionAllowed(false);
 
-        table.setFocusable(false);
-        table.setRowSelectionAllowed(false);
+        // Overall dimensions table
+        String[] overallDimensionsColumnNames = {"KVA", "V/R", "L", "W", "H"};
+        Object[][] overallDimensionsInitialData = new Object[0][5];
+        overallDimensionsTableModel = new DefaultTableModel(overallDimensionsInitialData, overallDimensionsColumnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        overallDimensionsTable = new JTable(overallDimensionsTableModel);
+        overallDimensionsTable.setFocusable(false);
+        overallDimensionsTable.setRowSelectionAllowed(false);
 
-        scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(320, 860));
-        mainPanel.add(scrollPane, BorderLayout.EAST);
+        // Weight details table
+        String[] weightDetailsColumnNames = {"No", "Description", "Unit", "Value"};
+        Object[][] weightDetailsInitialData = new Object[0][4];
+        weightDetailsTableModel = new DefaultTableModel(weightDetailsInitialData, weightDetailsColumnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        weightDetailsTable = new JTable(weightDetailsTableModel);
+        weightDetailsTable.setFocusable(false);
+        weightDetailsTable.setRowSelectionAllowed(false);
+
+        // Add scroll panes
+        bomScrollPane = new JScrollPane(bomTable);
+        bomScrollPane.setPreferredSize(new Dimension(320, 430)); // Adjusted for height
+        overallDimensionsScrollPane = new JScrollPane(overallDimensionsTable);
+        overallDimensionsScrollPane.setPreferredSize(new Dimension(320, 50)); // Adjusted for height
+        weightDetailsScrollPane = new JScrollPane(weightDetailsTable);
+        weightDetailsScrollPane.setPreferredSize(new Dimension(320, 430)); // Adjusted for height
+
+        // Create headings
+        JLabel bomTableHeading = new JLabel("Bill of Material", SwingConstants.CENTER);
+        bomTableHeading.setFont(StyleConstants.HEADING_SUB2);
+        JLabel overallDimensionsTableHeading = new JLabel("Overall Dimensions", SwingConstants.CENTER);
+        overallDimensionsTableHeading.setFont(StyleConstants.HEADING_SUB2);
+        JLabel weightDetailsTableHeading = new JLabel("Weight of Materials", SwingConstants.CENTER);
+        weightDetailsTableHeading.setFont(StyleConstants.HEADING_SUB2);
+
+        // Combine tables and headings in a vertical box layout
+        Box tableBox = Box.createVerticalBox();
+        tableBox.add(bomTableHeading);
+        tableBox.add(bomScrollPane);
+        tableBox.add(overallDimensionsTableHeading);
+        tableBox.add(overallDimensionsScrollPane);
+        tableBox.add(weightDetailsTableHeading);
+        tableBox.add(weightDetailsScrollPane);
+
+        mainPanel.add(tableBox, BorderLayout.EAST);
+
+        // Initialize with the data for the default image (image1)
+        updateTableModelForImage1();
     }
 
     private JPanel initializeNavigationPanel() {
@@ -180,6 +246,15 @@ public class DrawingWorkView extends AbstractWorkView {
             case ViewMessages.OPEN_WINDING_VIEW:
                 mainController.openWindingView();
                 break;
+            case ViewMessages.OPEN_CORE_VIEW:
+                mainController.openCoreView();
+                break;
+            case ViewMessages.OPEN_DIMENSION_VIEW:
+                mainController.openDimensionView();
+                break;
+            case ViewMessages.OPEN_B_O_M_VIEW:
+                mainController.openBOMView();
+                break;
             case ViewMessages.OPEN_DRAWINGS:
                 mainController.openDrawingsView();
                 break;
@@ -197,29 +272,107 @@ public class DrawingWorkView extends AbstractWorkView {
     }
 
     private void updateTableModelForImage1() {
-        clearTableModel();
-        addDataToTableModel("Part", 1, 100, 1);
+        clearTableModel(bomTableModel);
+        Object[][] bomData = {
+                {"1", "HV BUSHING", "3"},
+                {"2", "LV BUSHING & NEUTRAL BUSHING", "4"},
+                {"3", "JAKING PAD", "4"},
+                {"4", "CONSERVATOR ASSLY WITH OIL FILLING CAP", "1"},
+                {"5", "SILICA JEL BREATHER", "1"},
+                {"6", "EARTHING TERMINAL", "2"},
+                {"7", "TANK LIFTING LUG", "4"},
+                {"8", "TOP FILTER VALVE", "1"},
+                {"9", "BOTTOM SAMPLING VALVE", "1"},
+                {"10", "R & D PLATE", "1"},
+                {"11", "ROLLER", "4"},
+                {"12", "BUCHHOZ RELAY", "1"},
+                {"13", "FLANGED RADIATORS", "1"},
+                {"14", "TRANSFORMER TANK", "1"},
+                {"15", "RADIATOR SHUT OFF VALVE", "1"},
+                {"16", "OIL FILLING HOLE (CONSERVATOR)", "1"},
+                {"17", "DRAIN VALVE (CONSERVATOR)", "1"},
+                {"18", "EXPLOSION VENT PIPE", "1"},
+                {"19", "THERMOMETER POCKET", "2"},
+                {"20", "BASE CHANNEL", "2"},
+                {"21", "STIFFENERS", "4"}
+        };
+        addDataToTableModel(bomTableModel, bomData);
+
+        clearTableModel(overallDimensionsTableModel);
+
+        OutputData outputData = Model.getSingleton().getOutputData();
+        InputData inputData = Model.getSingleton().getLoadedProjectInput();
+        Object[][] overallDimensionsData = {
+                {inputData.KVA, inputData.LINEVOLTSHV+"/"+inputData.LINEVOLTSLV+"kV", outputData.L_MECHANICAL, outputData.B_MECHANICAL, outputData.H_MECHANICAL}
+        };
+        addDataToTableModel(overallDimensionsTableModel, overallDimensionsData);
+
+        clearTableModel(weightDetailsTableModel);
+        Object[][] weightDetailsData = {
+                {"1", "CORE AND WINDING", "Kg", "1749"},
+                {"2", "TANK WITH FITTINGS", "Kg", "654"},
+                {"3", "OIL", "Kg", "658"},
+                {"4", "TOTAL FOR TRANSFORMER", "Kg", "3061"},
+                {"5", "VOLUME OF OIL", "Ltr", "784"}
+        };
+        addDataToTableModel(weightDetailsTableModel, weightDetailsData);
     }
 
     private void updateTableModelForImage2() {
-        clearTableModel();
-        addDataToTableModel("Component", 2, 50, 2);
+        clearTableModel(bomTableModel);
+        Object[][] bomData = {
+                {"1", "HV BUSHING", "3"},
+                {"2", "LV BUSHING & NEUTRAL BUSHING", "4"},
+                {"3", "JAKING PAD", "4"},
+                {"4", "CONSERVATOR ASSLY WITH OIL FILLING CAP", "1"},
+                {"5", "SILICA JEL BREATHER", "1"},
+                {"6", "EARTHING TERMINAL", "2"},
+                {"7", "TANK LIFTING LUG", "4"},
+                {"8", "TOP FILTER VALVE", "1"},
+                {"9", "BOTTOM SAMPLING VALVE", "1"},
+                {"10", "R & D PLATE", "1"},
+                {"11", "ROLLER", "4"},
+                {"12", "BUCHHOZ RELAY", "1"},
+                {"13", "FLANGED RADIATORS", "1"},
+                {"14", "TRANSFORMER TANK", "1"},
+                {"15", "RADIATOR SHUT OFF VALVE", "1"},
+                {"16", "OIL FILLING HOLE (CONSERVATOR)", "1"},
+                {"17", "DRAIN VALVE (CONSERVATOR)", "1"},
+                {"18", "EXPLOSION VENT PIPE", "1"},
+                {"19", "THERMOMETER POCKET", "2"},
+                {"20", "BASE CHANNEL", "2"},
+                {"21", "STIFFENERS", "4"}
+
+        };
+        addDataToTableModel(bomTableModel, bomData);
+
+        clearTableModel(overallDimensionsTableModel);
+
+        OutputData outputData = Model.getSingleton().getOutputData();
+        InputData inputData = Model.getSingleton().getLoadedProjectInput();
+        Object[][] overallDimensionsData = {
+                {inputData.KVA, inputData.LINEVOLTSHV+"/"+inputData.LINEVOLTSLV+"kV", outputData.L_MECHANICAL, outputData.B_MECHANICAL, outputData.H_MECHANICAL}
+        };
+        addDataToTableModel(overallDimensionsTableModel, overallDimensionsData);
+
+        clearTableModel(weightDetailsTableModel);
+        Object[][] weightDetailsData = {
+                {"1", "CORE AND WINDING", "Kg", "1749"},
+                {"2", "TANK WITH FITTINGS", "Kg", "654"},
+                {"3", "OIL", "Kg", "658"},
+                {"4", "TOTAL FOR TRANSFORMER", "Kg", "3061"},
+                {"5", "VOLUME OF OIL", "Ltr", "784"}
+        };
+        addDataToTableModel(weightDetailsTableModel, weightDetailsData);
     }
 
-    private void clearTableModel() {
-        for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
-            tableModel.removeRow(i);
-        }
+    private void clearTableModel(DefaultTableModel tableModel) {
+        tableModel.setRowCount(0);
     }
 
-    private void addDataToTableModel(String descriptionPrefix, int qty, int quantity, int rowCount) {
-        for (int i = 0; i < rowCount; i++) {
-            tableModel.addRow(new Object[]{
-                    i + 1,
-                    descriptionPrefix + " " + (i + 1),
-                    qty,
-                    quantity
-            });
+    private void addDataToTableModel(DefaultTableModel tableModel, Object[][] data) {
+        for (Object[] row : data) {
+            tableModel.addRow(row);
         }
     }
 }
