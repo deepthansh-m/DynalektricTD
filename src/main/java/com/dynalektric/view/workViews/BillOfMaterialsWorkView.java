@@ -10,11 +10,13 @@ import com.dynalektric.view.View;
 import com.dynalektric.view.ViewMessage;
 import com.dynalektric.view.components.MenuBar;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.Objects;
 
 import static java.lang.Math.round;
@@ -156,7 +158,12 @@ public class BillOfMaterialsWorkView extends AbstractWorkView{
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         // Load the image and scale it down for the previous button
-        ImageIcon previousIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/previous_icon.png");
+        ImageIcon previousIcon = null;
+        try {
+            previousIcon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("previous_icon.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Image previousImage = previousIcon.getImage();
         Image scaledPreviousImage = previousImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledPreviousIcon = new ImageIcon(scaledPreviousImage);
@@ -169,7 +176,12 @@ public class BillOfMaterialsWorkView extends AbstractWorkView{
         previousBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 
         // Load the image and scale it down for the next button
-        ImageIcon nextIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/next_icon.jpeg");
+        ImageIcon nextIcon = null;
+        try {
+            nextIcon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("next_icon.jpeg")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Image nextImage = nextIcon.getImage();
         Image scaledNextImage = nextImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledNextIcon = new ImageIcon(scaledNextImage);
@@ -182,7 +194,12 @@ public class BillOfMaterialsWorkView extends AbstractWorkView{
         nextBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 
         // Load the image and scale it down for the print button
-        ImageIcon printIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/print_icon.png");
+        ImageIcon printIcon = null;
+        try {
+            printIcon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("print_icon.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Image printImage = printIcon.getImage();
         Image scaledPrintImage = printImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledPrintIcon = new ImageIcon(scaledPrintImage);

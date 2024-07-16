@@ -482,7 +482,12 @@ public class InputWorkView extends AbstractWorkView {
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         // Load the image and scale it down for the calculator button
-        ImageIcon originalIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/calculator.png");
+        ImageIcon originalIcon = null;
+        try {
+            originalIcon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("calculator.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Image originalImage = originalIcon.getImage();
         Image scaledImage = originalImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -495,7 +500,12 @@ public class InputWorkView extends AbstractWorkView {
         calculateBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 
         // Load the image and scale it down for the print button
-        ImageIcon printIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/print_icon.png");
+        ImageIcon printIcon = null;
+        try {
+            printIcon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("print_icon.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Image printImage = printIcon.getImage();
         Image scaledPrintImage = printImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledPrintIcon = new ImageIcon(scaledPrintImage);

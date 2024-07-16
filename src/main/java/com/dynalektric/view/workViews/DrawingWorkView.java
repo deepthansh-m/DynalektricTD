@@ -67,8 +67,8 @@ public class DrawingWorkView extends AbstractWorkView {
         mainPanel.setLayout(new BorderLayout());
 
         try {
-            image1 = ImageIO.read(new File("src/main/resources/com/dynalektric/view/workViews/Oil-cooled Transformer Design.png"));
-            image2 = ImageIO.read(new File("src/main/resources/com/dynalektric/view/workViews/Dry Type Transformer.png"));
+            image1 = ImageIO.read(getClass().getResourceAsStream("Oil-cooled Transformer Design.png"));
+            image2 = ImageIO.read(getClass().getResourceAsStream("Dry Type Transformer.png"));
             currentImage = image1; // Default to image1
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -207,7 +207,12 @@ public class DrawingWorkView extends AbstractWorkView {
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         // Load the image and scale it down for the previous button
-        ImageIcon previousIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/previous_icon.png");
+        ImageIcon previousIcon = null;
+        try {
+            previousIcon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("previous_icon.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Image previousImage = previousIcon.getImage();
         Image scaledPreviousImage = previousImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledPreviousIcon = new ImageIcon(scaledPreviousImage);
@@ -220,7 +225,12 @@ public class DrawingWorkView extends AbstractWorkView {
         previousBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 
         // Load the image and scale it down for the next button
-        ImageIcon nextIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/next_icon.jpeg");
+        ImageIcon nextIcon = null;
+        try {
+            nextIcon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("next_icon.jpeg")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Image nextImage = nextIcon.getImage();
         Image scaledNextImage = nextImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledNextIcon = new ImageIcon(scaledNextImage);
@@ -233,7 +243,12 @@ public class DrawingWorkView extends AbstractWorkView {
         nextBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 
         // Load the image and scale it down for the print button
-        ImageIcon printIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/print_icon.png");
+        ImageIcon printIcon = null;
+        try {
+            printIcon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("print_icon.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Image printImage = printIcon.getImage();
         Image scaledPrintImage = printImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledPrintIcon = new ImageIcon(scaledPrintImage);

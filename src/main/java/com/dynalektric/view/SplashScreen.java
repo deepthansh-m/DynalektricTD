@@ -1,10 +1,14 @@
 package com.dynalektric.view;
+
 import com.dynalektric.constants.StyleConstants;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.imageio.ImageIO;
+import java.io.InputStream;
+import java.io.IOException;
 
 public class SplashScreen {
 
@@ -15,7 +19,17 @@ public class SplashScreen {
         JPanel panel1 = new JPanel(new GridBagLayout());
         panel1.setBackground(StyleConstants.BACKGROUND);
 
-        ImageIcon splashImage1 = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/DYNAXNHCE.png");
+        ImageIcon splashImage1;
+        try {
+            InputStream imageStream = SplashScreen.class.getResourceAsStream("/com/dynalektric/view/workViews/DYNAXNHCE.png");
+            if (imageStream == null) {
+                throw new RuntimeException("Unable to find splash screen image");
+            }
+            splashImage1 = new ImageIcon(ImageIO.read(imageStream));
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading splash screen image", e);
+        }
+
         Image scaledImage1 = splashImage1.getImage().getScaledInstance(800, 800, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon1 = new ImageIcon(scaledImage1);
 

@@ -72,4 +72,5 @@ public class InputData {
     public String CORE_TYPE = "D Type (Float Yoke)";
     public String TYPE_OF_TANK = "Radiator type with conservator";
     public String CLASS_OF_INSULATION  = "A";
+    public String something;
 }
