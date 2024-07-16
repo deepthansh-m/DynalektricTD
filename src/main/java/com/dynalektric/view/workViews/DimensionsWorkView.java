@@ -152,9 +152,53 @@ public class DimensionsWorkView extends AbstractWorkView {
 
     private JPanel initializeNavigationPanel() {
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+        // Load the image and scale it down for the previous button
+        ImageIcon previousIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/previous_icon.png");
+        Image previousImage = previousIcon.getImage();
+        Image scaledPreviousImage = previousImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        ImageIcon scaledPreviousIcon = new ImageIcon(scaledPreviousImage);
+
+        // Create the Previous button and set the icon
+        JButton previousBtn = new JButton("Previous", scaledPreviousIcon);
+
+        // Set text position relative to the icon for the Previous button
+        previousBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        previousBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        // Load the image and scale it down for the next button
+        ImageIcon nextIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/next_icon.jpeg");
+        Image nextImage = nextIcon.getImage();
+        Image scaledNextImage = nextImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        ImageIcon scaledNextIcon = new ImageIcon(scaledNextImage);
+
+        // Create the Next button and set the icon
+        JButton nextBtn = new JButton("Next", scaledNextIcon);
+
+        // Set text position relative to the icon for the Next button
+        nextBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        nextBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        // Load the image and scale it down for the print button
+        ImageIcon printIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/print_icon.png");
+        Image printImage = printIcon.getImage();
+        Image scaledPrintImage = printImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        ImageIcon scaledPrintIcon = new ImageIcon(scaledPrintImage);
+
+        // Create the Print button and set the icon
+        JButton printBtn = new JButton("Print", scaledPrintIcon);
+
+        // Set text position relative to the icon for the Print button
+        printBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        printBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        // Set the same size for all buttons
+        Dimension buttonSize = new Dimension(100, 50); // Adjust the size as needed
+        previousBtn.setPreferredSize(buttonSize);
+        nextBtn.setPreferredSize(buttonSize);
+        printBtn.setPreferredSize(buttonSize);
+
         navigationPanel.setBackground(StyleConstants.BACKGROUND);
-        JButton previousBtn = new JButton("Previous");
-        JButton nextBtn = new JButton("Next");
         navigationPanel.add(previousBtn);
         previousBtn.addMouseListener(new MouseAdapter() {
             @Override
@@ -169,6 +213,13 @@ public class DimensionsWorkView extends AbstractWorkView {
             }
         });
         navigationPanel.add(nextBtn);
+        printBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                View.getSingleton().setView(PrintWorkView.VIEW_NAME);
+            }
+        });
+        navigationPanel.add(printBtn);
         return navigationPanel;
     }
 
