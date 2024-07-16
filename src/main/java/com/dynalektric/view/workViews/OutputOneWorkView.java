@@ -106,7 +106,7 @@ public class OutputOneWorkView extends AbstractWorkView{
 
     @Override
     public Integer getViewId() {
-        return 3;
+        return 8;
     }
 
     private void initializeMainPanel(){

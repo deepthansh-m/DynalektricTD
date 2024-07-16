@@ -140,7 +140,7 @@ public class PrintWorkView extends AbstractWorkView {
 
     @Override
     public Integer getViewId() {
-        return 5;
+        return 10;
     }
 
     private void initializeMainPanel() {

@@ -92,7 +92,7 @@ public class CoreWorkView extends AbstractWorkView {
 
     @Override
     public Integer getViewId() {
-        return 2;
+        return 4;
     }
 
     private void initializeMainPanel() {

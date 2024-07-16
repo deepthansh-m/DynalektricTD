@@ -86,7 +86,7 @@ public class DimensionsWorkView extends AbstractWorkView {
 
     @Override
     public Integer getViewId() {
-        return 3; // Adjust this as needed
+        return 5;
     }
 
     private void initializeMainPanel() {

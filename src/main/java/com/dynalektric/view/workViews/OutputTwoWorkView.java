@@ -433,7 +433,7 @@ public class OutputTwoWorkView extends AbstractWorkView{
 
     @Override
     public Integer getViewId() {
-        return 4;
+        return 9;
     }
 
 }

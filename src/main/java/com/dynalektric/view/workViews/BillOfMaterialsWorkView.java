@@ -90,7 +90,7 @@ public class BillOfMaterialsWorkView extends AbstractWorkView{
 
     @Override
     public Integer getViewId() {
-        return 3;
+        return 6;
     }
 
     private void initializeMainPanel(){
