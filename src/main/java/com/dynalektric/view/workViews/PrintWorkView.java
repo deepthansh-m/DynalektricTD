@@ -75,7 +75,7 @@ public class PrintWorkView extends AbstractWorkView {
         combinedTable.getColumnModel().getColumn(3).setPreferredWidth(40);
         combinedTable.getColumnModel().getColumn(4).setPreferredWidth(40);
 
-        combinedTable.setRowHeight(35);
+        combinedTable.setRowHeight(40);
         combinedTable.setIntercellSpacing(new Dimension(10, 5));
         combinedTable.setFont(StyleConstants.PRINT_FONT);
 

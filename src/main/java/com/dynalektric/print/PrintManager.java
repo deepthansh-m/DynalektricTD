@@ -23,7 +23,7 @@ public class PrintManager {
             "No-49/2,Vaderamanchanahalli Village, Kallubalu, Anekal Taluk,Jigani Hobli,\n" +
             " Bangalore- 560105\n" +
             "Mobile no: +91-767-648-9086\n" +
-            "Email: cs@dynalektric.com\n" + "MANUFACTURER'S GUARANTEED TECHNICAL PARTICULARS OF TRANSFORMER \n" +
+            "Email: cs@dynalektric.com\n\n" + "MANUFACTURER'S GUARANTEED TECHNICAL PARTICULARS OF TRANSFORMER \n" +
             "ENERGY EFFICIENCY LEVEL "+inputData.EFFICIENCY+" : "+inputData.KVA+" KVA ("+inputData.CONDUCTOR+") "+inputData.LINEVOLTSHV+"/"+inputData.LINEVOLTSLV+" KV";
 
     public static void printComponent(JComponent component) {
@@ -70,6 +70,10 @@ public class PrintManager {
 
             int availableWidth = (int) pageFormat.getImageableWidth();
             int availableHeight = (int) (pageFormat.getImageableHeight()*2.35) - HEADER_HEIGHT;
+
+            if (isWindows) {
+                availableHeight = (int) (pageFormat.getImageableHeight()*2.20) - HEADER_HEIGHT;
+            }
 
             if (pageBreaks.isEmpty()) {
                 calculatePageBreaks(availableHeight);
