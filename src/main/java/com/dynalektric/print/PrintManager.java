@@ -2,6 +2,8 @@ package com.dynalektric.print;
 
 import com.dynalektric.constants.StyleConstants;
 import com.dynalektric.model.Model;
+import com.dynalektric.model.repositories.project.InputData;
+import com.dynalektric.model.repositories.project.OutputData;
 import com.dynalektric.view.workViews.*;
 
 import javax.imageio.ImageIO;
@@ -15,11 +17,14 @@ import java.util.List;
 
 public class PrintManager {
 
+    static OutputData outputData = Model.getSingleton().getOutputData();
+    static InputData inputData = Model.getSingleton().getLoadedProjectInput();
     private static final String COMPANY_INFO = "Dynalektric Equipment Pvt. Ltd.\n" +
             "No-49/2,Vaderamanchanahalli Village, Kallubalu, Anekal Taluk,Jigani Hobli,\n" +
             " Bangalore- 560105\n" +
             "Mobile no: +91-767-648-9086\n" +
-            "Email: cs@dynalektric.com\n";
+            "Email: cs@dynalektric.com\n" + "MANUFACTURER'S GUARANTEED TECHNICAL PARTICULARS OF TRANSFORMER \n" +
+            "ENERGY EFFICIENCY LEVEL "+inputData.EFFICIENCY+" : "+inputData.KVA+" KVA ("+inputData.CONDUCTOR+") "+inputData.LINEVOLTSHV+"/"+inputData.LINEVOLTSLV+" KV";
 
     public static void printComponent(JComponent component) {
         PrinterJob pj = PrinterJob.getPrinterJob();
@@ -41,7 +46,7 @@ public class PrintManager {
 
     private static class ComponentPrintable implements Printable {
         private final JComponent component;
-        private int HEADER_HEIGHT = 100;
+        private int HEADER_HEIGHT = 120;
         private final int LOGO_SIZE = 80;
         private List<Integer> pageBreaks;
         String os = System.getProperty("os.name").toLowerCase();
@@ -60,7 +65,7 @@ public class PrintManager {
 
             if (isWindows) {
                 // Adjust for Windows
-                HEADER_HEIGHT = 150;  // This moves everything down by 50 pixels
+                HEADER_HEIGHT = 170;  // This moves everything down by 50 pixels
             }
 
             int availableWidth = (int) pageFormat.getImageableWidth();
@@ -166,7 +171,7 @@ public class PrintManager {
                 y += fm.getHeight();
             }
 
-            g2d.drawLine(pageX, HEADER_HEIGHT - 5, pageX + pageWidth, HEADER_HEIGHT - 5);
+            g2d.drawLine(pageX, HEADER_HEIGHT - 25, pageX + pageWidth, HEADER_HEIGHT - 25);
         }
     }
 }
