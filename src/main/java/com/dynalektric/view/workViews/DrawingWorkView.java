@@ -81,7 +81,7 @@ public class DrawingWorkView extends AbstractWorkView {
         JPanel topPanel = new JPanel(new BorderLayout());
 
         JPanel dropdownPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel dropdownLabel = new JLabel("Select Image:");
+        JLabel dropdownLabel = new JLabel("Select Transformer Type:");
         String[] imageOptions = {"Oil-cooled Transformer", "Dry Type Transformer"};
         imageSelector = new JComboBox<>(imageOptions);
         imageSelector.addActionListener(new ActionListener() {
@@ -209,7 +209,7 @@ public class DrawingWorkView extends AbstractWorkView {
         // Load the image and scale it down for the previous button
         ImageIcon previousIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/previous_icon.png");
         Image previousImage = previousIcon.getImage();
-        Image scaledPreviousImage = previousImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        Image scaledPreviousImage = previousImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledPreviousIcon = new ImageIcon(scaledPreviousImage);
 
         // Create the Previous button and set the icon
@@ -222,7 +222,7 @@ public class DrawingWorkView extends AbstractWorkView {
         // Load the image and scale it down for the next button
         ImageIcon nextIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/next_icon.jpeg");
         Image nextImage = nextIcon.getImage();
-        Image scaledNextImage = nextImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        Image scaledNextImage = nextImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledNextIcon = new ImageIcon(scaledNextImage);
 
         // Create the Next button and set the icon
@@ -235,7 +235,7 @@ public class DrawingWorkView extends AbstractWorkView {
         // Load the image and scale it down for the print button
         ImageIcon printIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/print_icon.png");
         Image printImage = printIcon.getImage();
-        Image scaledPrintImage = printImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        Image scaledPrintImage = printImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledPrintIcon = new ImageIcon(scaledPrintImage);
 
         // Create the Print button and set the icon

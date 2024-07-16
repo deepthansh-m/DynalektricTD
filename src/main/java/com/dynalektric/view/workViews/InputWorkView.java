@@ -484,7 +484,7 @@ public class InputWorkView extends AbstractWorkView {
         // Load the image and scale it down for the calculator button
         ImageIcon originalIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/calculator.png");
         Image originalImage = originalIcon.getImage();
-        Image scaledImage = originalImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        Image scaledImage = originalImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
         // Create the Calculator button and set the icon
@@ -497,7 +497,7 @@ public class InputWorkView extends AbstractWorkView {
         // Load the image and scale it down for the print button
         ImageIcon printIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/print_icon.png");
         Image printImage = printIcon.getImage();
-        Image scaledPrintImage = printImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        Image scaledPrintImage = printImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH); // scale to 32x32 pixels
         ImageIcon scaledPrintIcon = new ImageIcon(scaledPrintImage);
 
         // Create the Print button and set the icon
