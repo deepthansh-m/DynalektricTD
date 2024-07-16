@@ -308,9 +308,6 @@ public class InputWorkView extends AbstractWorkView {
 
         JScrollPane rightScrollPane = new JScrollPane(rightPanel);
 
-        rightScrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        rightScrollPane.getHorizontalScrollBar().setUnitIncrement(16);
-
         inputWorkViewPanel.add(mainPanelLeft, BorderLayout.CENTER);
 
         mainPanel.add(inputWorkViewPanel, BorderLayout.CENTER);
@@ -448,21 +445,6 @@ public class InputWorkView extends AbstractWorkView {
                 controller.beginCalculations();
                 controller.openWindingView();
                 break;
-            case ViewMessages.OPEN_CORE_VIEW:
-                storeEnteredValuesInModel();
-                controller.beginCalculations();
-                controller.openCoreView();
-                break;
-            case ViewMessages.OPEN_DIMENSION_VIEW:
-                storeEnteredValuesInModel();
-                controller.beginCalculations();
-                controller.openDimensionView();
-                break;
-            case ViewMessages.OPEN_B_O_M_VIEW:
-                storeEnteredValuesInModel();
-                controller.beginCalculations();
-                controller.openBOMView();
-                break;
             case ViewMessages.OPEN_DRAWINGS:
                 storeEnteredValuesInModel();
                 controller.beginCalculations();
@@ -483,8 +465,38 @@ public class InputWorkView extends AbstractWorkView {
 
     private JPanel initializeNavigationPanel() {
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton calculateBtn = new JButton("Calculate");
-        JButton nextBtn = new JButton("Next");
+
+        // Load the image and scale it down for the calculator button
+        ImageIcon originalIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/calculator.png");
+        Image originalImage = originalIcon.getImage();
+        Image scaledImage = originalImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        // Create the Calculator button and set the icon
+        JButton calculateBtn = new JButton("Calculator", scaledIcon);
+
+        // Set text position relative to the icon for the Calculator button
+        calculateBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        calculateBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        // Load the image and scale it down for the print button
+        ImageIcon printIcon = new ImageIcon("src/main/resources/com/dynalektric/view/workViews/print_icon.png");
+        Image printImage = printIcon.getImage();
+        Image scaledPrintImage = printImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH); // scale to 32x32 pixels
+        ImageIcon scaledPrintIcon = new ImageIcon(scaledPrintImage);
+
+        // Create the Print button and set the icon
+        JButton printButton = new JButton("Print", scaledPrintIcon);
+
+        // Set text position relative to the icon for the Print button
+        printButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+        printButton.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        // Set the same size for both buttons
+        Dimension buttonSize = new Dimension(100, 50); // Adjust the size as needed
+        calculateBtn.setPreferredSize(buttonSize);
+        printButton.setPreferredSize(buttonSize);
+
         navigationPanel.setBackground(StyleConstants.BACKGROUND);
 
         calculateBtn.addMouseListener(new MouseAdapter() {
@@ -497,14 +509,15 @@ public class InputWorkView extends AbstractWorkView {
         });
         navigationPanel.add(calculateBtn);
 
-        nextBtn.addMouseListener(new MouseAdapter() {
+        printButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                View.getSingleton().setView(WindingWorkView.VIEW_NAME);
+                storeEnteredValuesInModel();
+                controller.beginCalculations();
+                View.getSingleton().setView(PrintWorkView.VIEW_NAME);
             }
         });
-        navigationPanel.add(nextBtn);
-
+        navigationPanel.add(printButton);
         return navigationPanel;
     }
 
