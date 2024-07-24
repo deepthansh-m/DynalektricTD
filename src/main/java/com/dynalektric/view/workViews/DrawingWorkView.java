@@ -176,11 +176,11 @@ public class DrawingWorkView extends AbstractWorkView {
 
         // Add scroll panes
         bomScrollPane = new JScrollPane(bomTable);
-        bomScrollPane.setPreferredSize(new Dimension(320, 430)); // Adjusted for height
+        bomScrollPane.setPreferredSize(new Dimension(450, 430)); // Adjusted for height
         overallDimensionsScrollPane = new JScrollPane(overallDimensionsTable);
-        overallDimensionsScrollPane.setPreferredSize(new Dimension(320, 50)); // Adjusted for height
+        overallDimensionsScrollPane.setPreferredSize(new Dimension(450, 50)); // Adjusted for height
         weightDetailsScrollPane = new JScrollPane(weightDetailsTable);
-        weightDetailsScrollPane.setPreferredSize(new Dimension(320, 430)); // Adjusted for height
+        weightDetailsScrollPane.setPreferredSize(new Dimension(450, 430)); // Adjusted for height
 
         // Create headings
         JLabel bomTableHeading = new JLabel("Bill of Material", SwingConstants.CENTER);

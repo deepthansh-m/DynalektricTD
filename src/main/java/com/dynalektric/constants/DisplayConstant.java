@@ -25,4 +25,5 @@ public class DisplayConstant {
     public final static String MENU_ITEM_SHORT_CIRCUIT = "Short Circuit";
     public final static String MENU_ITEM_B_O_M = "B.O.M";
     public final static String MENU_ITEM_DRAWING = "Drawings";
+    public final static String MENU_ITEM_USER_MANUAL = "User Manual";
 }

@@ -8,6 +8,11 @@ import com.dynalektric.view.ViewMessage;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 public class MenuBar extends JMenuBar{
     private ChildFrameListener parent;
@@ -108,6 +113,14 @@ public class MenuBar extends JMenuBar{
         viewMenu.add(drawing);
         this.add(viewMenu);
         this.add(windowMenu);
+        MenuItem usermanual = new MenuItem(DisplayConstant.MENU_ITEM_USER_MANUAL);
+        usermanual.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent event) {
+                downloadUserManual();
+            }
+        });
+        helpMenu.add(usermanual);
         this.add(helpMenu);
 
     }
@@ -116,5 +129,37 @@ public class MenuBar extends JMenuBar{
 //        this.setBackground(StyleConstants.BACKGROUND_TERTIARY);
 //        this.setForeground(StyleConstants.FOREGROUND_SECONDARY);
         this.setBorder(BorderFactory.createEmptyBorder(3 , 10 , 3 , 10));
+    }
+
+    private void downloadUserManual() {
+        String fileName = "UserManual.pdf";
+        String resourcePath = "/com/dynalektric/view/workViews/" + fileName;
+
+        try {
+            // Get the input stream for the resource
+            InputStream inputStream = getClass().getResourceAsStream(resourcePath);
+            if (inputStream == null) {
+                JOptionPane.showMessageDialog(this, "User manual not found.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Create a file chooser
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setSelectedFile(new File(fileName));
+
+            // Show save dialog
+            int userSelection = fileChooser.showSaveDialog(this);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = fileChooser.getSelectedFile();
+
+                // Copy the resource to the selected file
+                Files.copy(inputStream, fileToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                JOptionPane.showMessageDialog(this, "User manual downloaded successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error downloading user manual: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
