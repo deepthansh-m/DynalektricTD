@@ -24,7 +24,8 @@ public class WindingWorkView extends AbstractWorkView{
         public final static String VIEW_NAME = "WindingWorkView";
         private final JPanel mainPanel = new JPanel();
         private final JPanel WindingPanel = new JPanel();
-        private final JTable WINDING_TABLE = new JTable(21  , 4){
+        private final JPanel tablePanel = new JPanel();
+        private final JTable WINDING_TABLE = new JTable(20  , 4){
             @Override
             public boolean isCellEditable(int row , int col){
                 return false;
@@ -101,6 +102,8 @@ public class WindingWorkView extends AbstractWorkView{
         private void initializeWindingPanel(){
             BoxLayout layout = new BoxLayout(this.WindingPanel , BoxLayout.Y_AXIS);
             this.WindingPanel.setLayout(layout);
+            BoxLayout layout1 = new BoxLayout(this.tablePanel , BoxLayout.Y_AXIS);
+            this.tablePanel.setLayout(layout1);
             if(model.getLoadedProject() != null)
                 setWindingPanelValues();
             JLabel Winding_Table_Heading = new JLabel("Transformer Design Wizard [Winding]");
@@ -109,13 +112,15 @@ public class WindingWorkView extends AbstractWorkView{
             WINDING_TABLE.setAlignmentX(CENTER_ALIGNMENT);
             this.WindingPanel.add(Winding_Table_Heading);
             this.WindingPanel.add(Box.createVerticalStrut(10));
-            this.WindingPanel.add(WINDING_TABLE);
-            JScrollPane scrollPane = new JScrollPane(WindingPanel);
+            this.tablePanel.add(WINDING_TABLE);
+            this.tablePanel.setBackground(StyleConstants.BACKGROUND);
+            JScrollPane scrollPane = new JScrollPane(tablePanel);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scrollPane.getVerticalScrollBar().setUnitIncrement(16);
             scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
+            this.WindingPanel.add(scrollPane);
             this.WindingPanel.setBackground(StyleConstants.BACKGROUND);
-            this.WindingPanel.setBorder(BorderFactory.createEmptyBorder(20, 325 , 20 ,325));
+            this.WindingPanel.setBorder(BorderFactory.createEmptyBorder(20, 325 , 70 ,325));
             WINDING_TABLE.setShowGrid(true);
             WINDING_TABLE.setGridColor(Color.BLACK);
             WINDING_TABLE.setBorder(BorderFactory.createLineBorder(Color.BLACK));

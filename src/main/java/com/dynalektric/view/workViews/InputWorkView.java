@@ -448,17 +448,17 @@ public class InputWorkView extends AbstractWorkView {
             case ViewMessages.OPEN_CORE_VIEW:
                 storeEnteredValuesInModel();
                 controller.beginCalculations();
-                controller.openWindingView();
+                controller.openCoreView();
                 break;
             case ViewMessages.OPEN_DIMENSION_VIEW:
                 storeEnteredValuesInModel();
                 controller.beginCalculations();
-                controller.openWindingView();
+                controller.openDimensionView();
                 break;
             case ViewMessages.OPEN_B_O_M_VIEW:
                 storeEnteredValuesInModel();
                 controller.beginCalculations();
-                controller.openWindingView();
+                controller.openBOMView();
                 break;
             case ViewMessages.OPEN_DRAWINGS:
                 storeEnteredValuesInModel();
